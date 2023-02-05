@@ -10,6 +10,6 @@ import UIKit
 
 class CSCollectionViewCell : UICollectionViewCell {
     
-    @IBOutlet var lbl: UILabel?
+    @IBOutlet var lbl: UILabel!
     
 }
