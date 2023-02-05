@@ -11,9 +11,7 @@ import UIKit
 import MapKit
 import CoreLocation
 
-class ViewController: UIViewController {
-    
-    var Aobject = A(age: 30)
+class MapViewController: UIViewController {
     
     @IBOutlet weak var mapKit: MKMapView!
     private var initialLocation = CLLocation(latitude: 37.5666805, longitude: 126.9784147)
