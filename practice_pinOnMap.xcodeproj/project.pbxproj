@@ -16,6 +16,7 @@
 		1B6C6CC72989169600E18B14 /* Artwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B6C6CC62989169600E18B14 /* Artwork.swift */; };
 		1B6C6CCE298D342100E18B14 /* ContentListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B6C6CCD298D342100E18B14 /* ContentListViewController.swift */; };
 		1B6C6CD0298D361600E18B14 /* Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B6C6CCF298D361600E18B14 /* Cell.swift */; };
+		1B6C6CD22991352600E18B14 /* super_init.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B6C6CD12991352600E18B14 /* super_init.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		1B6C6CC62989169600E18B14 /* Artwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Artwork.swift; sourceTree = "<group>"; };
 		1B6C6CCD298D342100E18B14 /* ContentListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentListViewController.swift; sourceTree = "<group>"; };
 		1B6C6CCF298D361600E18B14 /* Cell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cell.swift; sourceTree = "<group>"; };
+		1B6C6CD12991352600E18B14 /* super_init.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = super_init.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +74,7 @@
 				1B6C6CBB2989043100E18B14 /* Assets.xcassets */,
 				1B6C6CBD2989043100E18B14 /* LaunchScreen.storyboard */,
 				1B6C6CC02989043100E18B14 /* Info.plist */,
+				1B6C6CD12991352600E18B14 /* super_init.swift */,
 			);
 			path = practice_pinOnMap;
 			sourceTree = "<group>";
@@ -148,6 +151,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1B6C6CB72989043000E18B14 /* MapViewController.swift in Sources */,
+				1B6C6CD22991352600E18B14 /* super_init.swift in Sources */,
 				1B6C6CB32989043000E18B14 /* AppDelegate.swift in Sources */,
 				1B6C6CC72989169600E18B14 /* Artwork.swift in Sources */,
 				1B6C6CB52989043000E18B14 /* SceneDelegate.swift in Sources */,

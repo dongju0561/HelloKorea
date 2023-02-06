@@ -21,10 +21,8 @@ class ContentListViewController: UIViewController {
         self.collectionView.delegate = self
         self.collectionView.dataSource = self
         
-        
         // Do any additional setup after loading the view.
     }
-    
 
 }
 
@@ -43,7 +41,7 @@ extension ContentListViewController: UICollectionViewDelegate,UICollectionViewDa
         cell.backgroundColor = .lightGray
         cell.lbl.text = list[indexPath.row]
         cell.lbl.textColor = .yellow
-        
+        cell.bg.image
         
         return cell
     }
