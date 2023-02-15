@@ -70,14 +70,23 @@
                                             <rect key="frame" x="0.0" y="0.0" width="127.99999999999997" height="128"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c4n-fW-Rol">
-                                                    <rect key="frame" x="43" y="53" width="42" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c4n-fW-Rol">
+                                                    <rect key="frame" x="1" y="106" width="127" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="127" id="4ZE-Qj-rqU"/>
+                                                        <constraint firstAttribute="height" constant="21" id="sER-U1-OQD"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="c4n-fW-Rol" firstAttribute="leading" secondItem="idq-pi-nVb" secondAttribute="leading" constant="1" id="0Qi-6S-htl"/>
+                                                <constraint firstItem="c4n-fW-Rol" firstAttribute="leading" secondItem="idq-pi-nVb" secondAttribute="leading" constant="1" id="PX4-u3-1o5"/>
+                                                <constraint firstAttribute="bottom" secondItem="c4n-fW-Rol" secondAttribute="bottom" constant="1" id="iIH-Gw-N9b"/>
+                                                <constraint firstAttribute="bottom" secondItem="c4n-fW-Rol" secondAttribute="bottom" constant="1" id="lzq-07-MOC"/>
+                                            </constraints>
                                         </collectionViewCellContentView>
                                         <connections>
                                             <outlet property="lbl" destination="c4n-fW-Rol" id="t9X-7C-ujP"/>

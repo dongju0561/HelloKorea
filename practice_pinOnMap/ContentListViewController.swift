@@ -16,11 +16,10 @@ class ContentListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        collectionView!.register(CSCollectionViewCell.self, forCellWithReuseIdentifier: "CollectionViewCell")
+        collectionView!.register(CSCollectionViewCell.self, forCellWithReuseIdentifier: "cell")
+        //collectionView에 재사용할 cell 등록(재사용할 cell의 클래스, )
         self.collectionView.delegate = self
         self.collectionView.dataSource = self
-        
         // Do any additional setup after loading the view.
     }
 
@@ -37,11 +36,12 @@ extension ContentListViewController: UICollectionViewDelegate,UICollectionViewDa
         let collectionViewHeight = collectionView.frame.height
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! CSCollectionViewCell
+        // UICollectionViewCell의 subclass인 CSCollectionViewCellfh 타입캐스팅
+        
         
         cell.backgroundColor = .lightGray
-        cell.lbl.text = list[indexPath.row]
-        cell.lbl.textColor = .yellow
-        cell.bg.image
+        cell.lbl?.text = list[indexPath.row]
+        cell.lbl?.textColor = .yellow
         
         return cell
     }
@@ -50,6 +50,7 @@ extension ContentListViewController: UICollectionViewDelegate,UICollectionViewDa
         let height = collectionView.frame.height
         let itemsPerRow: CGFloat = 2
         let widthPadding = sectionInsets.left * (itemsPerRow + 1)
+        //sectionInsets
         let itemsPerColumn: CGFloat = 3
         let heightPadding = sectionInsets.top * (itemsPerColumn + 1)
         let cellWidth = (width - widthPadding) / itemsPerRow
