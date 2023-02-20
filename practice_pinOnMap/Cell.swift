@@ -2,8 +2,33 @@ import UIKit
 
 class CSCollectionViewCell : UICollectionViewCell {
     
-    @IBOutlet weak var image: UIImageView?
+    var CSbg: UIImageView = {
+        let bg = UIImageView()
+        
+        bg.translatesAutoresizingMaskIntoConstraints = false
+        bg.contentMode = .scaleAspectFit
+        bg.clipsToBounds = true
+        bg.layer.cornerRadius = 50
+        
+        return bg
+    }()
     
+    override init(frame: CGRect) {
+        super.init(frame: .zero)
+        
+        contentView.addSubview(CSbg)
+        
+        NSLayoutConstraint.activate([
+            CSbg.topAnchor.constraint(equalTo: contentView.topAnchor),
+            CSbg.rightAnchor.constraint(equalTo: contentView.rightAnchor),
+            CSbg.leftAnchor.constraint(equalTo: contentView.leftAnchor),
+            CSbg.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
+        ])
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 }
 
 

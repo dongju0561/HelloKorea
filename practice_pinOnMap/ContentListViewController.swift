@@ -9,17 +9,33 @@ import UIKit
 
 class ContentListViewController: UIViewController {
     
-    @IBOutlet var collectionView: UICollectionView!
-    let imageList : [UIImage] = [#imageLiteral(resourceName: "solo"), #imageLiteral(resourceName: "para") , #imageLiteral(resourceName: "solo") , #imageLiteral(resourceName: "solo")]
+    let imageList : [UIImage] = [#imageLiteral(resourceName: "solo"), #imageLiteral(resourceName: "para") , #imageLiteral(resourceName: "island") , #imageLiteral(resourceName: "solo")]
     let sectionInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+    
+    fileprivate var collectionView : UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .vertical
+        let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        cv.translatesAutoresizingMaskIntoConstraints = false
+        cv.register(CSCollectionViewCell.self, forCellWithReuseIdentifier: "cell") // collectionView에 재사용할 cell 등록(재사용할 cell의 클래스)
+        cv.backgroundColor = .gray
+        return cv
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        collectionView!.register(CSCollectionViewCell.self, forCellWithReuseIdentifier: "cell")
-        //collectionView에 재사용할 cell 등록(재사용할 cell의 클래스, )
+        
         self.collectionView.delegate = self
         self.collectionView.dataSource = self
         // Do any additional setup after loading the view.
+        
+        view.addSubview(collectionView)
+        NSLayoutConstraint.activate([
+            collectionView.topAnchor.constraint(equalTo: view.topAnchor),
+            collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ])
     }
 
 }
@@ -31,13 +47,9 @@ extension ContentListViewController: UICollectionViewDelegate, UICollectionViewD
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        let collectionViewWidth = collectionView.frame.width
-        let collectionViewHeight = collectionView.frame.height
-        
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! CSCollectionViewCell
         // UICollectionViewCell의 subclass인 CSCollectionViewCellfh 타입캐스팅
-        cell.backgroundColor = .gray
-        cell.image?.image = imageList[indexPath.row]
+        cell.CSbg.image = imageList[indexPath.row]
         
         return cell
     }
