@@ -2,7 +2,7 @@ import UIKit
 
 class CSCollectionViewCell : UICollectionViewCell {
     
-    var CSbg: UIImageView = {
+    var CSBg: UIImageView = {
         let bg = UIImageView()
         
         bg.translatesAutoresizingMaskIntoConstraints = false
@@ -13,48 +13,39 @@ class CSCollectionViewCell : UICollectionViewCell {
         return bg
     }()
     
-    override init(frame: CGRect) {
-        super.init(frame: .zero)
+    var CSButton : UIButton = {
+        let button = UIButton()
         
-        contentView.addSubview(CSbg)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(self, action: #selector(buttonAction), for: .touchUpInside) //addTarget은 해당 버튼가 눌렸을때 동작할 함수를 맵핑해주는 메소트
+        button.layer.cornerRadius = 50
+        return button
+    }()
+    
+    override init(frame: CGRect) {
+        super.init(frame: .zero) // ??
+        
+        contentView.addSubview(CSBg)
+        contentView.addSubview(CSButton)
         
         NSLayoutConstraint.activate([
-            CSbg.topAnchor.constraint(equalTo: contentView.topAnchor),
-            CSbg.rightAnchor.constraint(equalTo: contentView.rightAnchor),
-            CSbg.leftAnchor.constraint(equalTo: contentView.leftAnchor),
-            CSbg.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
+            CSBg.topAnchor.constraint(equalTo: contentView.topAnchor),
+            CSBg.rightAnchor.constraint(equalTo: contentView.rightAnchor),
+            CSBg.leftAnchor.constraint(equalTo: contentView.leftAnchor),
+            CSBg.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            
+            CSButton.topAnchor.constraint(equalTo: contentView.topAnchor),
+            CSButton.rightAnchor.constraint(equalTo: contentView.rightAnchor),
+            CSButton.leftAnchor.constraint(equalTo: contentView.leftAnchor),
+            CSButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
         ])
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    @objc func buttonAction(sender: UIButton!){
+        print("work")
+    }
 }
-
-
-//let bg: UIImageView = {
-//        let iv = UIImageView()
-//        iv.translatesAutoresizingMaskIntoConstraints = false // constraint를 수동으로 설정
-//        iv.clipsToBounds = true
-//        iv.contentMode = .scaleAspectFill // 비율조정을 위한 프로퍼티
-//        iv.layer.cornerRadius = 50
-////        iv.image = #imageLiteral(resourceName: "solo") //#imageLiteral()
-//        //이미지일 경우 size가 정해준 값과 다르게 나오게 된다.
-//
-//        return iv
-//    }()
-//
-//    override init(frame: CGRect) {
-//        super.init(frame: frame)
-//
-//        contentView.addSubview(bg)
-//        bg.topAnchor.constraint(equalTo: contentView.topAnchor).isActive = true
-//        bg.leadingAnchor.constraint(equalTo: contentView.leadingAnchor).isActive = true
-//        bg.trailingAnchor.constraint(equalTo: contentView.trailingAnchor).isActive = true
-//        bg.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
-//    }
-
-//
-//    required init?(coder aDecoder : NSCoder) {
-//        super.init(coder: aDecoder)
-//    }

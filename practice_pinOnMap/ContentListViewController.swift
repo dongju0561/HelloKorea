@@ -41,18 +41,22 @@ class ContentListViewController: UIViewController {
 }
 
 extension ContentListViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    
+    //
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return imageList.count
     }
     
+    //cell별 특성 정의
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! CSCollectionViewCell
         // UICollectionViewCell의 subclass인 CSCollectionViewCellfh 타입캐스팅
-        cell.CSbg.image = imageList[indexPath.row]
+        cell.CSBg.image = imageList[indexPath.row]
         
         return cell
     }
+    
     //collectionView cell 크기 설정 함수
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize{
         let width = collectionView.frame.width
