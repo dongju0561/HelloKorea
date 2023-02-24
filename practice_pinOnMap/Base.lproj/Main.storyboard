@@ -12,7 +12,7 @@
         <!--Map View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="MapViewController" customModule="practice_pinOnMap" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MapViewController" id="BYZ-38-t0r" customClass="MapViewController" customModule="practice_pinOnMap" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -43,7 +43,7 @@
         <!--Content List View Controller-->
         <scene sceneID="F2k-iC-AgN">
             <objects>
-                <viewController id="aYp-Mz-NKa" customClass="ContentListViewController" customModule="practice_pinOnMap" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ContentListViewController" id="aYp-Mz-NKa" customClass="ContentListViewController" customModule="practice_pinOnMap" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5Uw-oV-7Qu">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -52,7 +52,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="Vq2-Ro-dbG"/>
                     <connections>
-                        <segue destination="BYZ-38-t0r" kind="show" identifier="secToThird" id="ytp-CB-cWx"/>
+                        <segue destination="BYZ-38-t0r" kind="show" identifier="" id="ytp-CB-cWx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Fef-sh-41b" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

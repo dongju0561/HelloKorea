@@ -1,6 +1,6 @@
 import UIKit
 
-class CSCollectionViewCell : UICollectionViewCell {
+class CSCollectionViewCell : UICollectionViewCell{
     
     var CSBg: UIImageView = {
         let bg = UIImageView()
@@ -15,7 +15,6 @@ class CSCollectionViewCell : UICollectionViewCell {
     
     var CSButton : UIButton = {
         let button = UIButton()
-        
         button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(self, action: #selector(buttonAction), for: .touchUpInside) //addTarget은 해당 버튼가 눌렸을때 동작할 함수를 맵핑해주는 메소트
         button.layer.cornerRadius = 50
@@ -51,10 +50,10 @@ class CSCollectionViewCell : UICollectionViewCell {
             CSButton.leftAnchor.constraint(equalTo: contentView.leftAnchor),
             CSButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
             
-            CSLabel.topAnchor.constraint(equalTo: contentView.topAnchor),
-            CSLabel.rightAnchor.constraint(equalTo: contentView.rightAnchor),
-            CSLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor),
-            CSLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
+//            CSLabel.topAnchor.constraint(equalTo: contentView.topAnchor),
+//            CSLabel.rightAnchor.constraint(equalTo: contentView.rightAnchor),
+//            CSLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor),
+//            CSLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
         ])
     }
     
@@ -63,6 +62,33 @@ class CSCollectionViewCell : UICollectionViewCell {
     }
     
     @objc func buttonAction(sender: UIButton!){
+        
+        let newViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MapViewController") as! MapViewController
+                newViewController.contentsData = data[sender.tag]
+        
+        let currentViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ContentListViewController") as! ContentListViewController
+        
+        // Get a reference to the current view controller.
+//        guard let currentViewController = self.window?.rootViewController else {
+//            return
+//        }
+        
+        // Transition to the new view controller.
+        currentViewController.navigationController?.show(newViewController, sender: true)
+//        navigationController?.pushViewController(newViewController, animated: true)
         print("work")
+        
+        
+//        let MapViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MapViewController") as! MapViewController
+//
+//        MapViewController.contentsData =
+//
+//        guard let currentViewController = self.window?.rootViewController else {
+//            print("fail")
+//            return
+//        }
+//
+//        currentViewController.navigationController?.pushViewController(MapViewController, animated: true)
+
     }
 }

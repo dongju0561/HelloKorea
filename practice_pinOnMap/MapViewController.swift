@@ -14,9 +14,14 @@ import CoreLocation
 class MapViewController: UIViewController {
     
     @IBOutlet weak var mapKit: MKMapView!
+    
+    var contentsData: ContentsData?
     private var initialLocation = CLLocation(latitude: 37.5666805, longitude: 126.9784147)
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        print(contentsData as Any)
         
         //초기 지도 위치
         mapKit.centerToLocation(initialLocation)
@@ -35,7 +40,6 @@ class MapViewController: UIViewController {
         
         mapKit.addAnnotation(artwork)
         mapKit.addAnnotation(artwork1)
-        
     }
 
 }

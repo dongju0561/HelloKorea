@@ -12,32 +12,7 @@ class ContentListViewController: UIViewController {
     let imageList : [UIImage] = [#imageLiteral(resourceName: "solo"), #imageLiteral(resourceName: "para") , #imageLiteral(resourceName: "island") , #imageLiteral(resourceName: "solo")]
     let sectionInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
     
-    var data = [
-        ContentsData(contentName: "이태원 클라쓰", image: #imageLiteral(resourceName: "itaewon"), locations: [
-            Location(locationName: "단밤 1호점", explaination: "박새로이가 처음 가게를 오픈한 위치", latitude: 37.5666805, longitude: 126.9784147),
-            Location(locationName: "단밤 2호점", explaination: "장회장에게 1호점을 뺏기고 그 다음 오픈한 가게", latitude: 37.565758, longitude: 126.974801),
-        ]),
-        ContentsData(contentName: "일타 스캔들", image: #imageLiteral(resourceName: "ilta"), locations: [
-            Location(locationName: "단밤 1호점", explaination: "박새로이가 처음 가게를 오픈한 위치", latitude: 37.5666805, longitude: 126.9784147),
-            Location(locationName: "단밤 2호점", explaination: "장회장에게 1호점을 뺏기고 그 다음 오픈한 가게", latitude: 37.565758, longitude: 126.974801),
-        ]),
-        ContentsData(contentName: "나의 아저씨", image: #imageLiteral(resourceName: "my"), locations: [
-            Location(locationName: "단밤 1호점", explaination: "박새로이가 처음 가게를 오픈한 위치", latitude: 37.5666805, longitude: 126.9784147),
-            Location(locationName: "단밤 2호점", explaination: "장회장에게 1호점을 뺏기고 그 다음 오픈한 가게", latitude: 37.565758, longitude: 126.974801),
-        ]),
-        ContentsData(contentName: "기생충", image: #imageLiteral(resourceName: "para"), locations: [
-            Location(locationName: "단밤 1호점", explaination: "박새로이가 처음 가게를 오픈한 위치", latitude: 37.5666805, longitude: 126.9784147),
-            Location(locationName: "단밤 2호점", explaination: "장회장에게 1호점을 뺏기고 그 다음 오픈한 가게", latitude: 37.565758, longitude: 126.974801),
-        ]),
-        ContentsData(contentName: "솔로지옥2", image: #imageLiteral(resourceName: "solo"), locations: [
-            Location(locationName: "단밤 1호점", explaination: "박새로이가 처음 가게를 오픈한 위치", latitude: 37.5666805, longitude: 126.9784147),
-            Location(locationName: "단밤 2호점", explaination: "장회장에게 1호점을 뺏기고 그 다음 오픈한 가게", latitude: 37.565758, longitude: 126.974801),
-        ]),
-        ContentsData(contentName: "나의 아저씨", image: #imageLiteral(resourceName: "island"), locations: [
-            Location(locationName: "단밤 1호점", explaination: "박새로이가 처음 가게를 오픈한 위치", latitude: 37.5666805, longitude: 126.9784147),
-            Location(locationName: "단밤 2호점", explaination: "장회장에게 1호점을 뺏기고 그 다음 오픈한 가게", latitude: 37.565758, longitude: 126.974801),
-        ])
-    ]
+    
     
     fileprivate var collectionView : UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -54,7 +29,6 @@ class ContentListViewController: UIViewController {
         
         self.collectionView.delegate = self
         self.collectionView.dataSource = self
-        // Do any additional setup after loading the view.
         
         view.addSubview(collectionView)
         NSLayoutConstraint.activate([
@@ -69,7 +43,7 @@ class ContentListViewController: UIViewController {
 
 extension ContentListViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
-    //
+    // cell의 갯수 결정
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return data.count
     }
@@ -80,6 +54,9 @@ extension ContentListViewController: UICollectionViewDelegate, UICollectionViewD
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! CSCollectionViewCell
         // UICollectionViewCell의 subclass인 CSCollectionViewCellfh 타입캐스팅
         cell.CSBg.image = data[indexPath.row].image
+        cell.CSLabel.text = data[indexPath.row].contentName
+        
+        cell.CSButton.tag = indexPath.row
         
         return cell
     }
