@@ -25,11 +25,11 @@ class ContentListViewController: UIViewController {
             Location(locationName: "단밤 1호점", explaination: "박새로이가 처음 가게를 오픈한 위치", latitude: 37.5666805, longitude: 126.9784147),
             Location(locationName: "단밤 2호점", explaination: "장회장에게 1호점을 뺏기고 그 다음 오픈한 가게", latitude: 37.565758, longitude: 126.974801),
         ]),
-        ContentsData(contentName: "나의 아저씨", image: #imageLiteral(resourceName: "para"), locations: [
+        ContentsData(contentName: "기생충", image: #imageLiteral(resourceName: "para"), locations: [
             Location(locationName: "단밤 1호점", explaination: "박새로이가 처음 가게를 오픈한 위치", latitude: 37.5666805, longitude: 126.9784147),
             Location(locationName: "단밤 2호점", explaination: "장회장에게 1호점을 뺏기고 그 다음 오픈한 가게", latitude: 37.565758, longitude: 126.974801),
         ]),
-        ContentsData(contentName: "나의 아저씨", image: #imageLiteral(resourceName: "solo"), locations: [
+        ContentsData(contentName: "솔로지옥2", image: #imageLiteral(resourceName: "solo"), locations: [
             Location(locationName: "단밤 1호점", explaination: "박새로이가 처음 가게를 오픈한 위치", latitude: 37.5666805, longitude: 126.9784147),
             Location(locationName: "단밤 2호점", explaination: "장회장에게 1호점을 뺏기고 그 다음 오픈한 가게", latitude: 37.565758, longitude: 126.974801),
         ]),

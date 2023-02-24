@@ -22,11 +22,23 @@ class CSCollectionViewCell : UICollectionViewCell {
         return button
     }()
     
+    var CSLabel : UILabel = {
+       let label = UILabel()
+        
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.backgroundColor = .gray
+        label.textColor = .white
+        label.text = "hello"
+        
+        return label
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: .zero) // ??
         
         contentView.addSubview(CSBg)
         contentView.addSubview(CSButton)
+        contentView.addSubview(CSLabel)
         
         NSLayoutConstraint.activate([
             CSBg.topAnchor.constraint(equalTo: contentView.topAnchor),
@@ -37,7 +49,12 @@ class CSCollectionViewCell : UICollectionViewCell {
             CSButton.topAnchor.constraint(equalTo: contentView.topAnchor),
             CSButton.rightAnchor.constraint(equalTo: contentView.rightAnchor),
             CSButton.leftAnchor.constraint(equalTo: contentView.leftAnchor),
-            CSButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
+            CSButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            
+            CSLabel.topAnchor.constraint(equalTo: contentView.topAnchor),
+            CSLabel.rightAnchor.constraint(equalTo: contentView.rightAnchor),
+            CSLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor),
+            CSLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
         ])
     }
     
