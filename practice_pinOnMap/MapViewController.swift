@@ -16,34 +16,27 @@ class MapViewController: UIViewController {
     @IBOutlet weak var mapKit: MKMapView!
     
     var contentsData: ContentsData?
-    private var initialLocation = CLLocation(latitude: 37.5666805, longitude: 126.9784147)
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        print(contentsData as Any)
-        
+        let location = contentsData?.locations
+        let initialLocation = CLLocation(latitude: (location?[0].latitude)!, longitude: (location?[0].longitude)!)
         //초기 지도 위치
         mapKit.centerToLocation(initialLocation)
         
-        let artwork = Artwork(
-          title: "King David Kalakaua",
-          locationName: "Waikiki Gateway Park",
-          discipline: "Sculpture",
-          coordinate: CLLocationCoordinate2D(latitude: 37.5666805, longitude: 126.9784147))
-        
-        let artwork1 = Artwork(
-          title: "King David Kalakauartyuiop[",
-          locationName: "Waikiki Gateway Park",
-          discipline: "Sculpture",
-          coordinate: CLLocationCoordinate2D(latitude: 37.565758, longitude: 126.974801))
-        
-        mapKit.addAnnotation(artwork)
-        mapKit.addAnnotation(artwork1)
+        for a in 0..<(contentsData?.locations.count)!{
+            let artwork = Artwork(
+              title: "King David Kalakaua",
+              locationName: "Waikiki Gateway Park",
+              discipline: "Sculpture",
+              coordinate: CLLocationCoordinate2D(latitude: (location?[a].latitude)!, longitude: (location?[a].longitude)!))
+            
+            mapKit.addAnnotation(artwork)
+            
+            print((location?[a].explaination)!)
+        }
     }
-
 }
-
 
 private extension MKMapView {
   func centerToLocation(

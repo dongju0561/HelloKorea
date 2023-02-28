@@ -26,9 +26,11 @@ class ContentListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let CS = CSCollectionViewCell()
         
         self.collectionView.delegate = self
         self.collectionView.dataSource = self
+        CS.delegate = self
         
         view.addSubview(collectionView)
         NSLayoutConstraint.activate([
@@ -39,6 +41,12 @@ class ContentListViewController: UIViewController {
         ])
     }
 
+}
+
+extension ContentListViewController: transitionDelegate{
+    func transition(MapVC: MapViewController) {
+        self.navigationController?.pushViewController(MapVC, animated: true)
+    }
 }
 
 extension ContentListViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
@@ -55,7 +63,8 @@ extension ContentListViewController: UICollectionViewDelegate, UICollectionViewD
         // UICollectionViewCell의 subclass인 CSCollectionViewCellfh 타입캐스팅
         cell.CSBg.image = data[indexPath.row].image
         cell.CSLabel.text = data[indexPath.row].contentName
-        
+        cell.CSButton.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
+        //addTarget은 해당 버튼가 눌렸을때 동작할 함수를 맵핑해주는 메소트
         cell.CSButton.tag = indexPath.row
         
         return cell
@@ -73,5 +82,13 @@ extension ContentListViewController: UICollectionViewDelegate, UICollectionViewD
         let cellHeight = (height - heightPadding) / itemsPerColumn
         
         return CGSize(width: cellWidth, height: cellHeight)
+    }
+    
+    @objc func buttonAction(sender: UIButton!){
+
+        let layout = UICollectionViewFlowLayout()
+        let MapVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MapViewController") as! MapViewController
+        MapVC.contentsData = data[sender.tag]
+        navigationController?.pushViewController(MapVC, animated: true)
     }
 }

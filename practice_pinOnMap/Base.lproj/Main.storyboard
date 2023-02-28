@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="3rY-ez-hnc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="gae-A7-tdV">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
@@ -17,28 +17,28 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3z8-Jp-QRT">
-                                <rect key="frame" x="0.0" y="34" width="393" height="715"/>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3z8-Jp-QRT">
+                                <rect key="frame" x="0.0" y="118" width="393" height="734"/>
                                 <standardMapConfiguration key="preferredConfiguration"/>
                             </mapView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="3z8-Jp-QRT" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="2E5-Ia-WJf"/>
-                            <constraint firstItem="3z8-Jp-QRT" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="7an-8G-gvz"/>
-                            <constraint firstItem="3z8-Jp-QRT" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="FEL-4N-Mhl"/>
-                            <constraint firstItem="3z8-Jp-QRT" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="LxA-ul-Lhd"/>
+                            <constraint firstItem="3z8-Jp-QRT" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" constant="16" id="2E5-Ia-WJf"/>
+                            <constraint firstItem="3z8-Jp-QRT" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" constant="34" id="7an-8G-gvz"/>
+                            <constraint firstItem="3z8-Jp-QRT" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="15" id="FEL-4N-Mhl"/>
+                            <constraint firstItem="3z8-Jp-QRT" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-16" id="LxA-ul-Lhd"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="NPJ-PH-yeT"/>
                     <connections>
-                        <outlet property="mapKit" destination="3z8-Jp-QRT" id="2pd-e4-tPG"/>
+                        <outlet property="mapKit" destination="3z8-Jp-QRT" id="hQ9-eG-4ND"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2907.6335877862593" y="3.5211267605633805"/>
+            <point key="canvasLocation" x="3834.3511450381679" y="3.5211267605633805"/>
         </scene>
         <!--Content List View Controller-->
         <scene sceneID="F2k-iC-AgN">
@@ -52,30 +52,30 @@
                     </view>
                     <navigationItem key="navigationItem" id="Vq2-Ro-dbG"/>
                     <connections>
-                        <segue destination="BYZ-38-t0r" kind="show" identifier="" id="ytp-CB-cWx"/>
+                        <segue destination="BYZ-38-t0r" kind="show" identifier="toMap" id="ytp-CB-cWx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Fef-sh-41b" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2043.5114503816792" y="3.5211267605633805"/>
+            <point key="canvasLocation" x="2970.2290076335876" y="3.5211267605633805"/>
         </scene>
         <!--Navigation Controller-->
-        <scene sceneID="gxa-dt-Moi">
+        <scene sceneID="jrv-Wi-PZM">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="3rY-ez-hnc" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="gae-A7-tdV" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="545-NS-RjD">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="9wQ-mR-r4u">
                         <rect key="frame" x="0.0" y="59" width="393" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="aYp-Mz-NKa" kind="relationship" relationship="rootViewController" id="hJr-Z0-hIs"/>
+                        <segue destination="aYp-Mz-NKa" kind="relationship" relationship="rootViewController" id="MbY-Jg-nu9"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="C97-k6-ZKx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3NK-Xl-5D8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1185.4961832061069" y="3.5211267605633805"/>
+            <point key="canvasLocation" x="2043.5114503816792" y="3.5211267605633805"/>
         </scene>
     </scenes>
     <resources>
