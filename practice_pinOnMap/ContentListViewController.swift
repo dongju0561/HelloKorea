@@ -12,8 +12,6 @@ class ContentListViewController: UIViewController {
     let imageList : [UIImage] = [#imageLiteral(resourceName: "solo"), #imageLiteral(resourceName: "para") , #imageLiteral(resourceName: "island") , #imageLiteral(resourceName: "solo")]
     let sectionInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
     
-    
-    
     fileprivate var collectionView : UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical

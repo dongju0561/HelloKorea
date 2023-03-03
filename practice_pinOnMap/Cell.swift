@@ -30,7 +30,7 @@ class CSCollectionViewCell : UICollectionViewCell{
        let label = UILabel()
         
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.backgroundColor = .gray
+        label.backgroundColor = .clear
         label.textColor = .white
         label.text = "hello"
         
