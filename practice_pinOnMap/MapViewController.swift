@@ -18,7 +18,8 @@ class MapViewController: UIViewController {
     
     //layout for view
     
-    var pickerView: UIPickerView = {
+    //pickerView property
+    private var pickerView: UIPickerView = {
        
         var pickerView = UIPickerView()
         pickerView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: 100)
@@ -27,7 +28,8 @@ class MapViewController: UIViewController {
         return pickerView
     }()
     
-    var mapView : MKMapView = {
+    //mapView property
+    private var mapView : MKMapView = {
         var map = MKMapView()
         
         map.mapType = MKMapType.standard
@@ -62,7 +64,6 @@ class MapViewController: UIViewController {
         
         let location = contentsData?.locations
         
-        //
         for index in 0..<(contentsData?.locations.count)!{
             let artwork = Artwork(
                 title: location?[index].locationName,
@@ -101,7 +102,7 @@ extension MapViewController: MKMapViewDelegate{
                 view = dequeuedView
             } else {
           
-            var detailButton = UIButton(type: .detailDisclosure)
+            let  detailButton = UIButton(type: .detailDisclosure)
             detailButton.addTarget(self, action: #selector(pressDetail), for: .touchUpInside)
             view = MKMarkerAnnotationView(annotation: annotation,reuseIdentifier: identifier)
             view.canShowCallout = true // display extra information
@@ -147,13 +148,12 @@ extension MapViewController: UIPickerViewDelegate, UIPickerViewDataSource{
 }
 
 private extension MKMapView {
-  func setLocation(
     //기존에 있는에 메소드의 argument를 extend operator를 사용하여 상수를 입력해줄 수 있다.
-    _ location: CLLocation, regionRadius: CLLocationDistance = 1000) {
-    let coordinateRegion = MKCoordinateRegion( center: location.coordinate,
-                                               latitudinalMeters: regionRadius,
-                                               longitudinalMeters: regionRadius)
-    setRegion(coordinateRegion, animated: true)
+    func setLocation(_ location: CLLocation, regionRadius: CLLocationDistance = 1000) {
+        
+        let coordinateRegion = MKCoordinateRegion( center: location.coordinate, latitudinalMeters: regionRadius, longitudinalMeters: regionRadius)
+        
+        setRegion(coordinateRegion, animated: true)
   }
 }
 

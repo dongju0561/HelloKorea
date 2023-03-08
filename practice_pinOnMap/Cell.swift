@@ -1,12 +1,6 @@
 import UIKit
 
-protocol transitionDelegate {
-func transition(MapVC: MapViewController)
-}
-
 class CSCollectionViewCell : UICollectionViewCell{
-    
-    var delegate : transitionDelegate?
     
     var CSBg: UIImageView = {
         let bg = UIImageView()
@@ -15,7 +9,6 @@ class CSCollectionViewCell : UICollectionViewCell{
         bg.contentMode = .scaleAspectFit
         bg.clipsToBounds = true
         bg.layer.cornerRadius = 50
-        
         return bg
     }()
     
@@ -32,13 +25,12 @@ class CSCollectionViewCell : UICollectionViewCell{
         label.translatesAutoresizingMaskIntoConstraints = false
         label.backgroundColor = .clear
         label.textColor = .white
-        label.text = "hello"
         
         return label
     }()
     
     override init(frame: CGRect) {
-        super.init(frame: .zero) // ??
+        super.init(frame: .zero)
         
         contentView.addSubview(CSBg)
         contentView.addSubview(CSButton)

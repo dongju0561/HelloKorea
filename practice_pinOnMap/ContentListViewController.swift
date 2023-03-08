@@ -17,17 +17,15 @@ class ContentListViewController: UIViewController {
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
         cv.translatesAutoresizingMaskIntoConstraints = false
         cv.register(CSCollectionViewCell.self, forCellWithReuseIdentifier: "cell") // collectionView에 재사용할 cell 등록(재사용할 cell의 클래스)
-        cv.backgroundColor = .gray
+        cv.backgroundColor = .black
         return cv
     }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let CS = CSCollectionViewCell()
         
         self.collectionView.delegate = self
         self.collectionView.dataSource = self
-        CS.delegate = self
         
         view.addSubview(collectionView)
         NSLayoutConstraint.activate([
@@ -36,13 +34,6 @@ class ContentListViewController: UIViewController {
             collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
-    }
-
-}
-
-extension ContentListViewController: transitionDelegate{
-    func transition(MapVC: MapViewController) {
-        self.navigationController?.pushViewController(MapVC, animated: true)
     }
 }
 
@@ -82,9 +73,8 @@ extension ContentListViewController: UICollectionViewDelegate, UICollectionViewD
     }
     
     @objc func buttonAction(sender: UIButton!){
-        let layout = UICollectionViewFlowLayout()
         let MapVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MapViewController") as! MapViewController
-        MapVC.contentsData = data[sender.tag]
-        navigationController?.pushViewController(MapVC, animated: true)
+        MapVC.contentsData = data[sender.tag] // 버튼마다 가지고 있는 tag번호를 사용하여 data 배열에서 데이터를 조회한다.
+        self.navigationController?.pushViewController(MapVC, animated: true)
     }
 }
