@@ -13,9 +13,7 @@ import CoreLocation
 
 class MapViewController: UIViewController {
     
-    
     var contentsData: ContentsData?
-    
     //layout for view
     
     //pickerView property
@@ -42,6 +40,7 @@ class MapViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let location = contentsData?.locations
         
         view.addSubview(pickerView)
         view.addSubview(mapView)
@@ -62,31 +61,40 @@ class MapViewController: UIViewController {
             mapView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
         ])
         
-        let location = contentsData?.locations
+        makePin(location!)
+        initSetLocation(location!)
         
-        for index in 0..<(contentsData?.locations.count)!{
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.tabBarController?.tabBar.isHidden = true
+    }
+    
+    func makePin(_ data : [Location]) {
+        for index in 0..<data.count{
             let artwork = Artwork(
-                title: location?[index].locationName,
-                locationName: location?[index].explaination,
+                title: data[index].locationName,
+                locationName: data[index].explaination,
                 discipline: "Sculpture",
-                coordinate: CLLocationCoordinate2D(latitude: (location?[index].latitude)!, longitude: (location?[index].longitude)!))
+                coordinate: CLLocationCoordinate2D(latitude: data[index].latitude, longitude: data[index].longitude))
             
             mapView.addAnnotation(artwork)
         }
-        
-        //초기 지도 위치
+    }
+    
+    //초기 지도 위치
+    func initSetLocation(_ data : [Location]) {
         // Define the initial location
-        let initialLocation = CLLocation(latitude: (location?[0].latitude)!, longitude: (location?[0].longitude)!)
+        let initialLocation = CLLocation(latitude: data[0].latitude, longitude: data[0].longitude)
 
         // Set the map view to display the region
         mapView.setLocation(initialLocation)
     }
+    
 }
 
+
 extension MapViewController: MKMapViewDelegate{
-    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
-        view.image = UIImage(named: "marker_gray")
-    }
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView?{
         guard let annotation = annotation as? Artwork else {
@@ -147,12 +155,12 @@ extension MapViewController: UIPickerViewDelegate, UIPickerViewDataSource{
     }
 }
 
+
 private extension MKMapView {
     //기존에 있는에 메소드의 argument를 extend operator를 사용하여 상수를 입력해줄 수 있다.
     func setLocation(_ location: CLLocation, regionRadius: CLLocationDistance = 1000) {
         
         let coordinateRegion = MKCoordinateRegion( center: location.coordinate, latitudinalMeters: regionRadius, longitudinalMeters: regionRadius)
-        
         setRegion(coordinateRegion, animated: true)
   }
 }

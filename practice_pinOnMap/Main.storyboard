@@ -8,11 +8,11 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Item-->
+        <!--Tips-->
         <scene sceneID="0qu-mz-ZNZ">
             <objects>
                 <navigationController id="Wpb-Qe-UFF" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="3bJ-gN-QBb"/>
+                    <tabBarItem key="tabBarItem" title="Tips" image="lightbulb" catalog="system" id="3bJ-gN-QBb"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="QnF-Pt-aYV">
                         <rect key="frame" x="0.0" y="59" width="393" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -41,11 +41,11 @@
             </objects>
             <point key="canvasLocation" x="-2737" y="-516"/>
         </scene>
-        <!--Item-->
+        <!--Home-->
         <scene sceneID="zgn-3o-SIB">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="3lH-wR-bEV" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="sxs-GR-57S"/>
+                    <tabBarItem key="tabBarItem" title="Home" image="homekit" catalog="system" id="sxs-GR-57S"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="ONz-SI-gyA">
                         <rect key="frame" x="0.0" y="59" width="393" height="44"/>
@@ -72,7 +72,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="W8U-He-zpV"/>
                     <connections>
-                        <segue destination="JJv-Kf-wZ1" kind="show" id="8dL-5c-tB2"/>
+                        <segue destination="JJv-Kf-wZ1" kind="show" identifier="toMap" id="H5n-jh-LgO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="w55-9W-RqL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -98,8 +98,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="dCx-AD-XT0">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="vAu-s6-rpK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="u23-62-7yY" customClass="TabBarController" customModule="practice_pinOnMap" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" hidesBottomBarWhenPushed="YES" id="u23-62-7yY" customClass="TabBarController" customModule="practice_pinOnMap" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="rbv-4M-JKo">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
@@ -111,11 +110,14 @@
                         <segue destination="3lH-wR-bEV" kind="relationship" relationship="viewControllers" id="2UR-O2-WEI"/>
                     </connections>
                 </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vAu-s6-rpK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-4961" y="-888"/>
         </scene>
     </scenes>
     <resources>
+        <image name="homekit" catalog="system" width="128" height="104"/>
+        <image name="lightbulb" catalog="system" width="92" height="128"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

@@ -1,16 +1,17 @@
 //
-//  TipsViewController.swift
+//  TabBarViewController.swift
 //  practice_pinOnMap
 //
-//  Created by Dongju Park on 2023/03/08.
+//  Created by Dongju Park on 2023/03/09.
 //
 
 import UIKit
 
-class TipsViewController: UIViewController {
+class TabBarViewController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
         // Do any additional setup after loading the view.
     }
     

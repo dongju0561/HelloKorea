@@ -1,15 +1,15 @@
-//
 //  ContentListViewController.swift
 //  practice_pinOnMap
 //
 //  Created by Dongju Park on 2023/02/03.
-//
 
 import UIKit
 
 class ContentListViewController: UIViewController {
     
     let sectionInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+    
+    let MapVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MapViewController") as! MapViewController
     
     fileprivate var collectionView : UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -23,7 +23,6 @@ class ContentListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         self.collectionView.delegate = self
         self.collectionView.dataSource = self
         
@@ -34,6 +33,10 @@ class ContentListViewController: UIViewController {
             collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.tabBarController?.tabBar.isHidden = false
     }
 }
 
@@ -73,8 +76,11 @@ extension ContentListViewController: UICollectionViewDelegate, UICollectionViewD
     }
     
     @objc func buttonAction(sender: UIButton!){
-        let MapVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MapViewController") as! MapViewController
+        
         MapVC.contentsData = data[sender.tag] // 버튼마다 가지고 있는 tag번호를 사용하여 data 배열에서 데이터를 조회한다.
-        self.navigationController?.pushViewController(MapVC, animated: true)
+        print(self.hidesBottomBarWhenPushed)
+        navigationController?.pushViewController(MapVC, animated: true)
+        //        present(MapVC, animated: true, completion: nil)
     }
+    
 }
