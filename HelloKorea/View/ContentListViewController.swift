@@ -221,3 +221,95 @@ class ContentListViewController: UIViewController {
 
 }
 
+extension ContentListViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    // cell의 갯수 결정
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        if collectionView.tag == 1 {
+            return hotData.count
+        }
+        else if(collectionView.tag == 2){
+            return JFYData.count
+        }
+        else if(collectionView.tag == 3){
+            return romanceData.count
+        }
+        else{
+            return thrillerData.count
+        }
+    }
+    
+    //cell별 특성 정의
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! CSCollectionViewCell
+        // UICollectionViewCell의 subclass인 CSCollectionViewCellfh 타입캐스팅
+        
+        if collectionView.tag == 1 {
+            cell.CSLabel.textAlignment = .left
+            cell.CSLabel.font = cell.CSLabel.font.withSize(13)
+            cell.CSBg.image = hotData[indexPath.row].image
+            cell.CSLabel.text = hotData[indexPath.row].contentName
+//            cell.CSButton.addTarget(self, action: #selector(hotButtonAction), for: .touchUpInside) //addTarget은 해당 버튼가 눌렸을때 동작할 함수를 맵핑해주는 메소트
+            cell.CSButton.tag = indexPath.row
+        }
+        else if(collectionView.tag == 2){
+            cell.CSBg.image = JFYData[indexPath.row].image
+            cell.CSLabel.text = JFYData[indexPath.row].contentName
+//            cell.CSButton.addTarget(self, action: #selector(JFYButtonAction), for: .touchUpInside) //addTarget은 해당 버튼가 눌렸을때 동작할 함수를 맵핑해주는 메소트
+            cell.CSButton.tag = indexPath.row
+        }
+        else if(collectionView.tag == 3){
+            cell.CSBg.image = romanceData[indexPath.row].image
+            cell.CSLabel.text = romanceData[indexPath.row].contentName
+//            cell.CSButton.addTarget(self, action: #selector(RomanceButtonAction), for: .touchUpInside) //addTarget은 해당 버튼가 눌렸을때 동작할 함수를 맵핑해주는 메소트
+            cell.CSButton.tag = indexPath.row
+        }
+        else{
+            cell.CSBg.image = thrillerData[indexPath.row].image
+            cell.CSLabel.text = thrillerData[indexPath.row].contentName
+//            cell.CSButton.addTarget(self, action: #selector(trillerButtonAction), for: .touchUpInside) //addTarget은 해당 버튼가 눌렸을때 동작할 함수를 맵핑해주는 메소트
+            cell.CSButton.tag = indexPath.row
+        }
+                
+        return cell
+    }
+    
+    //collectionView cell 크기 설정 함수
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize{
+
+        let width = collectionView.bounds.width
+        let height = collectionView.bounds.height
+        
+        if collectionView.tag == 1 {
+            
+            return CGSize(width: width/1.9, height: height)
+        }
+        else{
+            return CGSize(width: width/3.5, height: height)
+        }
+    }
+    
+//    @objc func hotButtonAction(_ sender: UIButton!){
+//        let DetailVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
+//         // 버튼마다 가지고 있는 tag번호를 사용하여 data 배열에서 데이터를 조회한다.
+//        DetailVC.viewModel = ContentViewModel(contentsData: hotData[sender.tag])
+//
+//        navigationController?.pushViewController(DetailVC, animated: true)
+//    }
+//    @objc func JFYButtonAction(_ sender: UIButton!){
+//        let DetailVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
+//        // 버튼마다 가지고 있는 tag번호를 사용하여 data 배열에서 데이터를 조회한다.
+//        DetailVC.viewModel = ContentViewModel(contentsData: JFYData[sender.tag])
+//        navigationController?.pushViewController(DetailVC, animated: true)
+//    }
+//    @objc func RomanceButtonAction(_ sender: UIButton!){
+//        let DetailVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
+//        DetailVC.viewModel = ContentViewModel(contentsData: romanceData[sender.tag])
+//        navigationController?.pushViewController(DetailVC, animated: true)
+//    }
+//    @objc func trillerButtonAction(_ sender: UIButton!){
+//        let DetailVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
+//        DetailVC.viewModel = ContentViewModel(contentsData: thrillerData[sender.tag])
+//        navigationController?.pushViewController(DetailVC, animated: true)
+//    }
+}
