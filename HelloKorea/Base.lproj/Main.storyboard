@@ -20,10 +20,29 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <navigationItem key="navigationItem" id="fbC-BC-5Hb"/>
+                    <connections>
+                        <segue destination="Oyr-9d-qRh" kind="show" id="0Jp-yg-6Kb"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2123" y="-353"/>
+        </scene>
+        <!--Detail View Controller-->
+        <scene sceneID="8GH-ci-vyo">
+            <objects>
+                <viewController storyboardIdentifier="DetailViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Oyr-9d-qRh" customClass="DetailViewController" customModule="HelloKorea" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Dd7-cS-9wE">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="TFD-Qv-i0N"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="u7E-kU-q1n"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cEW-R8-l28" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2966" y="-354"/>
         </scene>
         <!--Item-->
         <scene sceneID="Sl4-bo-sYb">
@@ -64,6 +83,7 @@
                 <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="85Z-jh-8Zh" customClass="TabBarViewController" customModule="HelloKorea" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="QXx-FO-7Re">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
