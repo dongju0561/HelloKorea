@@ -14,6 +14,10 @@
 		4B2045D42AD42D5E00110625 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2045D32AD42D5E00110625 /* Location.swift */; };
 		4B35117C2AFA176800B9F160 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B35117B2AFA176800B9F160 /* TabBarViewController.swift */; };
 		4B35117E2AFA60DB00B9F160 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B35117D2AFA60DB00B9F160 /* DetailViewController.swift */; };
+		4B3511802AFA6CB600B9F160 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B35117F2AFA6CB600B9F160 /* MapViewController.swift */; };
+		4B3511822AFA6CE700B9F160 /* Artwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B3511812AFA6CE700B9F160 /* Artwork.swift */; };
+		4B3511842AFA6D6C00B9F160 /* MKMapViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B3511832AFA6D6C00B9F160 /* MKMapViewExtension.swift */; };
+		4B743F942B0B359C005A7321 /* DetailModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B743F932B0B359C005A7321 /* DetailModalViewController.swift */; };
 		4BE1FCA42AD12D3A00CA8106 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BE1FCA32AD12D3A00CA8106 /* AppDelegate.swift */; };
 		4BE1FCA62AD12D3A00CA8106 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BE1FCA52AD12D3A00CA8106 /* SceneDelegate.swift */; };
 		4BE1FCA82AD12D3A00CA8106 /* ContentListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BE1FCA72AD12D3A00CA8106 /* ContentListViewController.swift */; };
@@ -33,6 +37,10 @@
 		4B2045D32AD42D5E00110625 /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Location.swift; path = ../../../practice_pinOnMap/practice_pinOnMap/Model/Location.swift; sourceTree = "<group>"; };
 		4B35117B2AFA176800B9F160 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		4B35117D2AFA60DB00B9F160 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		4B35117F2AFA6CB600B9F160 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		4B3511812AFA6CE700B9F160 /* Artwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Artwork.swift; sourceTree = "<group>"; };
+		4B3511832AFA6D6C00B9F160 /* MKMapViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MKMapViewExtension.swift; sourceTree = "<group>"; };
+		4B743F932B0B359C005A7321 /* DetailModalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailModalViewController.swift; sourceTree = "<group>"; };
 		4BE1FCA02AD12D3A00CA8106 /* HelloKorea.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HelloKorea.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4BE1FCA32AD12D3A00CA8106 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4BE1FCA52AD12D3A00CA8106 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -96,6 +104,7 @@
 			children = (
 				4BE1FCB82AD1316D00CA8106 /* UIColorExtension.swift */,
 				4BE1FCBF2AD1328000CA8106 /* UIViewExtension.swift */,
+				4B3511832AFA6D6C00B9F160 /* MKMapViewExtension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -106,6 +115,7 @@
 				4B2045D32AD42D5E00110625 /* Location.swift */,
 				4B2045CF2AD42D3600110625 /* ContentsModel.swift */,
 				4B2045D12AD42D4400110625 /* Datas.swift */,
+				4B3511812AFA6CE700B9F160 /* Artwork.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -118,6 +128,8 @@
 				4BE1FCBD2AD131EC00CA8106 /* CSCollectionViewCell.swift */,
 				4B15B2DE2ADECA48001533ED /* NavigationViewController.swift */,
 				4B35117B2AFA176800B9F160 /* TabBarViewController.swift */,
+				4B35117F2AFA6CB600B9F160 /* MapViewController.swift */,
+				4B743F932B0B359C005A7321 /* DetailModalViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -201,6 +213,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4B35117E2AFA60DB00B9F160 /* DetailViewController.swift in Sources */,
+				4B3511842AFA6D6C00B9F160 /* MKMapViewExtension.swift in Sources */,
 				4BE1FCC02AD1328000CA8106 /* UIViewExtension.swift in Sources */,
 				4B2045D42AD42D5E00110625 /* Location.swift in Sources */,
 				4B15B2E12ADECB4A001533ED /* Color.swift in Sources */,
@@ -210,9 +223,12 @@
 				4B2045D22AD42D4400110625 /* Datas.swift in Sources */,
 				4BE1FCA62AD12D3A00CA8106 /* SceneDelegate.swift in Sources */,
 				4B2045D02AD42D3600110625 /* ContentsModel.swift in Sources */,
+				4B3511822AFA6CE700B9F160 /* Artwork.swift in Sources */,
 				4BE1FCB92AD1316D00CA8106 /* UIColorExtension.swift in Sources */,
 				4B15B2DF2ADECA48001533ED /* NavigationViewController.swift in Sources */,
 				4BE1FCBE2AD131EC00CA8106 /* CSCollectionViewCell.swift in Sources */,
+				4B3511802AFA6CB600B9F160 /* MapViewController.swift in Sources */,
+				4B743F942B0B359C005A7321 /* DetailModalViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

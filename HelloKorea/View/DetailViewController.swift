@@ -52,7 +52,7 @@ class DetailViewController: UIViewController {
         var button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.layer.cornerRadius = 20
-//        button.addTarget(self, action: #selector(moveToMap), for: .touchUpInside)
+        button.addTarget(self, action: #selector(moveToMap), for: .touchUpInside)
         button.backgroundColor = .clear
         
         return button
@@ -163,10 +163,10 @@ class DetailViewController: UIViewController {
         ])
     }
     
-//    @objc func moveToMap(sender: UIButton!) {
-//        if let mapVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MapViewController") as? MapViewController {
-//            mapVC.contentViewModel = viewModel
-//            navigationController?.pushViewController(mapVC, animated: true)
-//        }
-//    }
+    @objc func moveToMap(sender: UIButton!) {
+        if let mapVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MapViewController") as? MapViewController {
+            mapVC.contentViewModel = contentsModel
+            navigationController?.pushViewController(mapVC, animated: true)
+        }
+    }
 }

@@ -141,7 +141,6 @@ class ContentListViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         initSubView()
     }
     func initSubView(){
