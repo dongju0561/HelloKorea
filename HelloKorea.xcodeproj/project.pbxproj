@@ -18,6 +18,7 @@
 		4B3511822AFA6CE700B9F160 /* Artwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B3511812AFA6CE700B9F160 /* Artwork.swift */; };
 		4B3511842AFA6D6C00B9F160 /* MKMapViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B3511832AFA6D6C00B9F160 /* MKMapViewExtension.swift */; };
 		4B743F942B0B359C005A7321 /* DetailModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B743F932B0B359C005A7321 /* DetailModalViewController.swift */; };
+		4BB761E12B14F8E800D533C1 /* TipViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BB761E02B14F8E800D533C1 /* TipViewController.swift */; };
 		4BE1FCA42AD12D3A00CA8106 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BE1FCA32AD12D3A00CA8106 /* AppDelegate.swift */; };
 		4BE1FCA62AD12D3A00CA8106 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BE1FCA52AD12D3A00CA8106 /* SceneDelegate.swift */; };
 		4BE1FCA82AD12D3A00CA8106 /* ContentListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BE1FCA72AD12D3A00CA8106 /* ContentListViewController.swift */; };
@@ -43,6 +44,7 @@
 		4B3511812AFA6CE700B9F160 /* Artwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Artwork.swift; sourceTree = "<group>"; };
 		4B3511832AFA6D6C00B9F160 /* MKMapViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MKMapViewExtension.swift; sourceTree = "<group>"; };
 		4B743F932B0B359C005A7321 /* DetailModalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailModalViewController.swift; sourceTree = "<group>"; };
+		4BB761E02B14F8E800D533C1 /* TipViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TipViewController.swift; sourceTree = "<group>"; };
 		4BE1FCA02AD12D3A00CA8106 /* HelloKorea.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HelloKorea.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4BE1FCA32AD12D3A00CA8106 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4BE1FCA52AD12D3A00CA8106 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -149,10 +151,11 @@
 			children = (
 				4BE1FCA72AD12D3A00CA8106 /* ContentListViewController.swift */,
 				4B35117D2AFA60DB00B9F160 /* DetailViewController.swift */,
+				4B35117F2AFA6CB600B9F160 /* MapViewController.swift */,
+				4BB761E02B14F8E800D533C1 /* TipViewController.swift */,
 				4BE1FCBD2AD131EC00CA8106 /* CSCollectionViewCell.swift */,
 				4B15B2DE2ADECA48001533ED /* NavigationViewController.swift */,
 				4B35117B2AFA176800B9F160 /* TabBarViewController.swift */,
-				4B35117F2AFA6CB600B9F160 /* MapViewController.swift */,
 				4B743F932B0B359C005A7321 /* DetailModalViewController.swift */,
 			);
 			path = View;
@@ -296,6 +299,7 @@
 				4B15B2DF2ADECA48001533ED /* NavigationViewController.swift in Sources */,
 				4BE1FCBE2AD131EC00CA8106 /* CSCollectionViewCell.swift in Sources */,
 				4B3511802AFA6CB600B9F160 /* MapViewController.swift in Sources */,
+				4BB761E12B14F8E800D533C1 /* TipViewController.swift in Sources */,
 				4B743F942B0B359C005A7321 /* DetailModalViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

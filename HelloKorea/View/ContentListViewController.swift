@@ -2,17 +2,6 @@ import UIKit
 
 class ContentListViewController: UIViewController {
     
-    fileprivate var background : UIView = {
-        let view = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
-        let gradient: CAGradientLayer = CAGradientLayer()
-        gradient.colors = [UIColor.black.cgColor,UIColor(rgb: 0x295EA6).cgColor]
-        gradient.locations = [0.0 , 0.7]
-        gradient.startPoint = CGPoint(x: 0.0, y: 0.0)
-        gradient.endPoint = CGPoint(x: 0.0, y: 1.0)
-        gradient.frame = view.bounds
-        view.layer.addSublayer(gradient)
-        return view
-    }()
     fileprivate var labelHot : UILabel = {
         var lbl = UILabel()
         lbl.translatesAutoresizingMaskIntoConstraints = false

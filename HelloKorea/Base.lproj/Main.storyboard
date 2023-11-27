@@ -2,7 +2,6 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22155" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="85Z-jh-8Zh">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22131"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -70,7 +69,7 @@
         <scene sceneID="Sl4-bo-sYb">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="YKf-FB-5hQ" customClass="NavigationViewController" customModule="HelloKorea" customModuleProvider="target" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Locations" id="yMw-Ct-5bI"/>
+                    <tabBarItem key="tabBarItem" title="Locations" selectedImage="map" catalog="system" id="yMw-Ct-5bI"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="dWW-wa-xpN">
                         <rect key="frame" x="0.0" y="59" width="393" height="44"/>
@@ -83,13 +82,13 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kLz-wN-tPQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1196" y="-353"/>
+            <point key="canvasLocation" x="1251" y="-354"/>
         </scene>
         <!--Resturants-->
         <scene sceneID="7I2-DN-GKs">
             <objects>
                 <navigationController id="HcW-HI-iv2" customClass="NavigationViewController" customModule="HelloKorea" customModuleProvider="target" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Resturants" id="uhF-o4-Z58"/>
+                    <tabBarItem key="tabBarItem" title="Resturants" selectedImage="fork.knife" catalog="system" id="uhF-o4-Z58"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="qhS-cU-sEk">
                         <rect key="frame" x="0.0" y="59" width="393" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -112,11 +111,12 @@
                     <connections>
                         <segue destination="YKf-FB-5hQ" kind="relationship" relationship="viewControllers" id="J2V-k3-HJW"/>
                         <segue destination="HcW-HI-iv2" kind="relationship" relationship="viewControllers" id="U53-RZ-4vU"/>
+                        <segue destination="NwS-dK-Nzg" kind="relationship" relationship="viewControllers" id="eGF-0o-F76"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Y6K-vK-E8T" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="130.53435114503816" y="-34.507042253521128"/>
+            <point key="canvasLocation" x="-367" y="320"/>
         </scene>
         <!--Detail Modal View Controller-->
         <scene sceneID="GIR-5r-SQB">
@@ -133,8 +133,47 @@
             </objects>
             <point key="canvasLocation" x="4598" y="-354"/>
         </scene>
+        <!--Tip View Controller-->
+        <scene sceneID="bfr-Lb-Ptx">
+            <objects>
+                <viewController storyboardIdentifier="TipViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="XZt-vx-U8H" customClass="TipViewController" customModule="HelloKorea" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="rAP-Oy-DdQ">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="hxY-rC-qXS"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="e38-bf-tcw"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nMh-7S-7sC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2179.3893129770991" y="1092.9577464788733"/>
+        </scene>
+        <!--Tip-->
+        <scene sceneID="nrk-Dr-4Xn">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="NwS-dK-Nzg" customClass="NavigationViewController" customModule="HelloKorea" customModuleProvider="target" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Tip" selectedImage="lightbulb" catalog="system" id="7Y4-xD-pfM"/>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="A5f-Aw-Nnx"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ppt-Kz-nwX">
+                        <rect key="frame" x="0.0" y="59" width="393" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="XZt-vx-U8H" kind="relationship" relationship="rootViewController" id="wgw-RE-bBX"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="j6r-c7-YDO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1252.6717557251907" y="1092.9577464788733"/>
+        </scene>
     </scenes>
     <resources>
+        <image name="fork.knife" catalog="system" width="94" height="128"/>
+        <image name="lightbulb" catalog="system" width="92" height="128"/>
+        <image name="map" catalog="system" width="128" height="112"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
