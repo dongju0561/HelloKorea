@@ -1,5 +1,6 @@
 import UIKit
 import MapKit
+import Toast_Swift
 import SafariServices
 
 //modal => 주소 복사, 장소 검색
@@ -12,6 +13,10 @@ class DetailModalViewController: UIViewController, UITableViewDataSource, UITabl
     fileprivate var dramaTitle: UILabel = {
         var lbl = UILabel()
         lbl.translatesAutoresizingMaskIntoConstraints = false
+        lbl.font = .systemFont(ofSize: 20, weight: .bold)
+        lbl.textAlignment = .center
+        lbl.textColor = .white
+        lbl.backgroundColor = .blue
         return lbl
     }()
     
@@ -78,6 +83,7 @@ class DetailModalViewController: UIViewController, UITableViewDataSource, UITabl
             //저장된 주소를 클립보드에 복사
             if let safeAddress = safeAnnotation.address{
                 UIPasteboard.general.string = safeAddress
+                self.view.makeToast("주소가 복사 되었습니다")
                 print(safeAddress + " 복사 되었습니다.")
             }
         }

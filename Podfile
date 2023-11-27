@@ -6,5 +6,6 @@ target 'HelloKorea' do
   use_frameworks!
 
   # Pods for HelloKorea
+  pod 'Toast-Swift', '~> 5.0.1'
 
 end

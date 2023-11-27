@@ -1,0 +1,6 @@
+framework module Pods_HelloKorea {
+  umbrella header "Pods-HelloKorea-umbrella.h"
+
+  export *
+  module * { export * }
+}

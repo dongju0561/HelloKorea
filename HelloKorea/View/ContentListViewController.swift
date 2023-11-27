@@ -2,8 +2,6 @@ import UIKit
 
 class ContentListViewController: UIViewController {
     
-    let gradientLayer = CAGradientLayer()
-    
     fileprivate var background : UIView = {
         let view = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
         let gradient: CAGradientLayer = CAGradientLayer()
@@ -43,6 +41,7 @@ class ContentListViewController: UIViewController {
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout) // collectionView 객체를 생성하기 위해 layout 변수를 인수로 사용
         cv.contentInset = UIEdgeInsets(top: 0, left: 23, bottom: 0, right: 23)
         cv.translatesAutoresizingMaskIntoConstraints = false
+        
         cv.register(CSCollectionViewCell.self, forCellWithReuseIdentifier: "cell") // collectionView에 재사용할 cell 등록(재사용할 cell의 클래스)
         cv.backgroundColor = .clear
         cv.tag = 1
@@ -171,11 +170,11 @@ class ContentListViewController: UIViewController {
             scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
             
             labelHot.topAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: 23),
             labelHot.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 21),
-            labelHot.widthAnchor.constraint(equalToConstant: 117),
+            labelHot.widthAnchor.constraint(equalToConstant: 130),
             labelHot.heightAnchor.constraint(equalToConstant: 22),
             
             labelfFire.topAnchor.constraint(equalTo: labelHot.topAnchor),
@@ -216,6 +215,7 @@ class ContentListViewController: UIViewController {
             collectionViewForThriller.widthAnchor.constraint(equalToConstant: screenWidth),
             collectionViewForThriller.heightAnchor.constraint(equalToConstant: 190),
         ])
+        scrollView.contentSize = CGSize(width: screenWidth, height: 960)
     }
 }
 

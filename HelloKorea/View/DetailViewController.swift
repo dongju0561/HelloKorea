@@ -16,7 +16,7 @@ class DetailViewController: UIViewController {
         scrollView.setGradient(color1: .black, color2: UIColor(rgb: 0x295EA6))
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         scrollView.showsVerticalScrollIndicator = false
-        scrollView.contentSize = CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height + 110) //
+        scrollView.contentSize = CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height + 110)
         
         return scrollView
     }()
