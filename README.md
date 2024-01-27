@@ -8,11 +8,13 @@ HelloKorea는 K-컨텐츠(드라마, 영화)에 관련된 컨텐츠의 설명을
 - UIKit(codebase)
 - MapKit
 - CoreLoacation
+- RxSwift
 - Toast_Swift
 - SafariService
-- MVC(예정)
+- MVVM
 
 ## Function
+- 간단한 로그인 기능
 - 컨텐츠의 촬영장소들을 지도상에서 핀을 통해 위치 정보를 제공
 - 검색이 용이하도록 컨텐츠의 제목 문자열 복사하기 기능을 지원
 - 검색이 용이하도록 해당 앱 상에서 컨텐츠의 제목 문자열을 검색어로 사용하여 safari로 검색
