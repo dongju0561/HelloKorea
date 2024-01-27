@@ -20,6 +20,7 @@ class LoginViewController: UIViewController {
         lbl.text = "HelloKorea"
         lbl.translatesAutoresizingMaskIntoConstraints = false
         lbl.textColor = UIColor(named: Color.NavigationTintColor)!
+        lbl.font = .systemFont(ofSize: 24)
         return lbl
     }()
     
