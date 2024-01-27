@@ -14,6 +14,15 @@ class LoginViewController: UIViewController {
     let userPassword = "qwer1234"
     let viewModel = LoginViewModel()
     let disposeBag = DisposeBag()
+    
+    private let titleLabel: UILabel = {
+       var lbl = UILabel()
+        lbl.text = "HelloKorea"
+        lbl.translatesAutoresizingMaskIntoConstraints = false
+        lbl.textColor = UIColor(named: Color.NavigationTintColor)!
+        return lbl
+    }()
+    
     private let usernameTextField: UITextField = {
         let textField = UITextField()
         textField.placeholder = "Username"
@@ -46,16 +55,21 @@ class LoginViewController: UIViewController {
         setupUI()
         setupActions()
     }
-
+    
     private func setupUI() {
-        view.backgroundColor = .white
-
+        view.layer.insertSublayer(setGradient(), at: 0)
+        
+        view.addSubview(titleLabel)
         view.addSubview(usernameTextField)
         view.addSubview(passwordTextField)
         view.addSubview(loginButton)
 
         NSLayoutConstraint.activate([
-            usernameTextField.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 50),
+            
+            titleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 150),
+            titleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            
+            usernameTextField.topAnchor.constraint(equalTo: titleLabel.topAnchor, constant: 50),
             usernameTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             usernameTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
 
@@ -97,17 +111,31 @@ class LoginViewController: UIViewController {
         //로그인 버튼을 누르면 사전에 저장된 이메일과 비밀번호가 일치한다면 다음 view로 주사하고 그렇지 않은 경우 아이디와 비밀번호가 일치하지 않는다는 메시지를 가진 alert을 출력
         loginButton.rx.tap.subscribe ({
             [weak self] _ in
+            //정확한 아이디 & 비밀번호가 맞는 경우
             if(self?.userEmail == self?.viewModel.emailObserver.value && self?.userPassword == self?.viewModel.passwordObserver.value) {
+                
                 let LoginVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ContentListViewController") as! TabBarViewController
                 self?.navigationController?.pushViewController(LoginVC, animated: true)
                 self?.navigationController?.setNavigationBarHidden(true, animated: true)
-                } else {//정확한 아이디 & 비밀번호가 아닐 경우
-                    let alert = UIAlertController(title: "로그인 실패", message: "아이디와 비밀번호를 다시 확인하세요", preferredStyle: .alert)
-                    let ok = UIAlertAction(title: "확인", style: .default)
-                    alert.addAction(ok)
-                    self?.present(alert, animated: true, completion: nil)
-                }
             }
-        ).disposed(by: disposeBag)
+            
+            //정확한 아이디 & 비밀번호가 아닐 경우
+            else {
+                let alert = UIAlertController(title: "로그인 실패", message: "아이디와 비밀번호를 다시 확인하세요", preferredStyle: .alert)
+                let ok = UIAlertAction(title: "확인", style: .default)
+                alert.addAction(ok)
+                self?.present(alert, animated: true, completion: nil)
+            }
+        }).disposed(by: disposeBag)
+    }
+    
+    private func setGradient() -> CAGradientLayer{
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.colors = [UIColor.black.cgColor, UIColor(red: 41/255, green: 94/255, blue: 166/255, alpha: 1).cgColor]
+        gradientLayer.startPoint = CGPoint(x: 0.5, y: 0)
+        gradientLayer.endPoint = CGPoint(x: 0.5, y: 1)
+        gradientLayer.frame = view.bounds
+        
+        return gradientLayer
     }
 }
