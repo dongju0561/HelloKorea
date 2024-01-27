@@ -124,7 +124,6 @@
 			isa = PBXGroup;
 			children = (
 				4B46A0B32B5F9BC500791B05 /* ViewModel */,
-				4BE1FCBC2AD131C100CA8106 /* Controller */,
 				4BE1FCBB2AD131B800CA8106 /* View */,
 				4BE1FCBA2AD131A600CA8106 /* Model */,
 				4BE1FCB72AD1314700CA8106 /* Extension */,
@@ -174,13 +173,6 @@
 				4B743F932B0B359C005A7321 /* DetailModalViewController.swift */,
 			);
 			path = View;
-			sourceTree = "<group>";
-		};
-		4BE1FCBC2AD131C100CA8106 /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
