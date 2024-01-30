@@ -13,6 +13,10 @@ HelloKorea는 K-컨텐츠(드라마, 영화)에 관련된 컨텐츠의 설명을
 - SafariService
 - MVVM
 
+로그인 기능 | 메인 기능
+------------------------ |----------------------------------------------------------
+<img src = "https://github.com/dongju0561/HelloKorea/assets/77201628/368a0851-7438-46f6-bfe4-c8a4fefc8b66" width="250" height="400">|<img src = "https://github.com/dongju0561/HelloKorea/assets/77201628/d8a87e05-704a-4474-8ba3-56ba9baa3409" width="250" height="400">
+
 ## Function
 - 간단한 로그인 기능
 - 컨텐츠의 촬영장소들을 지도상에서 핀을 통해 위치 정보를 제공
