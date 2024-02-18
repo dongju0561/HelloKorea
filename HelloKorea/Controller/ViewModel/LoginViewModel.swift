@@ -9,6 +9,7 @@ import RxSwift
 import RxCocoa
 
 class LoginViewModel{
+    
     let emailObserver = BehaviorRelay<String>(value: "")
     let passwordObserver = BehaviorRelay<String>(value: "")
     
@@ -16,10 +17,10 @@ class LoginViewModel{
     var isValid: Observable<Bool>{
         //.combineLatest() 메소드는 여러 개의 옵저버블을 결합, 각 옵저버블이 이벤트를 발생할때 마다 이벤트를 생성
         return Observable.combineLatest(emailObserver,passwordObserver)
-                    .map { email, password in
-                        //email이 공백이 아니고 '@'와 '.'를 포함하고 password의 문자의 갯수가 0보다 크다면 true를 반환함
-                        return !email.isEmpty && email.contains("@") && email.contains(".") && password.count > 0
-                    }
+            .map { email, password in
+                //email이 공백이 아니고 '@'와 '.'를 포함하고 password의 문자의 갯수가 0보다 크다면 true를 반환함
+                return !email.isEmpty && email.contains("@") && email.contains(".") && password.count > 0
+            }
     }
 }
 

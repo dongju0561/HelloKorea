@@ -8,15 +8,21 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import FirebaseStorage
+import Firebase
+
+
 
 class LoginViewController: UIViewController {
+    let storage = Storage.storage()
+    
     let userEmail = "pd@gmail.com"
     let userPassword = "qwer1234"
     let viewModel = LoginViewModel()
     let disposeBag = DisposeBag()
     
     private let titleLabel: UILabel = {
-       var lbl = UILabel()
+        var lbl = UILabel()
         lbl.text = "HelloKorea"
         lbl.translatesAutoresizingMaskIntoConstraints = false
         lbl.textColor = UIColor(named: Color.NavigationTintColor)!
@@ -32,7 +38,7 @@ class LoginViewController: UIViewController {
         textField.translatesAutoresizingMaskIntoConstraints = false
         return textField
     }()
-
+    
     private let passwordTextField: UITextField = {
         let textField = UITextField()
         textField.placeholder = "Password"
@@ -42,7 +48,7 @@ class LoginViewController: UIViewController {
         textField.translatesAutoresizingMaskIntoConstraints = false
         return textField
     }()
-
+    
     private let loginButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Login", for: .normal)
@@ -50,7 +56,7 @@ class LoginViewController: UIViewController {
         button.isEnabled = false
         return button
     }()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
@@ -64,7 +70,7 @@ class LoginViewController: UIViewController {
         view.addSubview(usernameTextField)
         view.addSubview(passwordTextField)
         view.addSubview(loginButton)
-
+        
         NSLayoutConstraint.activate([
             
             titleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 150),
@@ -73,22 +79,22 @@ class LoginViewController: UIViewController {
             usernameTextField.topAnchor.constraint(equalTo: titleLabel.topAnchor, constant: 50),
             usernameTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             usernameTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-
+            
             passwordTextField.topAnchor.constraint(equalTo: usernameTextField.bottomAnchor, constant: 20),
             passwordTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             passwordTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-
+            
             loginButton.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: 20),
             loginButton.centerXAnchor.constraint(equalTo: view.centerXAnchor)
         ])
     }
-
+    
     private func setupActions() {
         //이메일 텍스트필드와 emailObserver를 데이터 바인딩을 하는 코드
         usernameTextField.rx.text
             .orEmpty
-            //UI 컴포넌트와 emailObserver와 바인딩
-            //bind 메소드를 호출하면 구독을 하고 behavior relay에 요소들을 전송한다.
+        //UI 컴포넌트와 emailObserver와 바인딩
+        //bind 메소드를 호출하면 구독을 하고 behavior relay에 요소들을 전송한다.
             .bind(to: viewModel.emailObserver)
             .disposed(by: disposeBag)
         
@@ -139,4 +145,6 @@ class LoginViewController: UIViewController {
         
         return gradientLayer
     }
+    
+    
 }
