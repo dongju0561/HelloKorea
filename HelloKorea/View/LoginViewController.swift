@@ -68,7 +68,6 @@ class LoginViewController: UIViewController {
         downLoadImage(imagePath: "images/swiftui.png")
     }
     private func downLoadImage(imagePath: String){
-        
         let storageRef = storage.reference(withPath: imagePath)
         storageRef.downloadURL { [self] (url, error) in
             if let error = error {
@@ -76,9 +75,6 @@ class LoginViewController: UIViewController {
             } else {
                 // 다운로드 URL이 성공적으로 가져와졌을 때
                 if let imageUrl = url {
-                    // URL을 통해 이미지를 다운로드하거나 사용할 수 있습니다.
-                    // 예를 들어, Alamofire 등의 라이브러리를 사용하여 이미지를 가져올 수 있습니다.
-                    // 이 예시에서는 단순히 URL을 출력하는 것으로 대체합니다.
                     guard let safeURL = url else {
                         return
                     }

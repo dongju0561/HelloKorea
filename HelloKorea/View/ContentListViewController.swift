@@ -1,4 +1,10 @@
 import UIKit
+import RxSwift
+import RxCocoa
+import FirebaseStorage
+import Firebase
+import FirebaseCore
+import FirebaseFirestore
 
 class ContentListViewController: UIViewController {
     
@@ -126,12 +132,18 @@ class ContentListViewController: UIViewController {
         scrollView.contentSize = CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height + 110) //
         return scrollView
     }()
-
+    let db = Firestore.firestore()
+    let storage = Storage.storage()
+    let disposeBag = DisposeBag()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        FirebaseApp.configure()
+
+        
         initSubView()
     }
-    func initSubView(){
+    private func initSubView(){
         let screenWidth = UIScreen.main.bounds.width
         
         self.collectionViewForHot.delegate = self
@@ -206,6 +218,40 @@ class ContentListViewController: UIViewController {
         ])
         scrollView.contentSize = CGSize(width: screenWidth, height: 960)
     }
+    
+    private func downLoadImage(imagePath: String){
+        
+        let storageRef = storage.reference(withPath: imagePath)
+        storageRef.downloadURL { [self] (url, error) in
+            if let error = error {
+                print("Error: \(error.localizedDescription)")
+            } else {
+                // 다운로드 URL이 성공적으로 가져와졌을 때
+                if let imageUrl = url {
+                    guard let safeURL = url else {
+                        return
+                    }
+                    let session = URLSession.shared
+                    let request = URLRequest(url: safeURL)
+                    print("print this: \(safeURL)")
+                    let dataObservable = session.rx.data(request: request)
+                    
+                    dataObservable.subscribe (onNext: { data in
+                        
+                        DispatchQueue.main.async {
+                            let image = UIImage(data: data)
+                            self.imageView.image = image
+                        }
+                        
+                    }, onError: { error in
+                        // 에러 처리
+                        print("Error: \(error.localizedDescription)")
+                    }).disposed(by: disposeBag)
+                    print("Download URL: \(imageUrl.absoluteString)")
+                }
+            }
+        }
+    }
 }
 
 extension ContentListViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
@@ -224,7 +270,6 @@ extension ContentListViewController: UICollectionViewDelegate, UICollectionViewD
             return thrillerData.count
         }
     }
-    
     //cell별 특성 정의
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
@@ -260,7 +305,6 @@ extension ContentListViewController: UICollectionViewDelegate, UICollectionViewD
         
         return cell
     }
-    
     //collectionView cell 크기 설정 함수
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize{
         
@@ -275,7 +319,6 @@ extension ContentListViewController: UICollectionViewDelegate, UICollectionViewD
             return CGSize(width: width/3.5, height: height)
         }
     }
-    
     @objc func hotButtonAction(_ sender: UIButton!){
         let DetailVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
         // 버튼마다 가지고 있는 tag번호를 사용하여 data 배열에서 데이터를 조회한다.
