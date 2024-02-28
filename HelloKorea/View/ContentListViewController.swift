@@ -29,7 +29,7 @@ class ContentListViewController: UIViewController {
         
         return lbl
     }()
-    fileprivate var collectionViewForHot : UICollectionView = { // collectionView는 layout없이는 초기화할 수 없다.
+    fileprivate var collectionViewForTip : UICollectionView = { // collectionView는 layout없이는 초기화할 수 없다.
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal // 스크롤 방향 설정
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout) // collectionView 객체를 생성하기 위해 layout 변수를 인수로 사용
@@ -38,7 +38,7 @@ class ContentListViewController: UIViewController {
         
         cv.register(CSCollectionViewCell.self, forCellWithReuseIdentifier: "cell") // collectionView에 재사용할 cell 등록(재사용할 cell의 클래스)
         cv.backgroundColor = .clear
-        cv.tag = 1
+        cv.tag = 0
         return cv
     }()
     fileprivate var labelJFY : UILabel = {
@@ -64,7 +64,7 @@ class ContentListViewController: UIViewController {
         cv.translatesAutoresizingMaskIntoConstraints = false
         cv.register(CSCollectionViewCell.self, forCellWithReuseIdentifier: "cell") // collectionView에 재사용할 cell 등록(재사용할 cell의 클래스)
         cv.backgroundColor = .clear
-        cv.tag = 2
+        cv.tag = 1
         return cv
     }()
     fileprivate var labelRomance : UILabel = {
@@ -90,7 +90,7 @@ class ContentListViewController: UIViewController {
         cv.translatesAutoresizingMaskIntoConstraints = false
         cv.register(CSCollectionViewCell.self, forCellWithReuseIdentifier: "cell") // collectionView에 재사용할 cell 등록(재사용할 cell의 클래스)
         cv.backgroundColor = .clear
-        cv.tag = 3
+        cv.tag = 2
         return cv
     }()
     fileprivate var labelThriller : UILabel = {
@@ -116,7 +116,7 @@ class ContentListViewController: UIViewController {
         cv.translatesAutoresizingMaskIntoConstraints = false
         cv.register(CSCollectionViewCell.self, forCellWithReuseIdentifier: "cell") // collectionView에 재사용할 cell 등록(재사용할 cell의 클래스)
         cv.backgroundColor = .clear
-        cv.tag = 4
+        cv.tag = 3
         
         return cv
     }()
@@ -134,18 +134,20 @@ class ContentListViewController: UIViewController {
     let db = Firestore.firestore()
     let storage = Storage.storage()
     let disposeBag = DisposeBag()
+    var imageUrls: [[String]] = Array(repeating: [], count: 4)
+    var images = [UIImage]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        FirebaseApp.configure()
+        fetchImageURLs()
         initSubView()
     }
     
     private func initSubView(){
         let screenWidth = UIScreen.main.bounds.width
         
-        self.collectionViewForHot.delegate = self
-        self.collectionViewForHot.dataSource = self
+        self.collectionViewForTip.delegate = self
+        self.collectionViewForTip.dataSource = self
         self.collectionViewForYou.delegate = self
         self.collectionViewForYou.dataSource = self
         self.collectionViewForRomance.delegate = self
@@ -156,7 +158,7 @@ class ContentListViewController: UIViewController {
         view.addSubview(scrollView)
         scrollView.addSubview(labelHot)
         scrollView.addSubview(labelfFire)
-        scrollView.addSubview(collectionViewForHot)
+        scrollView.addSubview(collectionViewForTip)
         scrollView.addSubview(labelJFY)
         scrollView.addSubview(collectionViewForYou)
         scrollView.addSubview(labelRomance)
@@ -179,12 +181,12 @@ class ContentListViewController: UIViewController {
             labelfFire.topAnchor.constraint(equalTo: labelHot.topAnchor),
             labelfFire.leadingAnchor.constraint(equalTo: labelHot.trailingAnchor),
             
-            collectionViewForHot.topAnchor.constraint(equalTo: labelHot.bottomAnchor, constant: 9),
-            collectionViewForHot.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
-            collectionViewForHot.widthAnchor.constraint(equalToConstant: screenWidth),
-            collectionViewForHot.heightAnchor.constraint(equalToConstant: 206),
+            collectionViewForTip.topAnchor.constraint(equalTo: labelHot.bottomAnchor, constant: 9),
+            collectionViewForTip.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
+            collectionViewForTip.widthAnchor.constraint(equalToConstant: screenWidth),
+            collectionViewForTip.heightAnchor.constraint(equalToConstant: 206),
             
-            labelJFY.topAnchor.constraint(equalTo: collectionViewForHot.bottomAnchor, constant: 28),
+            labelJFY.topAnchor.constraint(equalTo: collectionViewForTip.bottomAnchor, constant: 28),
             labelJFY.leadingAnchor.constraint(equalTo: labelHot.leadingAnchor),
             labelJFY.widthAnchor.constraint(equalToConstant: 117),
             labelJFY.heightAnchor.constraint(equalToConstant: 22),
@@ -216,91 +218,129 @@ class ContentListViewController: UIViewController {
         ])
         scrollView.contentSize = CGSize(width: screenWidth, height: 960)
     }
-    
-    private func downLoadImage(imagePath: String){
-        
-        let storageRef = storage.reference(withPath: imagePath)
-        storageRef.downloadURL { [self] (url, error) in
-            if let error = error {
-                print("Error: \(error.localizedDescription)")
-            } else {
-                // 다운로드 URL이 성공적으로 가져와졌을 때
-                if let imageUrl = url {
-                    guard let safeURL = url else {
-                        return
-                    }
-                    let session = URLSession.shared
-                    let request = URLRequest(url: safeURL)
-                    print("print this: \(safeURL)")
-                    let dataObservable = session.rx.data(request: request)
-                    
-                    dataObservable.subscribe (onNext: { data in
-                        
-                        DispatchQueue.main.async {
-                            let image = UIImage(data: data)
-                            self.imageView.image = image
+    //fireStore에서 특정 카테고리에 있는 드라마의 이미지 url을 fetch하는 메소드
+    private func fetchImageURLs() {
+        let collectionViews: [UICollectionView] = [collectionViewForTip,collectionViewForYou,collectionViewForRomance,collectionViewForThriller]
+        let collections: [String] = ["tipsImages","YouImages","RomanceImages","ThrillerImages"]
+        for idx in 0..<collections.count{
+            db.collection(collections[idx]).getDocuments { [weak self] (snapshot, error) in
+                guard let self = self else { return }
+                if let error = error {
+                    print("Error fetching documents: \(error)")
+                } else {
+                    if let documents = snapshot?.documents {
+                        let imageURL = "imageURL"
+                        for document in documents {
+                            if let imageUrl = document.data()[imageURL] as? String {
+                                self.imageUrls[idx].append(imageUrl)
+                                print(imageUrls)
+                            }
                         }
-                        
-                    }, onError: { error in
-                        // 에러 처리
-                        print("Error: \(error.localizedDescription)")
-                    }).disposed(by: disposeBag)
-                    print("Download URL: \(imageUrl.absoluteString)")
+                        collectionViews[idx].reloadData()
+                    }
                 }
             }
         }
+    }
+    //전달 받은 이미지 url로 요청하여 이미지를 다운로드를 진행, 다운로드한 이미지를 구독자들에게 emit
+    private func downLoadImage(imagePath: String) -> Observable<UIImage> {
+        //Observable을 생성한 이유: 이미지를 받아오는 시점을 관찰하기 위해서
+        return Observable.create { observer in
+            //이미지 url으로 이미지를 다운받는 코드
+            //image 다운로드를 위한 이미지 url 객체 생성
+            let storageRef = self.storage.reference(withPath: imagePath)
+            storageRef.downloadURL { url, error in
+                if let error = error {
+                    observer.onError(error)
+                } else {
+                    guard let safeURL = url else {
+                        return
+                    }
+                    //session은 네트워크 통신 관리자
+                    let session = URLSession.shared
+                    let request = URLRequest(url: safeURL)
+                    
+                    let task = session.dataTask(with: request) { data, response, error in
+                        if let safeData = data, let image = UIImage(data: safeData) {
+                            observer.onNext(image)
+                            observer.onCompleted()
+                        } else if let error = error {
+                            observer.onError(error)
+                        }
+                    }
+                    task.resume()
+                }
+            }
+            //이미지 url으로 이미지를 다운받는 코드 끝
+            return Disposables.create()
+        }
+    }
+    private func fetchImageAndBind(to cell: CSCollectionViewCell, IdxAt collectionIdx: Int, at indexPath: IndexPath) {
+        let imagePath = imageUrls[collectionIdx][indexPath.item]
+        downLoadImage(imagePath: imagePath)
+            //
+            .observe(on: MainScheduler.instance)
+            .subscribe(onNext: { image in
+                cell.CSBg.image = image
+            }, onError: { error in
+                print("Error downloading image: \(error.localizedDescription)")
+            })
+            .disposed(by: disposeBag)
     }
 }
 
 extension ContentListViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     // cell의 갯수 결정
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if collectionView.tag == 1 {
-            return hotData.count
+        let tag = collectionView.tag
+        if tag == 0 {
+            return imageUrls[tag].count
+        }
+        else if(collectionView.tag == 1){
+            return imageUrls[tag].count
         }
         else if(collectionView.tag == 2){
-            return JFYData.count
-        }
-        else if(collectionView.tag == 3){
-            return romanceData.count
+            return imageUrls[tag].count
         }
         else{
-            return thrillerData.count
+            return imageUrls[tag].count
         }
     }
     //cell별 특성 정의
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! CSCollectionViewCell
         // UICollectionViewCell의 subclass인 CSCollectionViewCellfh 타입캐스팅
-        
-        if collectionView.tag == 1 {
+        let tag = collectionView.tag
+        if tag == 0 {
+            let imageURL = imageUrls[tag][indexPath.item]
             cell.CSLabel.textAlignment = .left
             cell.CSLabel.font = cell.CSLabel.font.withSize(13)
-            cell.CSBg.image = hotData[indexPath.row].image
+//            UIImage(data: imageData)
+            fetchImageAndBind(to: cell, IdxAt: 0, at: indexPath)
+//            cell.CSBg.image = hotData[indexPath.row].image
             cell.CSLabel.text = hotData[indexPath.row].contentName
             cell.CSButton.addTarget(self, action: #selector(hotButtonAction), for: .touchUpInside) //addTarget은 해당 버튼가 눌렸을때 동작할 함수를 맵핑해주는 메소트
             cell.CSButton.tag = indexPath.row
         }
-        else if(collectionView.tag == 2){
-            cell.CSBg.image = JFYData[indexPath.row].image
+        else if(tag == 1){
+            fetchImageAndBind(to: cell, IdxAt: tag, at: indexPath)
             cell.CSLabel.text = JFYData[indexPath.row].contentName
                 cell.CSButton.addTarget(self, action: #selector(JFYButtonAction), for: .touchUpInside) //addTarget은 해당 버튼가 눌렸을때 동작할 함수를 맵핑해주는 메소트
             cell.CSButton.tag = indexPath.row
         }
-        else if(collectionView.tag == 3){
-            cell.CSBg.image = romanceData[indexPath.row].image
+        else if(tag == 2){
+            fetchImageAndBind(to: cell, IdxAt: tag, at: indexPath)
             cell.CSLabel.text = romanceData[indexPath.row].contentName
             cell.CSButton.addTarget(self, action: #selector(RomanceButtonAction), for: .touchUpInside) //addTarget은 해당 버튼가 눌렸을때 동작할 함수를 맵핑해주는 메소트
             cell.CSButton.tag = indexPath.row
         }
         else{
-            cell.CSBg.image = thrillerData[indexPath.row].image
+            fetchImageAndBind(to: cell, IdxAt: tag, at: indexPath)
             cell.CSLabel.text = thrillerData[indexPath.row].contentName
             cell.CSButton.addTarget(self, action: #selector(trillerButtonAction), for: .touchUpInside) //addTarget은 해당 버튼가 눌렸을때 동작할 함수를 맵핑해주는 메소트
             cell.CSButton.tag = indexPath.row
         }
-        
         return cell
     }
     //collectionView cell 크기 설정 함수
