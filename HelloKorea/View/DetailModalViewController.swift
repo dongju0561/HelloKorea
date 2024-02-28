@@ -4,8 +4,7 @@ import Toast_Swift
 import SafariServices
 
 //modal => 주소 복사, 장소 검색
-class DetailModalViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
-    
+class DetailModalViewController: UIViewController{
     var contentName: String?
     var annotation: Artwork?
     let data = ["주소 복사","관련 지역 검색"]
@@ -19,9 +18,8 @@ class DetailModalViewController: UIViewController, UITableViewDataSource, UITabl
         lbl.backgroundColor = .blue
         return lbl
     }()
-    
     // 테이블 뷰 생성
-    fileprivate let tableView: UITableView = {
+    let tableView: UITableView = {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
         return tableView
@@ -29,17 +27,25 @@ class DetailModalViewController: UIViewController, UITableViewDataSource, UITabl
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        // 테이블 뷰의 데이터 소스와 델리게이트를 현재 클래스로 설정
+        setUpTableView()
+        initSubview()
         if let safeContentName = contentName{
             dramaTitle.text = safeContentName
         }
-        
         if let sheetPresentationController = sheetPresentationController {
             sheetPresentationController.detents = [ .custom(resolver: { context in
                 200
             })]
         }
-        
+    }
+    func setUpTableView(){
+        tableView.dataSource = self
+        tableView.delegate = self
+        // 테이블 뷰에 셀 등록
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
+    }
+    func initSubview(){
         view.addSubview(dramaTitle)
         // 테이블 뷰를 뷰에 추가
         view.addSubview(tableView)
@@ -55,24 +61,18 @@ class DetailModalViewController: UIViewController, UITableViewDataSource, UITabl
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
         ])
-        
-        // 테이블 뷰의 데이터 소스와 델리게이트를 현재 클래스로 설정
-        tableView.dataSource = self
-        tableView.delegate = self
-        
-        // 테이블 뷰에 셀 등록
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
     }
+}
+
+extension DetailModalViewController: UITableViewDataSource, UITableViewDelegate{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return data.count
     }
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
         cell.textLabel?.text = data[indexPath.row]
         return cell
     }
-    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         guard let safeAnnotation = annotation else{
@@ -99,6 +99,5 @@ class DetailModalViewController: UIViewController, UITableViewDataSource, UITabl
         }
         else{}
     }
-    
 }
 
