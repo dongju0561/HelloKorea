@@ -7,7 +7,6 @@ import FirebaseCore
 import FirebaseFirestore
 
 class ContentListViewController: UIViewController {
-    
     fileprivate var labelHot : UILabel = {
         var lbl = UILabel()
         lbl.translatesAutoresizingMaskIntoConstraints = false
@@ -139,10 +138,9 @@ class ContentListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         FirebaseApp.configure()
-
-        
         initSubView()
     }
+    
     private func initSubView(){
         let screenWidth = UIScreen.main.bounds.width
         

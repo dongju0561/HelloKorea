@@ -28,11 +28,13 @@ class MapViewController: UIViewController {
         initSubView()
         bindViewModel()
     }
+    
     func bindViewModel() {
         let location = contentViewModel?.locations
         makePin(location!)
         initSetLocation(location!)
     }
+    
     func initSubView() {
         view.addSubview(pickerView)
         view.addSubview(mapView)
@@ -55,6 +57,7 @@ class MapViewController: UIViewController {
             pickerView.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.size.width),
         ])
     }
+    
     //지도에 등록된 위치에 핀들을 꽂아주는 함수
     func makePin(_ data : [Location]) {
         for index in 0..<data.count{
@@ -67,6 +70,7 @@ class MapViewController: UIViewController {
             mapView.addAnnotation(artwork)
         }
     }
+    
     //초기 지도 위치 설정 함수
     func initSetLocation(_ data : [Location]) {
         let initialLocation = CLLocation(latitude: data[0].latitude, longitude: data[0].longitude)
@@ -120,9 +124,6 @@ extension MapViewController: MKMapViewDelegate{
     }
 }
 // MARK: - UITableViewDataSource 메서드
-
-
-
 extension MapViewController: UIPickerViewDelegate, UIPickerViewDataSource{
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1

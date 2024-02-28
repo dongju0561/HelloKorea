@@ -1,7 +1,6 @@
 import UIKit
 
 class CSCollectionViewCell : UICollectionViewCell{
-    
     var CSBg: UIImageView = {
         let bg = UIImageView()
         

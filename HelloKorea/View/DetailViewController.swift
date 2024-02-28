@@ -10,14 +10,12 @@ import UIKit
 class DetailViewController: UIViewController {
     
     var contentsModel: ContentsModel?
-    
     fileprivate var scrollView : UIScrollView = {
         let scrollView = UIScrollView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height + 200))
         scrollView.setGradient(color1: .black, color2: UIColor(rgb: 0x295EA6))
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         scrollView.showsVerticalScrollIndicator = false
         scrollView.contentSize = CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height + 110)
-        
         return scrollView
     }()
     fileprivate var lblMap : UILabel = {
@@ -106,6 +104,7 @@ class DetailViewController: UIViewController {
         initSubView()
         fetchData()
     }
+    
     func fetchData(){
         guard let safeContents = contentsModel else {
             return
@@ -115,6 +114,7 @@ class DetailViewController: UIViewController {
         labelYear.text = safeContents.year
         labelCast.text = safeContents.cast
     }
+    
     func initSubView(){
         view.addSubview(scrollView)
         scrollView.addSubview(imagePoster)
