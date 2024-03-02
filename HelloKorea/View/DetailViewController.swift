@@ -10,6 +10,7 @@ import UIKit
 class DetailViewController: UIViewController {
     
     var contentsModel: ContentsModel?
+    var contentsModelTest: ContentsModelTest?
     fileprivate var scrollView : UIScrollView = {
         let scrollView = UIScrollView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height + 200))
         scrollView.setGradient(color1: .black, color2: UIColor(rgb: 0x295EA6))

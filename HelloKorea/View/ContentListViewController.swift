@@ -136,6 +136,7 @@ class ContentListViewController: UIViewController {
     let storage = Storage.storage()
     let disposeBag = DisposeBag()
     var imageUrls: [[String]] = Array(repeating: [], count: 4)
+    var fetchDatas: [[ContentsModelTest]] = Array(repeating: [], count: 4)
     var images = [UIImage]()
     
     override func viewDidLoad() {
@@ -220,7 +221,6 @@ class ContentListViewController: UIViewController {
         scrollView.contentSize = CGSize(width: screenWidth, height: 960)
     }
     //fireStore에서 특정 카테고리에 있는 드라마의 이미지 url을 fetch하는 메소드
-    //추가: 
     private func fetchImageURLs() {
         let collectionViews: [UICollectionView] = [collectionViewForTip,collectionViewForYou,collectionViewForRomance,collectionViewForThriller]
         let collections: [String] = ["tipsImages","YouImages","RomanceImages","ThrillerImages"]
@@ -241,8 +241,9 @@ class ContentListViewController: UIViewController {
                             guard let contentNameK = document.data()["contentNameK"] as? String else {return}
                             guard let year = document.data()["year"] as? String else {return}
                             guard let cast = document.data()["cast"] as? String else {return}
-                            let contentModel = ContentsModelTest(contentName: contentName, contentNameK: contentNameK, year: year, cast: cast)
-                            print(contentModel.contentName)
+                            guard let imageUrl = document.data()[imageURL] as? String else{return}
+                            let contentModel = ContentsModelTest(contentName, contentNameK, year, cast, imageUrl)
+                            fetchDatas[idx].append(contentModel)
                         }
                         collectionViews[idx].reloadData()
                     }
@@ -285,10 +286,12 @@ class ContentListViewController: UIViewController {
     }
     private func fetchImageAndBind(to cell: CSCollectionViewCell, IdxAt collectionIdx: Int, at indexPath: IndexPath) {
         let imagePath = imageUrls[collectionIdx][indexPath.item]
+
         downLoadImage(imagePath: imagePath)
             .observe(on: MainScheduler.instance)
-            .subscribe(onNext: { image in
+            .subscribe(onNext: { [self] image in
                 cell.CSBg.image = image
+                fetchDatas[collectionIdx][indexPath.item].image = image
             }, onError: { error in
                 print("Error downloading image: \(error.localizedDescription)")
             })
@@ -318,40 +321,38 @@ extension ContentListViewController: UICollectionViewDelegate, UICollectionViewD
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! CSCollectionViewCell
         // UICollectionViewCell의 subclass인 CSCollectionViewCellfh 타입캐스팅
         let tag = collectionView.tag
+        let contentName = fetchDatas[tag][indexPath.item].contentName
+        let buttonTag = indexPath.row
         if tag == 0 {
-            let imageURL = imageUrls[tag][indexPath.item]
+            fetchImageAndBind(to: cell, IdxAt: tag, at: indexPath)
             cell.CSLabel.textAlignment = .left
             cell.CSLabel.font = cell.CSLabel.font.withSize(13)
-//            UIImage(data: imageData)
-            fetchImageAndBind(to: cell, IdxAt: 0, at: indexPath)
-//            cell.CSBg.image = hotData[indexPath.row].image
-            cell.CSLabel.text = hotData[indexPath.row].contentName
+            cell.CSLabel.text = contentName
+            cell.CSButton.tag = buttonTag
             cell.CSButton.addTarget(self, action: #selector(hotButtonAction), for: .touchUpInside) //addTarget은 해당 버튼가 눌렸을때 동작할 함수를 맵핑해주는 메소트
-            cell.CSButton.tag = indexPath.row
         }
         else if(tag == 1){
             fetchImageAndBind(to: cell, IdxAt: tag, at: indexPath)
-            cell.CSLabel.text = JFYData[indexPath.row].contentName
-                cell.CSButton.addTarget(self, action: #selector(JFYButtonAction), for: .touchUpInside) //addTarget은 해당 버튼가 눌렸을때 동작할 함수를 맵핑해주는 메소트
-            cell.CSButton.tag = indexPath.row
+            cell.CSLabel.text = contentName
+            cell.CSButton.tag = buttonTag
+            cell.CSButton.addTarget(self, action: #selector(JFYButtonAction), for: .touchUpInside) //addTarget은 해당 버튼가 눌렸을때 동작할 함수를 맵핑해주는 메소트
         }
         else if(tag == 2){
             fetchImageAndBind(to: cell, IdxAt: tag, at: indexPath)
-            cell.CSLabel.text = romanceData[indexPath.row].contentName
+            cell.CSLabel.text = contentName
+            cell.CSButton.tag = buttonTag
             cell.CSButton.addTarget(self, action: #selector(RomanceButtonAction), for: .touchUpInside) //addTarget은 해당 버튼가 눌렸을때 동작할 함수를 맵핑해주는 메소트
-            cell.CSButton.tag = indexPath.row
         }
         else{
             fetchImageAndBind(to: cell, IdxAt: tag, at: indexPath)
-            cell.CSLabel.text = thrillerData[indexPath.row].contentName
+            cell.CSLabel.text = contentName
+            cell.CSButton.tag = buttonTag
             cell.CSButton.addTarget(self, action: #selector(trillerButtonAction), for: .touchUpInside) //addTarget은 해당 버튼가 눌렸을때 동작할 함수를 맵핑해주는 메소트
-            cell.CSButton.tag = indexPath.row
         }
         return cell
     }
     //collectionView cell 크기 설정 함수
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize{
-        
         let width = collectionView.bounds.width
         let height = collectionView.bounds.height
         
