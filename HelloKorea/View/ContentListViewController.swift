@@ -131,6 +131,7 @@ class ContentListViewController: UIViewController {
         scrollView.contentSize = CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height + 110) //
         return scrollView
     }()
+    
     let db = Firestore.firestore()
     let storage = Storage.storage()
     let disposeBag = DisposeBag()
@@ -219,6 +220,7 @@ class ContentListViewController: UIViewController {
         scrollView.contentSize = CGSize(width: screenWidth, height: 960)
     }
     //fireStore에서 특정 카테고리에 있는 드라마의 이미지 url을 fetch하는 메소드
+    //추가: 
     private func fetchImageURLs() {
         let collectionViews: [UICollectionView] = [collectionViewForTip,collectionViewForYou,collectionViewForRomance,collectionViewForThriller]
         let collections: [String] = ["tipsImages","YouImages","RomanceImages","ThrillerImages"]
@@ -233,8 +235,14 @@ class ContentListViewController: UIViewController {
                         for document in documents {
                             if let imageUrl = document.data()[imageURL] as? String {
                                 self.imageUrls[idx].append(imageUrl)
-                                print(imageUrls)
                             }
+                            //data fetch
+                            guard let contentName = document.data()["contentName"] as? String else {return}
+                            guard let contentNameK = document.data()["contentNameK"] as? String else {return}
+                            guard let year = document.data()["year"] as? String else {return}
+                            guard let cast = document.data()["cast"] as? String else {return}
+                            let contentModel = ContentsModelTest(contentName: contentName, contentNameK: contentNameK, year: year, cast: cast)
+                            print(contentModel.contentName)
                         }
                         collectionViews[idx].reloadData()
                     }
@@ -278,7 +286,6 @@ class ContentListViewController: UIViewController {
     private func fetchImageAndBind(to cell: CSCollectionViewCell, IdxAt collectionIdx: Int, at indexPath: IndexPath) {
         let imagePath = imageUrls[collectionIdx][indexPath.item]
         downLoadImage(imagePath: imagePath)
-            //
             .observe(on: MainScheduler.instance)
             .subscribe(onNext: { image in
                 cell.CSBg.image = image
@@ -307,7 +314,6 @@ extension ContentListViewController: UICollectionViewDelegate, UICollectionViewD
         }
     }
     //cell별 특성 정의
-    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! CSCollectionViewCell
         // UICollectionViewCell의 subclass인 CSCollectionViewCellfh 타입캐스팅
@@ -349,8 +355,7 @@ extension ContentListViewController: UICollectionViewDelegate, UICollectionViewD
         let width = collectionView.bounds.width
         let height = collectionView.bounds.height
         
-        if collectionView.tag == 1 {
-            
+        if collectionView.tag == 0 {
             return CGSize(width: width/1.9, height: height)
         }
         else{
