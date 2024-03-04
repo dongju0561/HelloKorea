@@ -107,7 +107,7 @@ class DetailViewController: UIViewController {
     }
     
     func fetchData(){
-        guard let safeContents = contentsModel else {
+        guard let safeContents = contentsModelTest else {
             return
         }
         imagePoster.image = safeContents.image
@@ -166,7 +166,7 @@ class DetailViewController: UIViewController {
     
     @objc func moveToMap(sender: UIButton!) {
         if let mapVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MapViewController") as? MapViewController {
-            mapVC.contentViewModel = contentsModel
+            mapVC.contentsModelTest = contentsModelTest
             navigationController?.pushViewController(mapVC, animated: true)
         }
     }

@@ -9,12 +9,14 @@ import UIKit
 import RxSwift
 import RxCocoa
 import FirebaseStorage
+import FirebaseFirestore
 import Firebase
 
 //images/swiftui.png
 
 class LoginViewController: UIViewController {
     let storage = Storage.storage()
+    let db = Firestore.firestore()
     
     let userEmail = "pd@gmail.com"
     let userPassword = "qwer1234"
@@ -66,6 +68,8 @@ class LoginViewController: UIViewController {
         setupUI()
         setupActions()
         downLoadImage(imagePath: "images/swiftui.png")
+
+        // 업데이트할 필드 배열 정의
     }
     private func downLoadImage(imagePath: String){
         let storageRef = storage.reference(withPath: imagePath)
@@ -185,3 +189,27 @@ class LoginViewController: UIViewController {
         return gradientLayer
     }
 }
+
+
+
+/*
+ let fieldsArray = [
+     ["locationName": "단밤 1호점", "explaination": "박새로이가 처음 가게를 오픈한 위치", "latitude": "37.5666805", "longitude": "126.9784147", "address": "서울 용산구 신흥로20길 43 1층"],
+     ["locationName": "단밤 2호점", "explaination": "장회장에게 1호점을 뺏기고 그 다음 오픈한 가게", "latitude": "37.565758", "longitude": "126.974801", "address": "서울 용산구 신흥로20길 43 1층"],
+     ["locationName": "이태원 클라쓰 육교", "explaination": "박새로이가 자주 가던 육교", "latitude": "37.534934586721285", "longitude": "126.98705368624344", "address": "서울 용산구 신흥로20길 43 1층"]
+ ]
+ // Firestore 컬렉션 및 문서 참조
+ let arr = ["ItaewonClass","OurBelovedSummer","Tomorrow","Vincenzo"]
+ for idx in 0..<arr.count{
+     let collectionReference = db.collection("YouImages")
+     let documentReference = collectionReference.document(arr[idx])
+     
+     documentReference.updateData(["locations": FieldValue.arrayUnion(fieldsArray)]) { error in
+         if let error = error {
+             print("Error updating document: \(error)")
+         } else {
+             print("Document successfully updated with fields array.")
+         }
+     }
+ }
+ */

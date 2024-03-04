@@ -4,6 +4,7 @@ import CoreLocation
 
 class MapViewController: UIViewController {
     var contentViewModel: ContentsModel?
+    var contentsModelTest: ContentsModelTest?
     
     private var pickerView: UIPickerView = {
        
@@ -30,7 +31,7 @@ class MapViewController: UIViewController {
     }
     
     func bindViewModel() {
-        let location = contentViewModel?.locations
+        let location = contentsModelTest?.locations
         makePin(location!)
         initSetLocation(location!)
     }
@@ -123,6 +124,7 @@ extension MapViewController: MKMapViewDelegate{
         }
     }
 }
+
 // MARK: - UITableViewDataSource 메서드
 extension MapViewController: UIPickerViewDelegate, UIPickerViewDataSource{
     func numberOfComponents(in pickerView: UIPickerView) -> Int {

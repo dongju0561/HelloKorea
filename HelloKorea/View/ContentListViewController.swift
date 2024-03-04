@@ -241,8 +241,19 @@ class ContentListViewController: UIViewController {
                             guard let contentNameK = document.data()["contentNameK"] as? String else {return}
                             guard let year = document.data()["year"] as? String else {return}
                             guard let cast = document.data()["cast"] as? String else {return}
+                            guard let locations = document.data()["locations"] as? Array<Dictionary<String, String>> else {return}
                             guard let imageUrl = document.data()[imageURL] as? String else{return}
-                            let contentModel = ContentsModelTest(contentName, contentNameK, year, cast, imageUrl)
+                            var locationsNew = [Location]()
+                            for idx in 0..<locations.count{
+                                let locationName = locations[idx]["locationName"]!
+                                let address = locations[idx]["address"]!
+                                let latitude = locations[idx]["latitude"]!
+                                let longitude = locations[idx]["longitude"]!
+                                let explaination = locations[idx]["explaination"]!
+                                let location = Location(locationName: locationName, explaination: explaination, latitude: Double(latitude)!, longitude: Double(latitude)!, address: address)
+                                locationsNew.append(location)
+                            }
+                            let contentModel = ContentsModelTest(contentName: contentName, contentNameK: contentNameK, year: year, cast: cast, imageURL: imageUrl, locations: locationsNew)
                             fetchDatas[idx].append(contentModel)
                         }
                         collectionViews[idx].reloadData()
@@ -364,26 +375,29 @@ extension ContentListViewController: UICollectionViewDelegate, UICollectionViewD
         }
     }
     @objc func hotButtonAction(_ sender: UIButton!){
+        let tipCollection = 0
         let DetailVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
         // 버튼마다 가지고 있는 tag번호를 사용하여 data 배열에서 데이터를 조회한다.
-        DetailVC.contentsModel =  hotData[sender.tag]
-        
+        DetailVC.contentsModelTest =  fetchDatas[tipCollection][sender.tag]
         navigationController?.pushViewController(DetailVC, animated: true)
     }
     @objc func JFYButtonAction(_ sender: UIButton!){
+        let youCollection = 1
         let DetailVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
         // 버튼마다 가지고 있는 tag번호를 사용하여 data 배열에서 데이터를 조회한다.
-        DetailVC.contentsModel =  JFYData[sender.tag]
+        DetailVC.contentsModelTest =  fetchDatas[youCollection][sender.tag]
         navigationController?.pushViewController(DetailVC, animated: true)
     }
     @objc func RomanceButtonAction(_ sender: UIButton!){
+        let RomanceCollection = 2
         let DetailVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
-        DetailVC.contentsModel =  romanceData[sender.tag]
+        DetailVC.contentsModelTest =  fetchDatas[RomanceCollection][sender.tag]
         navigationController?.pushViewController(DetailVC, animated: true)
     }
     @objc func trillerButtonAction(_ sender: UIButton!){
+        let trillerCollection = 3
         let DetailVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
-        DetailVC.contentsModel =  thrillerData[sender.tag]
+        DetailVC.contentsModelTest =  fetchDatas[trillerCollection][sender.tag]
         navigationController?.pushViewController(DetailVC, animated: true)
     }
 }
