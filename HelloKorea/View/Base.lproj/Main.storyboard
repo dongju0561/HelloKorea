@@ -25,7 +25,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2123" y="-353"/>
+            <point key="canvasLocation" x="2178" y="-354"/>
         </scene>
         <!--Detail View Controller-->
         <scene sceneID="8GH-ci-vyo">
@@ -65,12 +65,13 @@
             </objects>
             <point key="canvasLocation" x="3795" y="-354"/>
         </scene>
-        <!--Locations-->
+        <!--location-->
         <scene sceneID="Sl4-bo-sYb">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="YKf-FB-5hQ" customClass="NavigationViewController" customModule="HelloKorea" customModuleProvider="target" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Locations" selectedImage="map" catalog="system" id="yMw-Ct-5bI"/>
+                    <tabBarItem key="tabBarItem" title="location" image="magnifyingglass" catalog="system" id="Jih-0h-fah"/>
                     <toolbarItems/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="dWW-wa-xpN">
                         <rect key="frame" x="0.0" y="59" width="393" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -82,21 +83,55 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kLz-wN-tPQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1251" y="-354"/>
+            <point key="canvasLocation" x="1427" y="-354"/>
         </scene>
         <!--Resturants-->
         <scene sceneID="7I2-DN-GKs">
             <objects>
                 <navigationController id="HcW-HI-iv2" customClass="NavigationViewController" customModule="HelloKorea" customModuleProvider="target" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Resturants" selectedImage="fork.knife" catalog="system" id="uhF-o4-Z58"/>
+                    <tabBarItem key="tabBarItem" title="Resturants" image="map" catalog="system" selectedImage="map" id="uhF-o4-Z58"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="qhS-cU-sEk">
                         <rect key="frame" x="0.0" y="59" width="393" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
+                    <connections>
+                        <segue destination="sHc-j2-qhG" kind="relationship" relationship="rootViewController" id="LOI-my-dfz"/>
+                    </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9gK-3B-EgC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2179.3893129770991" y="375.35211267605638"/>
+            <point key="canvasLocation" x="1428" y="320"/>
+        </scene>
+        <!--Facilities View Controller-->
+        <scene sceneID="9FF-N1-dTg">
+            <objects>
+                <viewController id="sHc-j2-qhG" customClass="FacilitiesViewController" customModule="HelloKorea" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="u6j-N3-PaE">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="L4d-1R-QXD"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="AR8-OQ-Lim"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rmP-Jn-9UH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2178" y="320"/>
+        </scene>
+        <!--Pray Spot List View Controller-->
+        <scene sceneID="dAK-di-7Te">
+            <objects>
+                <viewController storyboardIdentifier="drawerViewController" id="eBY-rO-X0C" customClass="PraySpotListViewController" customModule="HelloKorea" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="g8W-nX-6zx">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="MF9-EO-8QY"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eyl-0I-qVv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2934" y="320"/>
         </scene>
         <!--Tab Bar View Controller-->
         <scene sceneID="fqg-4A-Bly">
@@ -148,15 +183,16 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nMh-7S-7sC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2179.3893129770991" y="1092.9577464788733"/>
+            <point key="canvasLocation" x="2178" y="1065"/>
         </scene>
-        <!--Tip-->
+        <!--tips-->
         <scene sceneID="nrk-Dr-4Xn">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="NwS-dK-Nzg" customClass="NavigationViewController" customModule="HelloKorea" customModuleProvider="target" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Tip" selectedImage="lightbulb" catalog="system" id="7Y4-xD-pfM"/>
+                    <tabBarItem key="tabBarItem" title="tips" image="lightbulb" catalog="system" id="Qmr-WV-hF7"/>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="A5f-Aw-Nnx"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="ppt-Kz-nwX">
                         <rect key="frame" x="0.0" y="59" width="393" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -168,7 +204,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="j6r-c7-YDO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1252.6717557251907" y="1092.9577464788733"/>
+            <point key="canvasLocation" x="1427" y="1065"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="zPw-2H-OuT">
@@ -209,8 +245,8 @@
         </scene>
     </scenes>
     <resources>
-        <image name="fork.knife" catalog="system" width="94" height="128"/>
         <image name="lightbulb" catalog="system" width="92" height="128"/>
+        <image name="magnifyingglass" catalog="system" width="128" height="117"/>
         <image name="map" catalog="system" width="128" height="112"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

@@ -11,6 +11,7 @@ import RxCocoa
 import FirebaseStorage
 import FirebaseFirestore
 import Firebase
+import Then
 
 //images/swiftui.png
 
@@ -24,44 +25,34 @@ class LoginViewController: UIViewController {
     let disposeBag = DisposeBag()
     
     
-    private let titleLabel: UILabel = {
-        var lbl = UILabel()
-        lbl.text = "HelloKorea"
-        lbl.translatesAutoresizingMaskIntoConstraints = false
-        lbl.textColor = UIColor(named: Color.NavigationTintColor)!
-        lbl.font = .systemFont(ofSize: 24)
-        return lbl
-    }()
-    let imageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.translatesAutoresizingMaskIntoConstraints = false // Auto Layout 사용을 위해 false로 설정합니다.
-        imageView.contentMode = .scaleAspectFit // 이미지의 비율을 유지하면서 이미지뷰에 맞게 조정합니다.
-        return imageView
-    }()
-    private let usernameTextField: UITextField = {
-        let textField = UITextField()
-        textField.placeholder = "Username"
-        textField.text = "pd@gmail.com"
-        textField.borderStyle = .roundedRect
-        textField.translatesAutoresizingMaskIntoConstraints = false
-        return textField
-    }()
-    private let passwordTextField: UITextField = {
-        let textField = UITextField()
-        textField.placeholder = "Password"
-        textField.text = "qwer1234"
-        textField.isSecureTextEntry = true
-        textField.borderStyle = .roundedRect
-        textField.translatesAutoresizingMaskIntoConstraints = false
-        return textField
-    }()
-    private let loginButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.setTitle("Login", for: .normal)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.isEnabled = false
-        return button
-    }()
+    private var titleLabel = UILabel().then{
+        $0.text = "HelloKorea"
+        $0.translatesAutoresizingMaskIntoConstraints = false
+        $0.textColor = UIColor(named: Color.NavigationTintColor)!
+        $0.font = .systemFont(ofSize: 24)
+    }
+    let imageView = UIImageView().then{
+        $0.translatesAutoresizingMaskIntoConstraints = false // Auto Layout 사용을 위해 false로 설정합니다.
+        $0.contentMode = .scaleAspectFit // 이미지의 비율을 유지하면서 이미지뷰에 맞게 조정합니다.
+    }
+    private let usernameTextField = UITextField().then {
+        $0.placeholder = "Username"
+        $0.text = "pd@gmail.com"
+        $0.borderStyle = .roundedRect
+        $0.translatesAutoresizingMaskIntoConstraints = false
+    }
+    private let passwordTextField = UITextField().then {
+        $0.placeholder = "Password"
+        $0.text = "qwer1234"
+        $0.isSecureTextEntry = true
+        $0.borderStyle = .roundedRect
+        $0.translatesAutoresizingMaskIntoConstraints = false
+    }
+    private let loginButton = UIButton().then {
+        $0.setTitle("Login", for: .normal)
+        $0.translatesAutoresizingMaskIntoConstraints = false
+        $0.isEnabled = false
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()

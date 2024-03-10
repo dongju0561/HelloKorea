@@ -2,29 +2,25 @@ import UIKit
 import MapKit
 import Toast_Swift
 import SafariServices
-
+import Then
 //modal => 주소 복사, 장소 검색
 class DetailModalViewController: UIViewController{
     var contentName: String?
     var annotation: Artwork?
     let data = ["주소 복사","관련 지역 검색"]
     
-    fileprivate var dramaTitle: UILabel = {
-        var lbl = UILabel()
-        lbl.translatesAutoresizingMaskIntoConstraints = false
-        lbl.font = .systemFont(ofSize: 20, weight: .bold)
-        lbl.textAlignment = .center
-        lbl.textColor = .white
-        lbl.backgroundColor = .blue
-        return lbl
-    }()
+    fileprivate var dramaTitle = UILabel().then{
+        $0.translatesAutoresizingMaskIntoConstraints = false
+        $0.font = .systemFont(ofSize: 20, weight: .bold)
+        $0.textAlignment = .center
+        $0.textColor = .white
+        $0.backgroundColor = .blue
+    }
     // 테이블 뷰 생성
-    let tableView: UITableView = {
-        let tableView = UITableView()
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-        return tableView
-    }()
-    
+    let tableView = UITableView().then{
+        $0.translatesAutoresizingMaskIntoConstraints = false
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         // 테이블 뷰의 데이터 소스와 델리게이트를 현재 클래스로 설정

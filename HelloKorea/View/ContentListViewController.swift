@@ -5,30 +5,25 @@ import FirebaseStorage
 import Firebase
 import FirebaseCore
 import FirebaseFirestore
+import Then
 
 class ContentListViewController: UIViewController {
-    fileprivate var labelHot : UILabel = {
-        var lbl = UILabel()
-        lbl.translatesAutoresizingMaskIntoConstraints = false
-        lbl.text = "What's hot"
-        lbl.textAlignment = .left
-        lbl.textColor = .white
+    fileprivate var labelHot = UILabel().then{
+        $0.translatesAutoresizingMaskIntoConstraints = false
+        $0.text = "What's hot"
+        $0.textAlignment = .left
+        $0.textColor = .white
         
-        let attributedString = NSMutableAttributedString(string: lbl.text!)
+        let attributedString = NSMutableAttributedString(string: $0.text!)
         let boldFont = UIFont.boldSystemFont(ofSize: 23)
-        attributedString.addAttribute(.font, value: boldFont, range: NSRange(location: 0, length: lbl.text!.count))
-        lbl.attributedText = attributedString
-        
-        return lbl
-    }()
-    fileprivate var labelfFire : UILabel = {
-        var lbl = UILabel()
-        lbl.translatesAutoresizingMaskIntoConstraints = false
-        lbl.text = "🔥"
-        lbl.textAlignment = .left
-        
-        return lbl
-    }()
+        attributedString.addAttribute(.font, value: boldFont, range: NSRange(location: 0, length: $0.text!.count))
+        $0.attributedText = attributedString
+    }
+    fileprivate var labelfFire = UILabel().then{
+        $0.translatesAutoresizingMaskIntoConstraints = false
+        $0.text = "🔥"
+        $0.textAlignment = .left
+    }
     fileprivate var collectionViewForTip : UICollectionView = { // collectionView는 layout없이는 초기화할 수 없다.
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal // 스크롤 방향 설정
@@ -41,21 +36,17 @@ class ContentListViewController: UIViewController {
         cv.tag = 0
         return cv
     }()
-    fileprivate var labelJFY : UILabel = {
-        var lbl = UILabel()
+    fileprivate var labelJFY = UILabel().then {
+        $0.translatesAutoresizingMaskIntoConstraints = false
+        $0.text = "Just for you"
+        $0.textAlignment = .left
+        $0.textColor = .white
         
-        lbl.translatesAutoresizingMaskIntoConstraints = false
-        lbl.text = "Just for you"
-        lbl.textAlignment = .left
-        lbl.textColor = .white
-        
-        let attributedString = NSMutableAttributedString(string: lbl.text!)
+        let attributedString = NSMutableAttributedString(string: $0.text!)
         let boldFont = UIFont.boldSystemFont(ofSize: 20)
-        attributedString.addAttribute(.font, value: boldFont, range: NSRange(location: 0, length: lbl.text!.count))
-        lbl.attributedText = attributedString
-        
-        return lbl
-    }()
+        attributedString.addAttribute(.font, value: boldFont, range: NSRange(location: 0, length: $0.text!.count))
+        $0.attributedText = attributedString
+    }
     fileprivate var collectionViewForYou : UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
@@ -67,21 +58,17 @@ class ContentListViewController: UIViewController {
         cv.tag = 1
         return cv
     }()
-    fileprivate var labelRomance : UILabel = {
-        var lbl = UILabel()
+    fileprivate var labelRomance = UILabel().then{
+        $0.text = "Romance"
+        $0.textAlignment = .left
+        $0.textColor = .white
+        $0.translatesAutoresizingMaskIntoConstraints = false
         
-        lbl.text = "Romance"
-        lbl.textAlignment = .left
-        lbl.textColor = .white
-        lbl.translatesAutoresizingMaskIntoConstraints = false
-        
-        let attributedString = NSMutableAttributedString(string: lbl.text!)
+        let attributedString = NSMutableAttributedString(string: $0.text!)
         let boldFont = UIFont.boldSystemFont(ofSize: 20)
-        attributedString.addAttribute(.font, value: boldFont, range: NSRange(location: 0, length: lbl.text!.count))
-        lbl.attributedText = attributedString
-        
-        return lbl
-    }()
+        attributedString.addAttribute(.font, value: boldFont, range: NSRange(location: 0, length: $0.text!.count))
+        $0.attributedText = attributedString
+    }
     fileprivate var collectionViewForRomance : UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
@@ -93,21 +80,17 @@ class ContentListViewController: UIViewController {
         cv.tag = 2
         return cv
     }()
-    fileprivate var labelThriller : UILabel = {
-        var lbl = UILabel()
+    fileprivate var labelThriller = UILabel().then{
+        $0.text = "Thriller"
+        $0.textAlignment = .left
+        $0.textColor = .white
+        $0.translatesAutoresizingMaskIntoConstraints = false
         
-        lbl.text = "Thriller"
-        lbl.textAlignment = .left
-        lbl.textColor = .white
-        lbl.translatesAutoresizingMaskIntoConstraints = false
-        
-        let attributedString = NSMutableAttributedString(string: lbl.text!)
+        let attributedString = NSMutableAttributedString(string: $0.text!)
         let boldFont = UIFont.boldSystemFont(ofSize: 20)
-        attributedString.addAttribute(.font, value: boldFont, range: NSRange(location: 0, length: lbl.text!.count))
-        lbl.attributedText = attributedString
-        
-        return lbl
-    }()
+        attributedString.addAttribute(.font, value: boldFont, range: NSRange(location: 0, length: $0.text!.count))
+        $0.attributedText = attributedString
+    }
     fileprivate var collectionViewForThriller : UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
@@ -117,7 +100,6 @@ class ContentListViewController: UIViewController {
         cv.register(CSCollectionViewCell.self, forCellWithReuseIdentifier: "cell") // collectionView에 재사용할 cell 등록(재사용할 cell의 클래스)
         cv.backgroundColor = .clear
         cv.tag = 3
-        
         return cv
     }()
     fileprivate var scrollView : UIScrollView = {

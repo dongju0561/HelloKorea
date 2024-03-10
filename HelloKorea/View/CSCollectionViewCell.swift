@@ -1,38 +1,29 @@
 import UIKit
-
+import Then
 class CSCollectionViewCell : UICollectionViewCell{
-    var CSBg: UIImageView = {
-        let bg = UIImageView()
-        
-        bg.translatesAutoresizingMaskIntoConstraints = false
-        bg.contentMode = .scaleAspectFill
-        bg.clipsToBounds = true
-        bg.layer.cornerRadius = 25
-        return bg
-    }()
-    var CSButton : UIButton = {
-        let button = UIButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.layer.cornerRadius = 25
-        return button
-    }()
-    var CSLabel : UILabel = {
-        let lbl = UILabel(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
-        
-        lbl.translatesAutoresizingMaskIntoConstraints = false
-        lbl.backgroundColor = .clear
-        lbl.adjustsFontSizeToFitWidth = true
-        lbl.numberOfLines = 0
-        lbl.lineBreakMode = .byWordWrapping // 단어 단위로 줄바꿈
-        lbl.textColor = .white
-        lbl.textAlignment = .center
-        lbl.clipsToBounds = true
-        lbl.layer.cornerRadius = 20
-        lbl.backgroundColor = .black.withAlphaComponent(0.8)
-        lbl.font = lbl.font.withSize(13)
-        
-        return lbl
-    }()
+    var CSBg = UIImageView().then{
+        $0.translatesAutoresizingMaskIntoConstraints = false
+        $0.contentMode = .scaleAspectFill
+        $0.clipsToBounds = true
+        $0.layer.cornerRadius = 25
+    }
+    var CSButton = UIButton().then{
+        $0.translatesAutoresizingMaskIntoConstraints = false
+        $0.layer.cornerRadius = 25
+    }
+    var CSLabel = UILabel().then{
+        $0.translatesAutoresizingMaskIntoConstraints = false
+        $0.backgroundColor = .clear
+        $0.adjustsFontSizeToFitWidth = true
+        $0.numberOfLines = 0
+        $0.lineBreakMode = .byWordWrapping // 단어 단위로 줄바꿈
+        $0.textColor = .white
+        $0.textAlignment = .center
+        $0.clipsToBounds = true
+        $0.layer.cornerRadius = 20
+        $0.backgroundColor = .black.withAlphaComponent(0.8)
+        $0.font = $0.font.withSize(13)
+    }
 
     override init(frame: CGRect) {
         super.init(frame: .zero)

@@ -6,11 +6,13 @@
 //
 
 import UIKit
+import Then
 
 class DetailViewController: UIViewController {
     
     var contentsModel: ContentsModel?
     var contentsModelTest: ContentsModelTest?
+    //:MARK: - component 설정
     fileprivate var scrollView : UIScrollView = {
         let scrollView = UIScrollView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height + 200))
         scrollView.setGradient(color1: .black, color2: UIColor(rgb: 0x295EA6))
@@ -27,79 +29,58 @@ class DetailViewController: UIViewController {
         lbl.text = "Filming Locations"
         return lbl
     }()
-    fileprivate var imagePoster : UIImageView = {
-        var image = UIImageView()
-        image.backgroundColor = .white
-        image.translatesAutoresizingMaskIntoConstraints = false
-        image.clipsToBounds = true
-        image.layer.cornerRadius = 20
+    fileprivate var imagePoster = UIImageView().then{
+        $0.backgroundColor = .white
+        $0.translatesAutoresizingMaskIntoConstraints = false
+        $0.clipsToBounds = true
+        $0.layer.cornerRadius = 20
+    }
+    fileprivate var imageMap = UIImageView().then{
+        $0.backgroundColor = .white
+        $0.translatesAutoresizingMaskIntoConstraints = false
+        $0.layer.cornerRadius = 20
+        $0.clipsToBounds = true
+        $0.image = #imageLiteral(resourceName: "map 1")
+        $0.contentMode = .scaleAspectFit
+    }
+    fileprivate var buttonMap = UIButton().then{
+        $0.translatesAutoresizingMaskIntoConstraints = false
+        $0.layer.cornerRadius = 20
+        $0.addTarget(self, action: #selector(moveToMap), for: .touchUpInside)
+        $0.backgroundColor = .clear
+    }
+    fileprivate var labelName = UILabel().then{
+        $0.textColor = .white
+        $0.textAlignment = .left
+        $0.translatesAutoresizingMaskIntoConstraints = false
+        $0.lineBreakMode = .byWordWrapping
+        $0.numberOfLines = 0
+    }
+    fileprivate var labelLocation = UILabel().then{
+        $0.text = "Filming Locations"
+        $0.textColor = .white
+        $0.textAlignment = .left
+        $0.translatesAutoresizingMaskIntoConstraints = false
         
-        return image
-    }()
-    fileprivate var imageMap : UIImageView = {
-        var image = UIImageView()
-        image.backgroundColor = .white
-        image.translatesAutoresizingMaskIntoConstraints = false
-        image.layer.cornerRadius = 20
-        image.clipsToBounds = true
-        image.image = #imageLiteral(resourceName: "map 1")
-        image.contentMode = .scaleAspectFit
-        
-        return image
-    }()
-    fileprivate var buttonMap : UIButton = {
-        var button = UIButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.layer.cornerRadius = 20
-        button.addTarget(self, action: #selector(moveToMap), for: .touchUpInside)
-        button.backgroundColor = .clear
-        
-        return button
-    }()
-    fileprivate var labelName : UILabel = {
-        var lbl = UILabel()
-        lbl.textColor = .white
-        lbl.textAlignment = .left
-        lbl.translatesAutoresizingMaskIntoConstraints = false
-        lbl.lineBreakMode = .byWordWrapping
-        lbl.numberOfLines = 0
-        
-        return lbl
-    }()
-    fileprivate var labelLocation : UILabel = {
-        var lbl = UILabel()
-        lbl.text = "Filming Locations"
-        lbl.textColor = .white
-        lbl.textAlignment = .left
-        lbl.translatesAutoresizingMaskIntoConstraints = false
-        
-        let attributedString = NSMutableAttributedString(string: lbl.text!)
+        let attributedString = NSMutableAttributedString(string: $0.text!)
         let boldFont = UIFont.boldSystemFont(ofSize: 20)
-        attributedString.addAttribute(.font, value: boldFont, range: NSRange(location: 0, length: lbl.text!.count))
-        lbl.attributedText = attributedString
-        
-        return lbl
-    }()
-    fileprivate var labelYear : UILabel = {
-        var lbl = UILabel()
-        lbl.textColor = .white
-        lbl.textAlignment = .left
-        lbl.translatesAutoresizingMaskIntoConstraints = false
-        
-        return lbl
-    }()
-    fileprivate var labelCast : UILabel = {
-        var lbl = UILabel()
-        lbl.textColor = .white
-        lbl.textAlignment = .left
-        lbl.translatesAutoresizingMaskIntoConstraints = false
-        lbl.adjustsFontSizeToFitWidth = true
-        lbl.numberOfLines = 3
-        lbl.lineBreakMode = .byWordWrapping // 단어 단위로 줄바꿈
-        
-        return lbl
-    }()
-    
+        attributedString.addAttribute(.font, value: boldFont, range: NSRange(location: 0, length: $0.text!.count))
+        $0.attributedText = attributedString
+    }
+    fileprivate var labelYear = UILabel().then{
+        $0.textColor = .white
+        $0.textAlignment = .left
+        $0.translatesAutoresizingMaskIntoConstraints = false
+    }
+    fileprivate var labelCast = UILabel().then{
+        $0.textColor = .white
+        $0.textAlignment = .left
+        $0.translatesAutoresizingMaskIntoConstraints = false
+        $0.adjustsFontSizeToFitWidth = true
+        $0.numberOfLines = 3
+        $0.lineBreakMode = .byWordWrapping // 단어 단위로 줄바꿈
+    }
+    //: MARK: - 메소드 정의
     override func viewDidLoad() {
         super.viewDidLoad()
         initSubView()

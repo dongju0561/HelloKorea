@@ -1,28 +1,22 @@
 import UIKit
 import MapKit
 import CoreLocation
+import Then
 
 class MapViewController: UIViewController {
-    var contentViewModel: ContentsModel?
+
     var contentsModelTest: ContentsModelTest?
     
-    private var pickerView: UIPickerView = {
-       
-        var pickerView = UIPickerView()
-        pickerView.backgroundColor = .gray
-        pickerView.translatesAutoresizingMaskIntoConstraints = false
-        return pickerView
-    }()
-    private var mapView : MKMapView = {
-        var map = MKMapView()
-        
-        map.mapType = MKMapType.standard
-        map.isZoomEnabled = true
-        map.isScrollEnabled = true
-        map.translatesAutoresizingMaskIntoConstraints = false
-        
-        return map
-    }()
+    private var pickerView = UIPickerView().then{
+        $0.backgroundColor = .gray
+        $0.translatesAutoresizingMaskIntoConstraints = false
+    }
+    private var mapView = MKMapView().then{
+        $0.mapType = MKMapType.standard
+        $0.isZoomEnabled = true
+        $0.isScrollEnabled = true
+        $0.translatesAutoresizingMaskIntoConstraints = false
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,7 +42,7 @@ class MapViewController: UIViewController {
             mapView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             mapView.leftAnchor.constraint(equalTo: view.leftAnchor),
             mapView.rightAnchor.constraint(equalTo: view.rightAnchor),
-            mapView.bottomAnchor.constraint(equalTo: mapView.topAnchor),
+            mapView.bottomAnchor.constraint(equalTo: pickerView.topAnchor),
             
             pickerView.topAnchor.constraint(equalTo: mapView.bottomAnchor),
             pickerView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
@@ -111,15 +105,14 @@ extension MapViewController: MKMapViewDelegate{
             view.leftCalloutAccessoryView = detailButton
             view.markerTintColor = .purple
         }
-        
         return view
     }
     @objc func copyAddress(_ sender: UIButton){
         if mapView.selectedAnnotations.first is Artwork {
             
             let modal = DetailModalViewController()
-            modal.contentName = contentViewModel?.contentName
-            modal.annotation = mapView.selectedAnnotations.first as! Artwork
+            modal.contentName = contentsModelTest?.contentName
+            modal.annotation = (mapView.selectedAnnotations.first as! Artwork)
             self.present(modal,animated: true)
         }
     }
@@ -131,19 +124,20 @@ extension MapViewController: UIPickerViewDelegate, UIPickerViewDataSource{
         return 1
     }
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        guard let safeContent = contentViewModel else {
+        guard let safeContent = contentsModelTest else {
             return 0
         }
+        print(safeContent.locations.count)
         return safeContent.locations.count
     }
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        guard let safeContent = contentViewModel else {
+        guard let safeContent = contentsModelTest else {
             return ""
         }
         return safeContent.locations[row].locationName
     }
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        guard let safeContent = contentViewModel else {
+        guard let safeContent = contentsModelTest else {
             return
         }
         
