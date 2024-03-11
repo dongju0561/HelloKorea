@@ -230,9 +230,11 @@ class ContentListViewController: UIViewController {
                                 let locationName = locations[idx]["locationName"]!
                                 let address = locations[idx]["address"]!
                                 let latitude = locations[idx]["latitude"]!
+                                print(latitude)
                                 let longitude = locations[idx]["longitude"]!
+                                print(longitude)
                                 let explaination = locations[idx]["explaination"]!
-                                let location = Location(locationName: locationName, explaination: explaination, latitude: Double(latitude)!, longitude: Double(latitude)!, address: address)
+                                let location = Location(locationName: locationName, explaination: explaination, latitude: Double(latitude)!, longitude: Double(longitude)!, address: address)
                                 locationsNew.append(location)
                             }
                             let contentModel = ContentsModelTest(contentName: contentName, contentNameK: contentNameK, year: year, cast: cast, imageURL: imageUrl, locations: locationsNew)

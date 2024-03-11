@@ -20,6 +20,8 @@ class MapViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print(contentsModelTest?.locations[0].latitude)
+        print(contentsModelTest?.locations[0].longitude)
         initSubView()
         bindViewModel()
     }
