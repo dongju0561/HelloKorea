@@ -11,7 +11,7 @@ HelloKorea는 K-컨텐츠(드라마, 영화)에 관련된 컨텐츠의 설명을
 - RxSwift
 - Toast_Swift
 - SafariService
-- MVVM
+- MVC
 
 <br>
 
