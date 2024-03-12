@@ -4,9 +4,9 @@ import CoreLocation
 import Then
 
 class MapViewController: UIViewController {
-
     var contentsModelTest: ContentsModelTest?
-    
+    private var artworks = [Artwork]()
+    private var tagNumOfAnnotation = 0
     private var pickerView = UIPickerView().then{
         $0.backgroundColor = .gray
         $0.translatesAutoresizingMaskIntoConstraints = false
@@ -20,16 +20,30 @@ class MapViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(contentsModelTest?.locations[0].latitude)
-        print(contentsModelTest?.locations[0].longitude)
+        guard let locations = contentsModelTest?.locations else{
+            return
+        }
+        for location in locations {
+            artworks.append(
+                Artwork(
+                    title: location.locationName,
+                    locationName: location.explaination,
+                    discipline: "Sculpture",
+                    coordinate: CLLocationCoordinate2D(latitude: location.latitude, longitude: location.longitude),
+                    address: location.address
+                )
+            )
+        }
         initSubView()
         bindViewModel()
     }
     
     func bindViewModel() {
-        let location = contentsModelTest?.locations
-        makePin(location!)
-        initSetLocation(location!)
+        guard let locations = contentsModelTest?.locations else{
+            return
+        }
+        makePin(locations)
+        initSetLocation(locations)
     }
     
     func initSubView() {
@@ -63,7 +77,8 @@ class MapViewController: UIViewController {
                 locationName: data[index].explaination,
                 discipline: "Sculpture",
                 coordinate: CLLocationCoordinate2D(latitude: data[index].latitude, longitude: data[index].longitude), 
-                address: data[index].address)
+                address: data[index].address
+            )
             mapView.addAnnotation(artwork)
         }
     }
@@ -85,8 +100,7 @@ extension MapViewController: MKMapViewDelegate{
         guard let annotation = annotation as? Artwork else {
           return nil
         }
-        
-        //
+        annotation.tag
         let identifier = "artwork"
         var view: MKMarkerAnnotationView
     
@@ -102,12 +116,55 @@ extension MapViewController: MKMapViewDelegate{
             detailButton.addTarget(self, action: #selector(copyAddress), for: .touchUpInside)
 
             view = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+            view.tag = tagNumOfAnnotation
+            tagNumOfAnnotation += 1
             view.canShowCallout = true // callout를 보여줌
             view.calloutOffset = CGPoint(x: 0, y: 0) // callout의 위치
             view.leftCalloutAccessoryView = detailButton
             view.markerTintColor = .purple
+            configureDetailView(annotationView: view)
+            
         }
         return view
+    }
+    func configureDetailView(annotationView: MKAnnotationView) {
+        let width = 300
+        let height = 200
+        
+        let calloutView = UIView()
+        calloutView.translatesAutoresizingMaskIntoConstraints = false
+        
+        let views = ["calloutView": calloutView]
+        
+        calloutView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:[calloutView(300)]", options: [], metrics: nil, views: views))
+        calloutView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:[calloutView(200)]", options: [], metrics: nil, views: views))
+        
+        var explanationLbl = UILabel().then{
+            $0.translatesAutoresizingMaskIntoConstraints = false
+            $0.text = artworks[annotationView.tag].locationName
+        }
+        var addressLbl = UILabel().then{
+            $0.translatesAutoresizingMaskIntoConstraints = false
+            $0.text = artworks[annotationView.tag].address
+        }
+        
+//        calloutView.addSubview(explanationLbl)
+        calloutView.addSubview(addressLbl)
+        
+        NSLayoutConstraint.activate([
+//            explanationLbl.topAnchor.constraint(equalTo: calloutView.safeAreaLayoutGuide.topAnchor),
+//            explanationLbl.leadingAnchor.constraint(equalTo: calloutView.leadingAnchor),
+//            explanationLbl.trailingAnchor.constraint(equalTo: calloutView.trailingAnchor),
+//            explanationLbl.bottomAnchor.constraint(equalTo: addressLbl.bottomAnchor),
+            
+            addressLbl.topAnchor.constraint(equalTo: calloutView.bottomAnchor),
+            addressLbl.leadingAnchor.constraint(equalTo: calloutView.leadingAnchor),
+            addressLbl.trailingAnchor.constraint(equalTo: calloutView.trailingAnchor),
+            addressLbl.bottomAnchor.constraint(equalTo: calloutView.bottomAnchor),
+            
+        ])
+        
+        annotationView.detailCalloutAccessoryView = calloutView
     }
     @objc func copyAddress(_ sender: UIButton){
         if mapView.selectedAnnotations.first is Artwork {
@@ -129,7 +186,6 @@ extension MapViewController: UIPickerViewDelegate, UIPickerViewDataSource{
         guard let safeContent = contentsModelTest else {
             return 0
         }
-        print(safeContent.locations.count)
         return safeContent.locations.count
     }
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {

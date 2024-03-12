@@ -49,6 +49,7 @@
 		4B72BFA02B9F313500F2747F /* Pods_HelloKorea.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 017B154A9D77F342A70709A6 /* Pods_HelloKorea.framework */; };
 		4B72BFA12B9F313500F2747F /* Pods_HelloKorea.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 017B154A9D77F342A70709A6 /* Pods_HelloKorea.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4B743F942B0B359C005A7321 /* DetailModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B743F932B0B359C005A7321 /* DetailModalViewController.swift */; };
+		4B9C94642BA080F70086E4D7 /* CustomCalloutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B9C94632BA080F70086E4D7 /* CustomCalloutView.swift */; };
 		4BA1A5F82B9EB9C500AAAB7F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4BA1A5F72B9EB9C500AAAB7F /* GoogleService-Info.plist */; };
 		4BB761E12B14F8E800D533C1 /* TipViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BB761E02B14F8E800D533C1 /* TipViewController.swift */; };
 		4BDE4EB12B99C8C40005D28D /* FacilitiesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BDE4EB02B99C8C40005D28D /* FacilitiesViewController.swift */; };
@@ -94,6 +95,7 @@
 		4B46A0B62B5F9E1C00791B05 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		4B743F932B0B359C005A7321 /* DetailModalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailModalViewController.swift; sourceTree = "<group>"; };
 		4B9A8D4C2B88CB08003A7ED4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		4B9C94632BA080F70086E4D7 /* CustomCalloutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCalloutView.swift; sourceTree = "<group>"; };
 		4BA1A5F72B9EB9C500AAAB7F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		4BB761E02B14F8E800D533C1 /* TipViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TipViewController.swift; sourceTree = "<group>"; };
 		4BDE4EB02B99C8C40005D28D /* FacilitiesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacilitiesViewController.swift; sourceTree = "<group>"; };
@@ -251,6 +253,7 @@
 				4BE1FCBD2AD131EC00CA8106 /* CSCollectionViewCell.swift */,
 				4B15B2DE2ADECA48001533ED /* NavigationViewController.swift */,
 				4B35117B2AFA176800B9F160 /* TabBarViewController.swift */,
+				4B9C94632BA080F70086E4D7 /* CustomCalloutView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -412,6 +415,7 @@
 				4BE1FCA82AD12D3A00CA8106 /* ContentListViewController.swift in Sources */,
 				4B35117C2AFA176800B9F160 /* TabBarViewController.swift in Sources */,
 				4BE1FCA42AD12D3A00CA8106 /* AppDelegate.swift in Sources */,
+				4B9C94642BA080F70086E4D7 /* CustomCalloutView.swift in Sources */,
 				4BDE4EB32B99E6410005D28D /* PraySpotListViewController.swift in Sources */,
 				4B46A0B72B5F9E1C00791B05 /* LoginViewController.swift in Sources */,
 				4BDE4EB12B99C8C40005D28D /* FacilitiesViewController.swift in Sources */,
