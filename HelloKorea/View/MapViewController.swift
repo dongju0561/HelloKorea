@@ -124,49 +124,17 @@ extension MapViewController: MKMapViewDelegate{
             view.markerTintColor = .purple
             configureDetailView(annotationView: view)
             
+            if let safeLocationName = artworks[view.tag].locationName, let safeAddress = artworks[view.tag].address {
+                let customCalloutView = CustomCalloutView()
+                let views = ["customCalloutView": customCalloutView]
+                customCalloutView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:[customCalloutView(300)]", options: [], metrics: nil, views: views))
+                customCalloutView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:[customCalloutView(200)]", options: [], metrics: nil, views: views))
+                customCalloutView.configure(explanation: safeLocationName, address: safeAddress)
+                view.detailCalloutAccessoryView = customCalloutView
+            }
         }
         return view
     }
-    func configureDetailView(annotationView: MKAnnotationView) {
-        let width = 300
-        let height = 200
-        
-        let calloutView = UIView()
-        calloutView.translatesAutoresizingMaskIntoConstraints = false
-        
-        let views = ["calloutView": calloutView]
-        
-        calloutView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:[calloutView(300)]", options: [], metrics: nil, views: views))
-        calloutView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:[calloutView(200)]", options: [], metrics: nil, views: views))
-        
-        var explanationLbl = UILabel().then{
-            $0.translatesAutoresizingMaskIntoConstraints = false
-            $0.text = artworks[annotationView.tag].locationName
-        }
-        var addressLbl = UILabel().then{
-            $0.translatesAutoresizingMaskIntoConstraints = false
-            $0.text = artworks[annotationView.tag].address
-        }
-        
-//        calloutView.addSubview(explanationLbl)
-        calloutView.addSubview(addressLbl)
-        
-        NSLayoutConstraint.activate([
-//            explanationLbl.topAnchor.constraint(equalTo: calloutView.safeAreaLayoutGuide.topAnchor),
-//            explanationLbl.leadingAnchor.constraint(equalTo: calloutView.leadingAnchor),
-//            explanationLbl.trailingAnchor.constraint(equalTo: calloutView.trailingAnchor),
-//            explanationLbl.bottomAnchor.constraint(equalTo: addressLbl.bottomAnchor),
-            
-            addressLbl.topAnchor.constraint(equalTo: calloutView.bottomAnchor),
-            addressLbl.leadingAnchor.constraint(equalTo: calloutView.leadingAnchor),
-            addressLbl.trailingAnchor.constraint(equalTo: calloutView.trailingAnchor),
-            addressLbl.bottomAnchor.constraint(equalTo: calloutView.bottomAnchor),
-            
-        ])
-        
-        annotationView.detailCalloutAccessoryView = calloutView
-    }
-    @objc func copyAddress(_ sender: UIButton){
     
     //추가 기능 제공을 위한 modal present하는 함수
     @objc func showDetail(_ sender: UIButton){
