@@ -8,6 +8,12 @@ import FirebaseFirestore
 import Then
 
 class ContentListViewController: UIViewController {
+    
+    private let loadingView: LoadingView = {
+      let view = LoadingView()
+      view.translatesAutoresizingMaskIntoConstraints = false
+      return view
+    }()
     fileprivate var labelHot = UILabel().then{
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.text = "What's hot"
@@ -123,10 +129,20 @@ class ContentListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //로딩화면 출력
+        self.loadingView.isLoading = true
+        //firebase로부터 데이터 패치
         fetchImageURLs()
         initSubView()
+        delay(3.0, closure: {
+            self.loadingView.isLoading = false
+        })
     }
-    
+    func delay(_ delay: Double, closure: @escaping () -> Void) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
+            closure()
+        }
+    }
     private func initSubView(){
         let screenWidth = UIScreen.main.bounds.width
         
@@ -140,6 +156,7 @@ class ContentListViewController: UIViewController {
         self.collectionViewForThriller.dataSource = self
 
         view.addSubview(scrollView)
+        view.addSubview(loadingView)
         scrollView.addSubview(labelHot)
         scrollView.addSubview(labelfFire)
         scrollView.addSubview(collectionViewForTip)
@@ -151,6 +168,11 @@ class ContentListViewController: UIViewController {
         scrollView.addSubview(collectionViewForThriller)
         
         NSLayoutConstraint.activate([
+            
+            loadingView.leftAnchor.constraint(equalTo: view.leftAnchor),
+            loadingView.rightAnchor.constraint(equalTo: view.rightAnchor),
+            loadingView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            loadingView.topAnchor.constraint(equalTo: view.topAnchor),
             
             scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),

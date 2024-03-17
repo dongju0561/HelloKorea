@@ -160,7 +160,9 @@ class LoginViewController: UIViewController {
             passwordTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             
             loginButton.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: 20),
-            loginButton.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+            loginButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            
+            
         ])
     }
     private func setupActions() {
