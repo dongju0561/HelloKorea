@@ -25,7 +25,8 @@ class LoginViewController: UIViewController {
     let disposeBag = DisposeBag()
     
     
-    private var titleLabel = UILabel().then{
+    
+    fileprivate var titleLabel = UILabel().then{
         $0.text = "HelloKorea"
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.textColor = UIColor(named: Color.NavigationTintColor)!
