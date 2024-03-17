@@ -113,8 +113,8 @@ extension MapViewController: MKMapViewDelegate{
         //만약 재사용 가능한 annotation view가 없다면
         else {
             let  detailButton = UIButton(type: .detailDisclosure)
-            detailButton.addTarget(self, action: #selector(copyAddress), for: .touchUpInside)
-
+            detailButton.addTarget(self, action: #selector(showDetail), for: .touchUpInside)
+            
             view = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: identifier)
             view.tag = tagNumOfAnnotation
             tagNumOfAnnotation += 1
