@@ -93,19 +93,19 @@ class MapViewController: UIViewController {
 extension MapViewController: MKMapViewDelegate{
     //지도의 표시 영역이 변경되기 직전에 호출
     func mapView(_ mapView: MKMapView, regionWillChangeAnimated animated: Bool) {
-            if let selectedAnnotations = mapView.selectedAnnotations as? [MKPointAnnotation], let selectedAnnotation = selectedAnnotations.first {
-                mapView.deselectAnnotation(selectedAnnotation, animated: true)
-            }
+        if let selectedAnnotations = mapView.selectedAnnotations as? [MKPointAnnotation], let selectedAnnotation = selectedAnnotations.first {
+            mapView.deselectAnnotation(selectedAnnotation, animated: true)
         }
+    }
+    
     //annotation 정의하는 메소드
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView?{
         guard let annotation = annotation as? Artwork else {
-          return nil
+            return nil
         }
         annotation.tag
         let identifier = "artwork"
         var view: MKMarkerAnnotationView
-    
         //만약 재사용 가능한 annotation view가 있다면
         if let dequeuedView = mapView.dequeueReusableAnnotationView(
             withIdentifier: identifier) as? MKMarkerAnnotationView {
