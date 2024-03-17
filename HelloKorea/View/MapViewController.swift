@@ -167,6 +167,9 @@ extension MapViewController: MKMapViewDelegate{
         annotationView.detailCalloutAccessoryView = calloutView
     }
     @objc func copyAddress(_ sender: UIButton){
+    
+    //추가 기능 제공을 위한 modal present하는 함수
+    @objc func showDetail(_ sender: UIButton){
         if mapView.selectedAnnotations.first is Artwork {
             
             let modal = DetailModalViewController()
