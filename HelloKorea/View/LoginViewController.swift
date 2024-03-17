@@ -13,8 +13,6 @@ import FirebaseFirestore
 import Firebase
 import Then
 
-//images/swiftui.png
-
 class LoginViewController: UIViewController {
     let storage = Storage.storage()
     let db = Firestore.firestore()
@@ -23,8 +21,6 @@ class LoginViewController: UIViewController {
     let userPassword = "qwer1234"
     let viewModel = LoginViewModel()
     let disposeBag = DisposeBag()
-    
-    
     
     fileprivate var titleLabel = UILabel().then{
         $0.text = "HelloKorea"
@@ -59,47 +55,6 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
         setupUI()
         setupActions()
-//        downLoadImage(imagePath: "images/swiftui.png")
-        
-//        let db = Firestore.firestore()
-//        
-//        let fieldsArray = [
-//            [
-//                "locationName": "The first restaurant of Danbam",
-//                "explaination": "Where Park Sae-roi first opened the store", 
-//                "latitude": "37.53488057302562",
-//                "longitude": "126.98748363621065",
-//                "address": "대한민국 서울특별시 용산구 이태원동 544"
-//            ],
-//            [
-//                "locationName": "The second restaurant of Danbam",
-//                "explaination": "Park Sae-roi lost the first store to President Jang and then opened the second store",
-//                "latitude": "37.5473948",
-//                "longitude": "126.9840487",
-//                "address": "대한민국 서울특별시 용산구 신흥로20길 43"
-//            ],
-//            [
-//                "locationName": "Itaewon overpass",
-//                "explaination": "The overpass that Park Saeroyi used to go to often",
-//                "latitude": "37.534934586721285",
-//                "longitude": "126.98705368624344",
-//                "address": "대한민국 서울특별시 용산구 용산동2가 7-99"
-//            ]
-//        ]
-//        // Firestore 컬렉션 및 문서 참조
-//        let arr = ["ItaewonClass"]
-//        for idx in 0..<arr.count{
-//            let collectionReference = db.collection("YouImages")
-//            let documentReference = collectionReference.document(arr[idx])
-//            
-//            documentReference.updateData(["locations": FieldValue.arrayUnion(fieldsArray)]) { error in
-//                if let error = error {
-//                    print("Error updating document: \(error)")
-//                } else {
-//                    print("Document successfully updated with fields array.")
-//                }
-//            }
-//        }
 
     }
     private func downLoadImage(imagePath: String){
