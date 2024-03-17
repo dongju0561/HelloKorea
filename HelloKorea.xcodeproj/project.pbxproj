@@ -19,6 +19,7 @@
 		4B3511842AFA6D6C00B9F160 /* MKMapViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B3511832AFA6D6C00B9F160 /* MKMapViewExtension.swift */; };
 		4B46A0B52B5F9BE800791B05 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B46A0B42B5F9BE800791B05 /* LoginViewModel.swift */; };
 		4B46A0B72B5F9E1C00791B05 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B46A0B62B5F9E1C00791B05 /* LoginViewController.swift */; };
+		4B5CF7632BA6CA7D00B2356B /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B5CF7622BA6CA7D00B2356B /* LoadingView.swift */; };
 		4B72BF6B2B9F30A000F2747F /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 4B72BF6A2B9F30A000F2747F /* FirebaseAnalytics */; };
 		4B72BF6D2B9F30A000F2747F /* FirebaseAnalyticsOnDeviceConversion in Frameworks */ = {isa = PBXBuildFile; productRef = 4B72BF6C2B9F30A000F2747F /* FirebaseAnalyticsOnDeviceConversion */; };
 		4B72BF6F2B9F30A000F2747F /* FirebaseAnalyticsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 4B72BF6E2B9F30A000F2747F /* FirebaseAnalyticsSwift */; };
@@ -93,6 +94,7 @@
 		4B3511832AFA6D6C00B9F160 /* MKMapViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MKMapViewExtension.swift; sourceTree = "<group>"; };
 		4B46A0B42B5F9BE800791B05 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		4B46A0B62B5F9E1C00791B05 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		4B5CF7622BA6CA7D00B2356B /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		4B743F932B0B359C005A7321 /* DetailModalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailModalViewController.swift; sourceTree = "<group>"; };
 		4B9A8D4C2B88CB08003A7ED4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		4B9C94632BA080F70086E4D7 /* CustomCalloutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCalloutView.swift; sourceTree = "<group>"; };
@@ -248,12 +250,13 @@
 				4BDE4EB02B99C8C40005D28D /* FacilitiesViewController.swift */,
 				4BDE4EB22B99E6410005D28D /* PraySpotListViewController.swift */,
 				4B35117F2AFA6CB600B9F160 /* MapViewController.swift */,
+				4B9C94632BA080F70086E4D7 /* CustomCalloutView.swift */,
 				4B743F932B0B359C005A7321 /* DetailModalViewController.swift */,
 				4BB761E02B14F8E800D533C1 /* TipViewController.swift */,
 				4BE1FCBD2AD131EC00CA8106 /* CSCollectionViewCell.swift */,
 				4B15B2DE2ADECA48001533ED /* NavigationViewController.swift */,
 				4B35117B2AFA176800B9F160 /* TabBarViewController.swift */,
-				4B9C94632BA080F70086E4D7 /* CustomCalloutView.swift */,
+				4B5CF7622BA6CA7D00B2356B /* LoadingView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -412,6 +415,7 @@
 				4BE1FCC02AD1328000CA8106 /* UIViewExtension.swift in Sources */,
 				4B2045D42AD42D5E00110625 /* Location.swift in Sources */,
 				4B15B2E12ADECB4A001533ED /* Color.swift in Sources */,
+				4B5CF7632BA6CA7D00B2356B /* LoadingView.swift in Sources */,
 				4BE1FCA82AD12D3A00CA8106 /* ContentListViewController.swift in Sources */,
 				4B35117C2AFA176800B9F160 /* TabBarViewController.swift in Sources */,
 				4BE1FCA42AD12D3A00CA8106 /* AppDelegate.swift in Sources */,
