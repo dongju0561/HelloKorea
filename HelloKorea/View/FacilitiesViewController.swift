@@ -29,20 +29,20 @@ class FacilitiesViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let drawerView = DrawerView()
-        drawerView.attachTo(view: self.view)
-        
-        // Set up the drawer here
-        drawerView.snapPositions = [.collapsed, .partiallyOpen]
+//        let drawerView = DrawerView()
+//        drawerView.attachTo(view: self.view)
+//        
+//        // Set up the drawer here
+//        drawerView.snapPositions = [.collapsed, .partiallyOpen]
         initSubView()
     }
     func initSubView() {
-        
-        scrollView.addSubview(mapView)
         mapView.delegate = self
         
+        view.addSubview(mapView)
+        
         NSLayoutConstraint.activate([
-            mapView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            mapView.topAnchor.constraint(equalTo: view.topAnchor),
             mapView.leftAnchor.constraint(equalTo: view.leftAnchor),
             mapView.rightAnchor.constraint(equalTo: view.rightAnchor),
             mapView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
