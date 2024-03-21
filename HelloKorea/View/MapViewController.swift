@@ -55,7 +55,7 @@ class MapViewController: UIViewController {
         mapView.delegate = self
         
         NSLayoutConstraint.activate([
-            mapView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            mapView.topAnchor.constraint(equalTo: view.topAnchor),
             mapView.leftAnchor.constraint(equalTo: view.leftAnchor),
             mapView.rightAnchor.constraint(equalTo: view.rightAnchor),
             mapView.bottomAnchor.constraint(equalTo: pickerView.topAnchor),
@@ -124,7 +124,6 @@ extension MapViewController: MKMapViewDelegate{
             view.calloutOffset = CGPoint(x: 0, y: 0) // callout의 위치
             view.leftCalloutAccessoryView = detailButton
             view.markerTintColor = .purple
-            configureDetailView(annotationView: view)
             
             if let safeLocationName = artworks[view.tag].locationName, let safeAddress = artworks[view.tag].address {
                 let customCalloutView = CustomCalloutView()

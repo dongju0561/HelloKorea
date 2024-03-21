@@ -18,8 +18,7 @@ class PraySpotListViewController: UIViewController {
 //    }()
     override func viewDidLoad() {
         super.viewDidLoad()
-        let drawerViewController = self.storyboard!.instantiateViewController(withIdentifier: "DrawerViewController")
-            self.addDrawerView(withViewController: drawerViewController)
+        
         
 //        initSubView()
     }
