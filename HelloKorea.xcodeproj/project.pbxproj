@@ -19,6 +19,7 @@
 		4B3511842AFA6D6C00B9F160 /* MKMapViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B3511832AFA6D6C00B9F160 /* MKMapViewExtension.swift */; };
 		4B46A0B52B5F9BE800791B05 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B46A0B42B5F9BE800791B05 /* LoginViewModel.swift */; };
 		4B46A0B72B5F9E1C00791B05 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B46A0B62B5F9E1C00791B05 /* LoginViewController.swift */; };
+		4B4ECD0C2BAC92E40027CEF7 /* NavigationPrayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B4ECD0B2BAC92E40027CEF7 /* NavigationPrayViewController.swift */; };
 		4B5CF7632BA6CA7D00B2356B /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B5CF7622BA6CA7D00B2356B /* LoadingView.swift */; };
 		4B72BF6B2B9F30A000F2747F /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 4B72BF6A2B9F30A000F2747F /* FirebaseAnalytics */; };
 		4B72BF6D2B9F30A000F2747F /* FirebaseAnalyticsOnDeviceConversion in Frameworks */ = {isa = PBXBuildFile; productRef = 4B72BF6C2B9F30A000F2747F /* FirebaseAnalyticsOnDeviceConversion */; };
@@ -94,6 +95,7 @@
 		4B3511832AFA6D6C00B9F160 /* MKMapViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MKMapViewExtension.swift; sourceTree = "<group>"; };
 		4B46A0B42B5F9BE800791B05 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		4B46A0B62B5F9E1C00791B05 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		4B4ECD0B2BAC92E40027CEF7 /* NavigationPrayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationPrayViewController.swift; sourceTree = "<group>"; };
 		4B5CF7622BA6CA7D00B2356B /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		4B743F932B0B359C005A7321 /* DetailModalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailModalViewController.swift; sourceTree = "<group>"; };
 		4B9A8D4C2B88CB08003A7ED4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -255,6 +257,7 @@
 				4BB761E02B14F8E800D533C1 /* TipViewController.swift */,
 				4BE1FCBD2AD131EC00CA8106 /* CSCollectionViewCell.swift */,
 				4B15B2DE2ADECA48001533ED /* NavigationViewController.swift */,
+				4B4ECD0B2BAC92E40027CEF7 /* NavigationPrayViewController.swift */,
 				4B35117B2AFA176800B9F160 /* TabBarViewController.swift */,
 				4B5CF7622BA6CA7D00B2356B /* LoadingView.swift */,
 			);
@@ -432,6 +435,7 @@
 				4BE1FCBE2AD131EC00CA8106 /* CSCollectionViewCell.swift in Sources */,
 				4B3511802AFA6CB600B9F160 /* MapViewController.swift in Sources */,
 				4BB761E12B14F8E800D533C1 /* TipViewController.swift in Sources */,
+				4B4ECD0C2BAC92E40027CEF7 /* NavigationPrayViewController.swift in Sources */,
 				4B46A0B52B5F9BE800791B05 /* LoginViewModel.swift in Sources */,
 				4B743F942B0B359C005A7321 /* DetailModalViewController.swift in Sources */,
 			);

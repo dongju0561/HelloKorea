@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="A2U-jD-4mt">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="A2U-jD-4mt">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22684"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -88,7 +88,7 @@
         <!--Resturants-->
         <scene sceneID="7I2-DN-GKs">
             <objects>
-                <navigationController id="HcW-HI-iv2" customClass="NavigationViewController" customModule="HelloKorea" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController id="HcW-HI-iv2" customClass="NavigationPrayViewController" customModule="HelloKorea" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Resturants" image="map" catalog="system" selectedImage="map" id="uhF-o4-Z58"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="qhS-cU-sEk">
                         <rect key="frame" x="0.0" y="59" width="393" height="44"/>
