@@ -1,9 +1,14 @@
+//
+//  NavigationPrayViewController.swift
+//  HelloKorea
+//
+//  Created by Dongju Park on 3/22/24.
+//
+
 import UIKit
 
-class NavigationViewController: UINavigationController {
-    
-    let titleTextAttributes: [NSAttributedString.Key : Any] = [.foregroundColor: UIColor.white]
-    let backgroundColor: UIColor =  UIColor(named: Color.NavigationBackgroundColor)!
+class NavigationPrayViewController: UINavigationController {
+    let backgroundColor: UIColor =  .clear
     
     override var prefersStatusBarHidden: Bool{
         return false
@@ -16,15 +21,12 @@ class NavigationViewController: UINavigationController {
         navigationBar.standardAppearance = appearance
         navigationBar.scrollEdgeAppearance = navigationBar.standardAppearance
         
-        navigationBar.insetsLayoutMarginsFromSafeArea = true
-        navigationBar.topItem?.title = "HelloKorea"
-        navigationBar.tintColor = UIColor(named: Color.NavigationTintColor)!
     }
     func configureAppearance() -> UINavigationBarAppearance {
         let appearance = UINavigationBarAppearance()
         appearance.configureWithOpaqueBackground()
         appearance.backgroundColor = backgroundColor
-        appearance.titleTextAttributes = titleTextAttributes
+        appearance.shadowImage = UIImage()
         return appearance
     }
 }
