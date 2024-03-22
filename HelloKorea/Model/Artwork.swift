@@ -5,6 +5,7 @@ import MapKit
 //MKAnnotation은 NSObject를 사용하기 때문이다.
 class Artwork: NSObject, MKAnnotation {
     static var num: Int = 0
+    let image: Int?
     let tag: Int
     let title: String?
     let locationName: String?
@@ -17,7 +18,8 @@ class Artwork: NSObject, MKAnnotation {
     locationName: String?,
     discipline: String?,
     coordinate: CLLocationCoordinate2D,
-    address: String? )
+    address: String?,
+    image: Int? = nil)
     {
         self.tag = Artwork.num
         self.title = title
@@ -25,6 +27,7 @@ class Artwork: NSObject, MKAnnotation {
         self.discipline = discipline
         self.coordinate = coordinate
         self.address = address
+        self.image = image
         Artwork.num += 1
         super.init()
     }

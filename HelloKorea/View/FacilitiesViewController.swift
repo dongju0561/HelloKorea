@@ -133,14 +133,13 @@ class FacilitiesViewController: UIViewController {
                     coordinate in
                     currentLocation.latitude = coordinate.latitude
                     currentLocation.longitude = coordinate.longitude
-                    self.makePin(currentLocation)
+                    self.makePin(image: 0, at: currentLocation)
                 })
                 .disposed(by: disposeBag)
 
         }
     }
-    
-    private func makePin(_ location : Location) {
+    private func makePin(image: Int, at location : Location) {
         let artwork = Artwork(
             title: location.locationName,
             locationName: location.explaination,
@@ -177,6 +176,20 @@ extension FacilitiesViewController: MKMapViewDelegate{
             view.calloutOffset = CGPoint(x: 0, y: 0) // callout의 위치
             view.markerTintColor = .purple
         }
+        let annotationImage: UIImage!
+        let image = annotation.image
+        let size = CGSize(width: 50, height: 50)
+        UIGraphicsBeginImageContext(size)
+        
+        switch annotation.image{
+        case 0:
+            annotationImage = #imageLiteral(resourceName: "solo")
+        default:
+            annotationImage = #imageLiteral(resourceName: "solo")
+        }
+        annotationImage.draw(in: CGRect(x: 0, y: 0, width: size.width, height: size.height))
+        let resizedImage = UIGraphicsGetImageFromCurrentImageContext()
+        view.image = resizedImage
         return view
     }
 }
