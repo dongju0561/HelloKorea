@@ -16,7 +16,6 @@ class NavigationPrayViewController: UINavigationController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         let appearance = configureAppearance()
         navigationBar.standardAppearance = appearance
         navigationBar.scrollEdgeAppearance = navigationBar.standardAppearance

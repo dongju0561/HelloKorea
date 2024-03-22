@@ -6,11 +6,14 @@ import Then
 class MapViewController: UIViewController {
     var contentsModelTest: ContentsModelTest?
     private var artworks = [Artwork]()
+    
     private var tagNumOfAnnotation = 0
+    
     private var pickerView = UIPickerView().then{
         $0.backgroundColor = .gray
         $0.translatesAutoresizingMaskIntoConstraints = false
     }
+    
     private var mapView = MKMapView().then{
         $0.mapType = MKMapType.standard
         $0.isZoomEnabled = true
@@ -70,14 +73,14 @@ class MapViewController: UIViewController {
     }
     
     //지도에 등록된 위치에 핀들을 꽂아주는 함수
-    func makePin(_ data : [Location]) {
-        for index in 0..<data.count{
+    func makePin(_ datas : [Location]) {
+        for index in 0..<datas.count{
             let artwork = Artwork(
-                title: data[index].locationName,
-                locationName: data[index].explaination,
+                title: datas[index].locationName,
+                locationName: datas[index].explaination,
                 discipline: "Sculpture",
-                coordinate: CLLocationCoordinate2D(latitude: data[index].latitude, longitude: data[index].longitude), 
-                address: data[index].address
+                coordinate: CLLocationCoordinate2D(latitude: datas[index].latitude, longitude: datas[index].longitude), 
+                address: datas[index].address
             )
             mapView.addAnnotation(artwork)
         }
