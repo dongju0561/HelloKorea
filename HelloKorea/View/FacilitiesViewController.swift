@@ -29,11 +29,7 @@ class FacilitiesViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        let drawerView = DrawerView()
-//        drawerView.attachTo(view: self.view)
-//        
-//        // Set up the drawer here
-//        drawerView.snapPositions = [.collapsed, .partiallyOpen]
+        
         initSubView()
     }
     func initSubView() {

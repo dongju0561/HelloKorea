@@ -10,7 +10,6 @@
 		4B15B2DF2ADECA48001533ED /* NavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B15B2DE2ADECA48001533ED /* NavigationViewController.swift */; };
 		4B15B2E12ADECB4A001533ED /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B15B2E02ADECB4A001533ED /* Color.swift */; };
 		4B2045D02AD42D3600110625 /* ContentsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2045CF2AD42D3600110625 /* ContentsModel.swift */; };
-		4B2045D22AD42D4400110625 /* Datas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2045D12AD42D4400110625 /* Datas.swift */; };
 		4B2045D42AD42D5E00110625 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2045D32AD42D5E00110625 /* Location.swift */; };
 		4B35117C2AFA176800B9F160 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B35117B2AFA176800B9F160 /* TabBarViewController.swift */; };
 		4B35117E2AFA60DB00B9F160 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B35117D2AFA60DB00B9F160 /* DetailViewController.swift */; };
@@ -55,7 +54,6 @@
 		4BA1A5F82B9EB9C500AAAB7F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4BA1A5F72B9EB9C500AAAB7F /* GoogleService-Info.plist */; };
 		4BB761E12B14F8E800D533C1 /* TipViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BB761E02B14F8E800D533C1 /* TipViewController.swift */; };
 		4BDE4EB12B99C8C40005D28D /* FacilitiesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BDE4EB02B99C8C40005D28D /* FacilitiesViewController.swift */; };
-		4BDE4EB32B99E6410005D28D /* PraySpotListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BDE4EB22B99E6410005D28D /* PraySpotListViewController.swift */; };
 		4BE1FCA42AD12D3A00CA8106 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BE1FCA32AD12D3A00CA8106 /* AppDelegate.swift */; };
 		4BE1FCA62AD12D3A00CA8106 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BE1FCA52AD12D3A00CA8106 /* SceneDelegate.swift */; };
 		4BE1FCA82AD12D3A00CA8106 /* ContentListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BE1FCA72AD12D3A00CA8106 /* ContentListViewController.swift */; };
@@ -86,7 +84,6 @@
 		4B15B2DE2ADECA48001533ED /* NavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationViewController.swift; sourceTree = "<group>"; };
 		4B15B2E02ADECB4A001533ED /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		4B2045CF2AD42D3600110625 /* ContentsModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContentsModel.swift; path = ../../../practice_pinOnMap/practice_pinOnMap/Model/ContentsModel.swift; sourceTree = "<group>"; };
-		4B2045D12AD42D4400110625 /* Datas.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Datas.swift; path = ../../../practice_pinOnMap/practice_pinOnMap/Model/Datas.swift; sourceTree = "<group>"; };
 		4B2045D32AD42D5E00110625 /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Location.swift; path = ../../../practice_pinOnMap/practice_pinOnMap/Model/Location.swift; sourceTree = "<group>"; };
 		4B35117B2AFA176800B9F160 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		4B35117D2AFA60DB00B9F160 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
@@ -103,7 +100,6 @@
 		4BA1A5F72B9EB9C500AAAB7F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		4BB761E02B14F8E800D533C1 /* TipViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TipViewController.swift; sourceTree = "<group>"; };
 		4BDE4EB02B99C8C40005D28D /* FacilitiesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacilitiesViewController.swift; sourceTree = "<group>"; };
-		4BDE4EB22B99E6410005D28D /* PraySpotListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PraySpotListViewController.swift; sourceTree = "<group>"; };
 		4BE1FCA02AD12D3A00CA8106 /* HelloKorea.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HelloKorea.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4BE1FCA32AD12D3A00CA8106 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4BE1FCA52AD12D3A00CA8106 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -236,7 +232,6 @@
 				4B2045D32AD42D5E00110625 /* Location.swift */,
 				4B2045CF2AD42D3600110625 /* ContentsModel.swift */,
 				4B3511812AFA6CE700B9F160 /* Artwork.swift */,
-				4B2045D12AD42D4400110625 /* Datas.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -250,7 +245,6 @@
 				4BE1FCA72AD12D3A00CA8106 /* ContentListViewController.swift */,
 				4B35117D2AFA60DB00B9F160 /* DetailViewController.swift */,
 				4BDE4EB02B99C8C40005D28D /* FacilitiesViewController.swift */,
-				4BDE4EB22B99E6410005D28D /* PraySpotListViewController.swift */,
 				4B35117F2AFA6CB600B9F160 /* MapViewController.swift */,
 				4B9C94632BA080F70086E4D7 /* CustomCalloutView.swift */,
 				4B743F932B0B359C005A7321 /* DetailModalViewController.swift */,
@@ -423,10 +417,8 @@
 				4B35117C2AFA176800B9F160 /* TabBarViewController.swift in Sources */,
 				4BE1FCA42AD12D3A00CA8106 /* AppDelegate.swift in Sources */,
 				4B9C94642BA080F70086E4D7 /* CustomCalloutView.swift in Sources */,
-				4BDE4EB32B99E6410005D28D /* PraySpotListViewController.swift in Sources */,
 				4B46A0B72B5F9E1C00791B05 /* LoginViewController.swift in Sources */,
 				4BDE4EB12B99C8C40005D28D /* FacilitiesViewController.swift in Sources */,
-				4B2045D22AD42D4400110625 /* Datas.swift in Sources */,
 				4BE1FCA62AD12D3A00CA8106 /* SceneDelegate.swift in Sources */,
 				4B2045D02AD42D3600110625 /* ContentsModel.swift in Sources */,
 				4B3511822AFA6CE700B9F160 /* Artwork.swift in Sources */,

@@ -240,7 +240,6 @@ class ContentListViewController: UIViewController {
                             if let imageUrl = document.data()[imageURL] as? String {
                                 self.imageUrls[idx].append(imageUrl)
                             }
-                            //data fetch
                             guard let contentName = document.data()["contentName"] as? String else {return}
                             guard let contentNameK = document.data()["contentNameK"] as? String else {return}
                             guard let year = document.data()["year"] as? String else {return}
@@ -252,9 +251,7 @@ class ContentListViewController: UIViewController {
                                 let locationName = locations[idx]["locationName"]!
                                 let address = locations[idx]["address"]!
                                 let latitude = locations[idx]["latitude"]!
-                                print(latitude)
                                 let longitude = locations[idx]["longitude"]!
-                                print(longitude)
                                 let explaination = locations[idx]["explaination"]!
                                 let location = Location(locationName: locationName, explaination: explaination, latitude: Double(latitude)!, longitude: Double(longitude)!, address: address)
                                 locationsNew.append(location)
