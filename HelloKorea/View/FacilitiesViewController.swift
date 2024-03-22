@@ -159,7 +159,7 @@ extension FacilitiesViewController: MKMapViewDelegate{
     }
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView?{
         guard let annotation = annotation as? Artwork else {
-          return nil
+            return nil
         }
         let identifier = "artwork"
         
@@ -167,9 +167,9 @@ extension FacilitiesViewController: MKMapViewDelegate{
         //만약 재사용 가능한 annotation view가 있다면
         if let dequeuedView = mapView.dequeueReusableAnnotationView(
             withIdentifier: identifier) as? MKMarkerAnnotationView {
-                dequeuedView.annotation = annotation
-                view = dequeuedView
-            }
+            dequeuedView.annotation = annotation
+            view = dequeuedView
+        }
         //만약 재사용 가능한 annotation view가 없다면
         else {
             view = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: identifier)

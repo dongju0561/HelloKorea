@@ -132,7 +132,7 @@ class ContentListViewController: UIViewController {
         //로딩화면 출력
         self.loadingView.isLoading = true
         //firebase로부터 데이터 패치
-        fetchImageURLs()
+        fetchDocumentDatas()
         initSubView()
         delay(3.0, closure: {
             self.loadingView.isLoading = false
@@ -225,7 +225,7 @@ class ContentListViewController: UIViewController {
         scrollView.contentSize = CGSize(width: screenWidth, height: 960)
     }
     //fireStore에서 특정 카테고리에 있는 드라마의 이미지 url을 fetch하는 메소드
-    private func fetchImageURLs() {
+    private func fetchDocumentDatas() {
         let collectionViews: [UICollectionView] = [collectionViewForTip,collectionViewForYou,collectionViewForRomance,collectionViewForThriller]
         let collections: [String] = ["tipsImages","YouImages","RomanceImages","ThrillerImages"]
         for idx in 0..<collections.count{
@@ -237,6 +237,7 @@ class ContentListViewController: UIViewController {
                     if let documents = snapshot?.documents {
                         let imageURL = "imageURL"
                         for document in documents {
+                            //data fetch
                             if let imageUrl = document.data()[imageURL] as? String {
                                 self.imageUrls[idx].append(imageUrl)
                             }
