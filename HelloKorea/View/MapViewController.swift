@@ -106,7 +106,6 @@ extension MapViewController: MKMapViewDelegate{
         guard let annotation = annotation as? Artwork else {
             return nil
         }
-        annotation.tag
         let identifier = "artwork"
         var view: MKMarkerAnnotationView
         //만약 재사용 가능한 annotation view가 있다면
@@ -184,8 +183,4 @@ extension MapViewController: UIPickerViewDelegate, UIPickerViewDataSource{
         // Move the map to the new region, with animation
         mapView.setLocation(newRegion)
     }
-    
 }
-
-
-
