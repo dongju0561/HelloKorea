@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4B03B9652BB082A3008CDF38 /* CustomAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B03B9642BB082A3008CDF38 /* CustomAnnotationView.swift */; };
 		4B15B2DF2ADECA48001533ED /* NavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B15B2DE2ADECA48001533ED /* NavigationViewController.swift */; };
 		4B15B2E12ADECB4A001533ED /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B15B2E02ADECB4A001533ED /* Color.swift */; };
 		4B2045D02AD42D3600110625 /* ContentsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2045CF2AD42D3600110625 /* ContentsModel.swift */; };
@@ -81,6 +82,7 @@
 
 /* Begin PBXFileReference section */
 		017B154A9D77F342A70709A6 /* Pods_HelloKorea.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HelloKorea.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4B03B9642BB082A3008CDF38 /* CustomAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAnnotationView.swift; sourceTree = "<group>"; };
 		4B15B2DE2ADECA48001533ED /* NavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationViewController.swift; sourceTree = "<group>"; };
 		4B15B2E02ADECB4A001533ED /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		4B2045CF2AD42D3600110625 /* ContentsModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContentsModel.swift; path = ../../../practice_pinOnMap/practice_pinOnMap/Model/ContentsModel.swift; sourceTree = "<group>"; };
@@ -171,6 +173,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		4B03B9612BAFD09B008CDF38 /* map */ = {
+			isa = PBXGroup;
+			children = (
+				4B9C94632BA080F70086E4D7 /* CustomCalloutView.swift */,
+				4B03B9642BB082A3008CDF38 /* CustomAnnotationView.swift */,
+			);
+			path = map;
+			sourceTree = "<group>";
+		};
 		4B46A0B32B5F9BC500791B05 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -239,6 +250,7 @@
 		4BE1FCBB2AD131B800CA8106 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				4B03B9612BAFD09B008CDF38 /* map */,
 				4BE1FCAE2AD12D3B00CA8106 /* LaunchScreen.storyboard */,
 				4BE1FCA92AD12D3A00CA8106 /* Main.storyboard */,
 				4B46A0B62B5F9E1C00791B05 /* LoginViewController.swift */,
@@ -246,7 +258,6 @@
 				4B35117D2AFA60DB00B9F160 /* DetailViewController.swift */,
 				4BDE4EB02B99C8C40005D28D /* FacilitiesViewController.swift */,
 				4B35117F2AFA6CB600B9F160 /* MapViewController.swift */,
-				4B9C94632BA080F70086E4D7 /* CustomCalloutView.swift */,
 				4B743F932B0B359C005A7321 /* DetailModalViewController.swift */,
 				4BB761E02B14F8E800D533C1 /* TipViewController.swift */,
 				4BE1FCBD2AD131EC00CA8106 /* CSCollectionViewCell.swift */,
@@ -429,6 +440,7 @@
 				4BB761E12B14F8E800D533C1 /* TipViewController.swift in Sources */,
 				4B4ECD0C2BAC92E40027CEF7 /* NavigationPrayViewController.swift in Sources */,
 				4B46A0B52B5F9BE800791B05 /* LoginViewModel.swift in Sources */,
+				4B03B9652BB082A3008CDF38 /* CustomAnnotationView.swift in Sources */,
 				4B743F942B0B359C005A7321 /* DetailModalViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

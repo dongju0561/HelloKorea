@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "halal.png",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

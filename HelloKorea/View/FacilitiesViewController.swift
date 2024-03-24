@@ -21,7 +21,6 @@ class FacilitiesViewController: UIViewController {
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-    
     fileprivate var scrollView : UIScrollView = {
         let scrollView = UIScrollView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height + 200))
         scrollView.setGradient(color1: .black, color2: UIColor(rgb: 0x295EA6))
@@ -40,7 +39,7 @@ class FacilitiesViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        mapView.register(CustomAnnotationView.self, forAnnotationViewWithReuseIdentifier: MKMapViewDefaultAnnotationViewReuseIdentifier)
         self.loadingView.isLoading = true
         fetchDocumentDatas()
         delay(3.0, closure: {
@@ -160,36 +159,17 @@ extension FacilitiesViewController: MKMapViewDelegate{
         guard let annotation = annotation as? Artwork else {
             return nil
         }
-        let identifier = "artwork"
-        
+        let identifier = MKMapViewDefaultAnnotationViewReuseIdentifier
+        var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier)
         var view: MKMarkerAnnotationView
         //만약 재사용 가능한 annotation view가 있다면
-        if let dequeuedView = mapView.dequeueReusableAnnotationView(
-            withIdentifier: identifier) as? MKMarkerAnnotationView {
-            dequeuedView.annotation = annotation
-            view = dequeuedView
+        if annotationView == nil {
+            annotationView = CustomAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+            annotationView?.canShowCallout = true
+        } else {
+            annotationView?.annotation = annotation
         }
-        //만약 재사용 가능한 annotation view가 없다면
-        else {
-            view = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: identifier)
-            view.canShowCallout = true // callout를 보여줌
-            view.calloutOffset = CGPoint(x: 0, y: 0) // callout의 위치
-            view.markerTintColor = .purple
-        }
-        let annotationImage: UIImage!
-        let image = annotation.image
-        let size = CGSize(width: 50, height: 50)
-        UIGraphicsBeginImageContext(size)
-        
-        switch annotation.image{
-        case 0:
-            annotationImage = #imageLiteral(resourceName: "solo")
-        default:
-            annotationImage = #imageLiteral(resourceName: "solo")
-        }
-        annotationImage.draw(in: CGRect(x: 0, y: 0, width: size.width, height: size.height))
-        let resizedImage = UIGraphicsGetImageFromCurrentImageContext()
-        view.image = resizedImage
-        return view
+
+        return annotationView
     }
 }
