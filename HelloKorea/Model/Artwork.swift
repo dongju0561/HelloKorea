@@ -31,8 +31,4 @@ class Artwork: NSObject, MKAnnotation {
         Artwork.num += 1
         super.init()
     }
-
-    var subtitle: String? {
-        return locationName
-    }
 }
