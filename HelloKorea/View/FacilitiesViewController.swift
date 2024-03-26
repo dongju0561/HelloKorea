@@ -88,8 +88,10 @@ class FacilitiesViewController: UIViewController {
                         guard let type = document.data()["type"] as? String else {return}
                         var location = Location(
                             locationName: document.documentID,
-                            address: address,
-                            number: number
+                            address: address, 
+                            coordinate: <#CLLocationCoordinate2D#>,
+                            number: number,
+                            type: type
                         )
                         newLocations.append(location)
                     }

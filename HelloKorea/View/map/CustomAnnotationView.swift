@@ -10,6 +10,9 @@ import MapKit
 class CustomAnnotationView: MKAnnotationView {
     override var annotation: MKAnnotation?{
         didSet{
+            if let annotation = annotation as? Artwork {
+                
+            }
             let originalImage = #imageLiteral(resourceName: "halal")
             let resizedImage = resizeImage(image: originalImage, newWidth: 35)
             image = resizedImage
