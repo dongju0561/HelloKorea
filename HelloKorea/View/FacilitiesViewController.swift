@@ -86,12 +86,14 @@ class FacilitiesViewController: UIViewController {
                         guard let address = document.data()["address"] as? String else {return}
                         guard let number = document.data()["number"] as? String else {return}
                         guard let type = document.data()["type"] as? String else {return}
+                        guard let foodOrPray = document.data()["foodOrPray"] as? String else {return}
                         var location = Location(
                             locationName: document.documentID,
                             coordinate: CLLocationCoordinate2D(),
                             address: address,
                             number: number,
-                            type: type
+                            type: type,
+                            foodOrPray: foodOrPray
                         )
                         newLocations.append(location)
                     }
@@ -133,21 +135,13 @@ class FacilitiesViewController: UIViewController {
                 .subscribe(onNext: {
                     coordinate in
                     currentLocation.coordinate = coordinate
-                    self.makePin(image: 0, at: currentLocation)
+                    self.makePin(at: currentLocation)
                 })
                 .disposed(by: disposeBag)
-
         }
     }
-    private func makePin(image: Int, at location : Location) {
-        let artwork = Artwork(
-            title: location.locationName,
-            locationName: location.explaination,
-            discipline: "Sculpture",
-            coordinate: location.coordinate,
-            address: location.address
-        )
-        mapView.addAnnotation(artwork)
+    private func makePin(at location : Location) {
+        mapView.addAnnotation(location)
     }
 }
 extension FacilitiesViewController: MKMapViewDelegate{
@@ -157,20 +151,11 @@ extension FacilitiesViewController: MKMapViewDelegate{
         }
     }
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView?{
-        guard let annotation = annotation as? Artwork else {
+        guard let annotation = annotation as? Location else {
             return nil
         }
         let identifier = MKMapViewDefaultAnnotationViewReuseIdentifier
-        var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier)
-        var view: MKMarkerAnnotationView
-        //만약 재사용 가능한 annotation view가 있다면
-        if annotationView == nil {
-            annotationView = CustomAnnotationView(annotation: annotation, reuseIdentifier: identifier)
-            annotationView?.canShowCallout = true
-        } else {
-            annotationView?.annotation = annotation
-        }
-
+        let annotationView = CustomAnnotationView(annotation: annotation, reuseIdentifier: identifier)
         return annotationView
     }
 }
