@@ -5,6 +5,7 @@ import FirebaseStorage
 import Firebase
 import FirebaseCore
 import FirebaseFirestore
+import CoreLocation
 import Then
 
 class ContentListViewController: UIViewController {
@@ -254,7 +255,12 @@ class ContentListViewController: UIViewController {
                                 let latitude = locations[idx]["latitude"]!
                                 let longitude = locations[idx]["longitude"]!
                                 let explaination = locations[idx]["explaination"]!
-                                let location = Location(locationName: locationName, explaination: explaination, latitude: Double(latitude)!, longitude: Double(longitude)!, address: address)
+                                let location = Location(
+                                    locationName: locationName,
+                                    explaination: explaination,
+                                    coordinate: CLLocationCoordinate2D(latitude: Double(latitude)!, longitude: Double(longitude)!),
+                                    address: address
+                                )
                                 locationsNew.append(location)
                             }
                             let contentModel = ContentsModelTest(contentName: contentName, contentNameK: contentNameK, year: year, cast: cast, imageURL: imageUrl, locations: locationsNew)

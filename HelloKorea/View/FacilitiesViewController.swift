@@ -88,8 +88,8 @@ class FacilitiesViewController: UIViewController {
                         guard let type = document.data()["type"] as? String else {return}
                         var location = Location(
                             locationName: document.documentID,
-                            address: address, 
-                            coordinate: <#CLLocationCoordinate2D#>,
+                            coordinate: CLLocationCoordinate2D(),
+                            address: address,
                             number: number,
                             type: type
                         )
@@ -132,8 +132,7 @@ class FacilitiesViewController: UIViewController {
                 .observe(on: MainScheduler.instance)
                 .subscribe(onNext: {
                     coordinate in
-                    currentLocation.latitude = coordinate.latitude
-                    currentLocation.longitude = coordinate.longitude
+                    currentLocation.coordinate = coordinate
                     self.makePin(image: 0, at: currentLocation)
                 })
                 .disposed(by: disposeBag)
@@ -145,7 +144,7 @@ class FacilitiesViewController: UIViewController {
             title: location.locationName,
             locationName: location.explaination,
             discipline: "Sculpture",
-            coordinate: CLLocationCoordinate2D(latitude: location.latitude!, longitude: location.longitude!),
+            coordinate: location.coordinate,
             address: location.address
         )
         mapView.addAnnotation(artwork)

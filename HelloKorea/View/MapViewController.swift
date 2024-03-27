@@ -32,7 +32,7 @@ class MapViewController: UIViewController {
                     title: location.locationName,
                     locationName: location.explaination,
                     discipline: "Sculpture",
-                    coordinate: CLLocationCoordinate2D(latitude: location.latitude!, longitude: location.longitude!),
+                    coordinate: location.coordinate,
                     address: location.address
                 )
             )
@@ -79,7 +79,7 @@ class MapViewController: UIViewController {
                 title: datas[index].locationName,
                 locationName: datas[index].explaination,
                 discipline: "Sculpture",
-                coordinate: CLLocationCoordinate2D(latitude: datas[index].latitude!, longitude: datas[index].longitude!),
+                coordinate: datas[index].coordinate,
                 address: datas[index].address
             )
             mapView.addAnnotation(artwork)
@@ -88,7 +88,7 @@ class MapViewController: UIViewController {
     
     //초기 지도 위치 설정 함수
     func initSetLocation(_ data : [Location]) {
-        let initialLocation = CLLocation(latitude: data[0].latitude!, longitude: data[0].longitude!)
+        let initialLocation = CLLocation(latitude: data[0].coordinate.latitude, longitude: data[0].coordinate.longitude)
         mapView.setLocation(initialLocation)
     }
 }
@@ -174,11 +174,10 @@ extension MapViewController: UIPickerViewDelegate, UIPickerViewDataSource{
         }
         
         //moving to the  place
-        let latitude = safeContent.locations[row].latitude
-        let longitude = safeContent.locations[row].longitude
+        let coordinate = safeContent.locations[row].coordinate
         
         // Create a new coordinate for the center of the map
-        let newRegion = CLLocation(latitude: latitude!, longitude: longitude!)
+        let newRegion = CLLocation(latitude: coordinate.latitude, longitude: coordinate.longitude)
 
         // Move the map to the new region, with animation
         mapView.setLocation(newRegion)
