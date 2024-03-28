@@ -64,12 +64,6 @@ class FacilitiesViewController: UIViewController {
         initSubView()
     }
     
-    func delay(_ delay: Double, closure: @escaping () -> Void) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
-            closure()
-        }
-    }
-    
     func initSubView() {
         mapView.delegate = self
         
@@ -155,6 +149,7 @@ class FacilitiesViewController: UIViewController {
                 .disposed(by: disposeBag)
         }
     }
+    
     private func makePin(at location : Location) {
         mapView.addAnnotation(location)
     }
@@ -182,6 +177,12 @@ class FacilitiesViewController: UIViewController {
                 }
             }
             return Disposables.create()
+        }
+    }
+    
+    func delay(_ delay: Double, closure: @escaping () -> Void) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
+            closure()
         }
     }
 }
