@@ -11,6 +11,7 @@ import CoreLocation
 import DrawerView
 import FirebaseFirestore
 import RxSwift
+typealias Datas = (ID: String,address: String,number: String,type: String,foodOrPray: String)
 
 class FacilitiesViewController: UIViewController {
     let db = Firestore.firestore()
@@ -41,13 +42,25 @@ class FacilitiesViewController: UIViewController {
         super.viewDidLoad()
         
         mapView.register(CustomAnnotationView.self, forAnnotationViewWithReuseIdentifier: MKMapViewDefaultAnnotationViewReuseIdentifier)
-        self.loadingView.isLoading = true
-        fetchDocumentDatas()
-        delay(3.0, closure: {
-            self.enterCoordinate()
-            self.loadingView.isLoading = false
-        })
-        
+        fetchDocumentDatasTest()
+            .subscribe(
+                onNext: { datas in
+                    let location = Location(
+                        locationName: datas.ID,
+                        coordinate: CLLocationCoordinate2D(),
+                        address: datas.address,
+                        number: datas.number,
+                        type: datas.type,
+                        foodOrPray: datas.foodOrPray
+                    )
+                    self.newLocations.append(location)
+                },
+                onCompleted:  {
+                    self.enterCoordinate()
+                    self.loadingView.isLoading = false
+                }
+            )
+            .disposed(by: disposeBag)
         initSubView()
     }
     
@@ -76,7 +89,8 @@ class FacilitiesViewController: UIViewController {
     }
     
     func fetchDocumentDatas(){
-        db.collection("halalRestuarants").getDocuments { [weak self] snapshot, error in
+        self.loadingView.isLoading = true
+        self.db.collection("halalRestuarants").getDocuments { [weak self] snapshot, error in
             guard let self = self else { return }
             if let error = error {
                 print("Error fetching documents: \(error)")
@@ -143,6 +157,32 @@ class FacilitiesViewController: UIViewController {
     }
     private func makePin(at location : Location) {
         mapView.addAnnotation(location)
+    }
+    
+    func fetchDocumentDatasTest() -> Observable<Datas>{
+        return Observable.create { observer in
+            self.loadingView.isLoading = true
+            self.db.collection("halalRestuarants").getDocuments { [weak self] snapshot, error in
+                guard let self = self else { return }
+                if let error = error {
+                    print("Error fetching documents: \(error)")
+                } else {
+                    if let documents = snapshot?.documents {
+                        for document in documents {
+                            //data fetch
+                            guard let address = document.data()["address"] as? String else {return}
+                            guard let number = document.data()["number"] as? String else {return}
+                            guard let type = document.data()["type"] as? String else {return}
+                            guard let foodOrPray = document.data()["foodOrPray"] as? String else {return}
+                            var datas = (ID: document.documentID,address: address,number: number,type: type,foodOrPray: foodOrPray)
+                            observer.onNext(datas)
+                        }
+                        observer.onCompleted()
+                    }
+                }
+            }
+            return Disposables.create()
+        }
     }
 }
 extension FacilitiesViewController: MKMapViewDelegate{
