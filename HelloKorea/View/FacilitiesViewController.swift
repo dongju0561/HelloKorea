@@ -39,6 +39,7 @@ class FacilitiesViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         mapView.register(CustomAnnotationView.self, forAnnotationViewWithReuseIdentifier: MKMapViewDefaultAnnotationViewReuseIdentifier)
         self.loadingView.isLoading = true
         fetchDocumentDatas()
@@ -156,6 +157,7 @@ extension FacilitiesViewController: MKMapViewDelegate{
         }
         let identifier = MKMapViewDefaultAnnotationViewReuseIdentifier
         let annotationView = CustomAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+        annotationView.configure(explanation: annotation.locationName, address: annotation.address)
         return annotationView
     }
 }
