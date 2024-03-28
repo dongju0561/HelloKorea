@@ -6,7 +6,11 @@
 //
 
 import MapKit
-
+enum Facilities: String{
+    case pray
+    case halal
+    
+}
 class CustomAnnotationView: MKAnnotationView {
     var calloutView: UIView?
     var titleLabel = UILabel(frame: CGRect(x: 10, y: 10, width: 250, height: 20))
@@ -48,10 +52,12 @@ class CustomAnnotationView: MKAnnotationView {
         super.init(annotation: annotation, reuseIdentifier: reuseIdentifier)
         var originalImage = UIImage()
         if let annotation = annotation as? Location {
-            switch annotation.foodOrPray{
-            case "food":
+            let facilities = Facilities(rawValue: annotation.foodOrPray!)
+            
+            switch facilities{
+            case .halal:
                 originalImage = #imageLiteral(resourceName: "halal")
-            case "pray":
+            case .pray:
                 originalImage = #imageLiteral(resourceName: "Image")
             default:
                 originalImage = UIImage()
