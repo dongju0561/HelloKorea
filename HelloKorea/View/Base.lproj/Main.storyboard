@@ -207,7 +207,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="lightbulb" catalog="system" width="92" height="128"/>
         <image name="magnifyingglass" catalog="system" width="128" height="117"/>
         <image name="map" catalog="system" width="128" height="112"/>
         <systemColor name="systemBackgroundColor">
