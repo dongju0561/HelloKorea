@@ -168,43 +168,6 @@
             </objects>
             <point key="canvasLocation" x="4598" y="-354"/>
         </scene>
-        <!--Tip View Controller-->
-        <scene sceneID="bfr-Lb-Ptx">
-            <objects>
-                <viewController storyboardIdentifier="TipViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="XZt-vx-U8H" customClass="TipViewController" customModule="HelloKorea" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="rAP-Oy-DdQ">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <viewLayoutGuide key="safeArea" id="hxY-rC-qXS"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="e38-bf-tcw"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="nMh-7S-7sC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2178" y="1065"/>
-        </scene>
-        <!--tips-->
-        <scene sceneID="nrk-Dr-4Xn">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="NwS-dK-Nzg" customClass="NavigationViewController" customModule="HelloKorea" customModuleProvider="target" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="tips" image="lightbulb" catalog="system" id="Qmr-WV-hF7"/>
-                    <toolbarItems/>
-                    <navigationItem key="navigationItem" id="A5f-Aw-Nnx"/>
-                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ppt-Kz-nwX">
-                        <rect key="frame" x="0.0" y="59" width="393" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="XZt-vx-U8H" kind="relationship" relationship="rootViewController" id="wgw-RE-bBX"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="j6r-c7-YDO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1427" y="1065"/>
-        </scene>
         <!--Login View Controller-->
         <scene sceneID="zPw-2H-OuT">
             <objects>
