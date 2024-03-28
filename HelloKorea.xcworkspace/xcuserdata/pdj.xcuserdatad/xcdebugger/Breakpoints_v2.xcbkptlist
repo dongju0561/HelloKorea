@@ -7,16 +7,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "AB59DCE3-50AC-464B-86E9-BD5B25B171FD"
-            shouldBeEnabled = "No"
+            uuid = "4ED1B010-3830-4F3B-B1F4-AE3938975908"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "HelloKorea/View/FacilitiesViewController.swift"
+            filePath = "HelloKorea/View/map/CustomAnnotationView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "200"
-            endingLineNumber = "200"
-            landmarkName = "mapView(_:viewFor:)"
+            startingLineNumber = "57"
+            endingLineNumber = "57"
+            landmarkName = "init(annotation:reuseIdentifier:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
