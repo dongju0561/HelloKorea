@@ -22,7 +22,7 @@ class CustomAnnotationView: MKAnnotationView {
         if selected {
             // Create and add the custom callout view
             calloutView = UIView(frame: CGRect(x: 0, y: -50, width: 250, height: 100))
-            calloutView?.backgroundColor = .white
+            calloutView?.backgroundColor = .black
             calloutView?.layer.cornerRadius = 5
             calloutView?.layer.borderWidth = 1
             calloutView?.layer.borderColor = UIColor.lightGray.cgColor
