@@ -65,11 +65,11 @@
             </objects>
             <point key="canvasLocation" x="3795" y="-354"/>
         </scene>
-        <!--location-->
+        <!--Locations-->
         <scene sceneID="Sl4-bo-sYb">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="YKf-FB-5hQ" customClass="NavigationViewController" customModule="HelloKorea" customModuleProvider="target" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="location" image="magnifyingglass" catalog="system" id="Jih-0h-fah"/>
+                    <tabBarItem key="tabBarItem" title="Locations" image="magnifyingglass" catalog="system" id="Jih-0h-fah"/>
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="dWW-wa-xpN">
@@ -85,11 +85,11 @@
             </objects>
             <point key="canvasLocation" x="1427" y="-354"/>
         </scene>
-        <!--Resturants-->
+        <!--Facilities-->
         <scene sceneID="7I2-DN-GKs">
             <objects>
                 <navigationController id="HcW-HI-iv2" customClass="NavigationPrayViewController" customModule="HelloKorea" customModuleProvider="target" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Resturants" image="map" catalog="system" selectedImage="map" id="uhF-o4-Z58"/>
+                    <tabBarItem key="tabBarItem" title="Facilities" image="map" catalog="system" selectedImage="map" id="uhF-o4-Z58"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="qhS-cU-sEk">
                         <rect key="frame" x="0.0" y="59" width="393" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
