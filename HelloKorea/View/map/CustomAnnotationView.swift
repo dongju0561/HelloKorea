@@ -22,7 +22,7 @@ class CustomAnnotationView: MKAnnotationView {
         if selected {
             // Create and add the custom callout view
             calloutView = UIView(frame: CGRect(x: 0, y: -50, width: 250, height: 100))
-            calloutView?.backgroundColor = .black
+            calloutView?.backgroundColor = .white
             calloutView?.layer.cornerRadius = 5
             calloutView?.layer.borderWidth = 1
             calloutView?.layer.borderColor = UIColor.lightGray.cgColor
@@ -31,6 +31,7 @@ class CustomAnnotationView: MKAnnotationView {
                 self.titleLabel.text = safeTitleLabel
             }
             titleLabel.font = UIFont.boldSystemFont(ofSize: 16)
+            titleLabel.textColor = .black
             calloutView?.addSubview(titleLabel)
             
             if let safeDetailLabel = detailLabel.text{
@@ -38,6 +39,7 @@ class CustomAnnotationView: MKAnnotationView {
             }
             detailLabel.numberOfLines = 2
             detailLabel.font = UIFont.systemFont(ofSize: 14)
+            detailLabel.textColor = .black
             calloutView?.addSubview(detailLabel)
             
             addSubview(calloutView!)
