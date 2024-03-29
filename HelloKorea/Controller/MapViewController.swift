@@ -9,22 +9,11 @@ class MapViewController: UIViewController {
     
     var contentsModelTest: ContentsModelTest?
     
-    private var artworks = [Artwork]()
+    var artworks = [Artwork]()
     
-    private var tagNumOfAnnotation = 0
-    //:MARK: - Component
+    var tagNumOfAnnotation = 0
     
-    private var pickerView = UIPickerView().then{
-        $0.backgroundColor = .gray
-        $0.translatesAutoresizingMaskIntoConstraints = false
-    }
-    
-    private var mapView = MKMapView().then{
-        $0.mapType = MKMapType.standard
-        $0.isZoomEnabled = true
-        $0.isScrollEnabled = true
-        $0.translatesAutoresizingMaskIntoConstraints = false
-    }
+    var mapView = MapView()
     
     // MARK: - View Life Cycle
     
@@ -44,13 +33,18 @@ class MapViewController: UIViewController {
                 )
             )
         }
-        initSubView()
-        bindViewModel()
+        setup()
+        mapView.initSubView()
+        setupPin()
     }
     
     //: MARK: - View Methodes
     
-    func bindViewModel() {
+    override func loadView() {
+        view = mapView
+    }
+    
+    func setupPin() {
         guard let locations = contentsModelTest?.locations else{
             return
         }
@@ -58,27 +52,12 @@ class MapViewController: UIViewController {
         initSetLocation(locations)
     }
     
-    func initSubView() {
-        view.addSubview(pickerView)
-        view.addSubview(mapView)
+    func setup() {
         
-        pickerView.delegate = self
-        pickerView.dataSource = self
-        mapView.delegate = self
+        mapView.pickerView.delegate = self
+        mapView.pickerView.dataSource = self
+        mapView.mapView.delegate = self
         
-        NSLayoutConstraint.activate([
-            mapView.topAnchor.constraint(equalTo: view.topAnchor),
-            mapView.leftAnchor.constraint(equalTo: view.leftAnchor),
-            mapView.rightAnchor.constraint(equalTo: view.rightAnchor),
-            mapView.bottomAnchor.constraint(equalTo: pickerView.topAnchor),
-            
-            pickerView.topAnchor.constraint(equalTo: mapView.bottomAnchor),
-            pickerView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-            pickerView.leftAnchor.constraint(equalTo: view.leftAnchor),
-            pickerView.rightAnchor.constraint(equalTo: view.rightAnchor),
-            pickerView.heightAnchor.constraint(equalToConstant: 100),
-            pickerView.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.size.width),
-        ])
     }
     
     //지도에 등록된 위치에 핀들을 꽂아주는 함수
@@ -91,14 +70,14 @@ class MapViewController: UIViewController {
                 coordinate: datas[index].coordinate,
                 address: datas[index].address
             )
-            mapView.addAnnotation(artwork)
+            mapView.mapView.addAnnotation(artwork)
         }
     }
     
     //초기 지도 위치 설정 함수
     func initSetLocation(_ data : [Location]) {
         let initialLocation = CLLocation(latitude: data[0].coordinate.latitude, longitude: data[0].coordinate.longitude)
-        mapView.setLocation(initialLocation)
+        mapView.mapView.setLocation(initialLocation)
     }
     
 }
@@ -153,11 +132,11 @@ extension MapViewController: MKMapViewDelegate{
     
     //추가 기능 제공을 위한 modal present하는 함수
     @objc func showDetail(_ sender: UIButton){
-        if mapView.selectedAnnotations.first is Artwork {
+        if mapView.mapView.selectedAnnotations.first is Artwork {
             
             let modal = DetailModalViewController()
             modal.contentName = contentsModelTest?.contentName
-            modal.annotation = (mapView.selectedAnnotations.first as! Artwork)
+            modal.annotation = (mapView.mapView.selectedAnnotations.first as! Artwork)
             self.present(modal,animated: true)
         }
     }
@@ -197,7 +176,7 @@ extension MapViewController: UIPickerViewDelegate, UIPickerViewDataSource{
         let newRegion = CLLocation(latitude: coordinate.latitude, longitude: coordinate.longitude)
 
         // Move the map to the new region, with animation
-        mapView.setLocation(newRegion)
+        mapView.mapView.setLocation(newRegion)
     }
     
 }

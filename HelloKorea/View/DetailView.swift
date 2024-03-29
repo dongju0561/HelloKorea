@@ -1,24 +1,14 @@
 //
-//  DetailViewController.swift
+//  DetailView.swift
 //  HelloKorea
 //
-//  Created by Dongju Park on 11/7/23.
+//  Created by Dongju Park on 3/29/24.
 //
 
 import UIKit
-import Then
 
-class DetailViewController: UIViewController {
-    
-    // MARK: - Property
-    
-    var contentsModel: ContentsModel?
-    
-    var contentsModelTest: ContentsModelTest?
-    
-    //:MARK: - Component
-    
-    fileprivate var scrollView : UIScrollView = {
+class DetailView: UIView{
+    var scrollView : UIScrollView = {
         let scrollView = UIScrollView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height + 200))
         scrollView.setGradient(color1: .black, color2: UIColor(rgb: 0x295EA6))
         scrollView.translatesAutoresizingMaskIntoConstraints = false
@@ -27,7 +17,7 @@ class DetailViewController: UIViewController {
         return scrollView
     }()
     
-    fileprivate var lblMap : UILabel = {
+    var lblMap : UILabel = {
         var lbl = UILabel()
         lbl.textColor = .white
         lbl.textAlignment = .left
@@ -36,14 +26,14 @@ class DetailViewController: UIViewController {
         return lbl
     }()
     
-    fileprivate var imagePoster = UIImageView().then{
-        $0.backgroundColor = .white
-        $0.translatesAutoresizingMaskIntoConstraints = false
-        $0.clipsToBounds = true
-        $0.layer.cornerRadius = 20
-    }
+    var imagePoster = UIImageView().then{
+    $0.backgroundColor = .white
+    $0.translatesAutoresizingMaskIntoConstraints = false
+    $0.clipsToBounds = true
+    $0.layer.cornerRadius = 20
+}
     
-    fileprivate var imageMap = UIImageView().then{
+    var imageMap = UIImageView().then{
         $0.backgroundColor = .white
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.layer.cornerRadius = 20
@@ -52,14 +42,14 @@ class DetailViewController: UIViewController {
         $0.contentMode = .scaleAspectFit
     }
     
-    fileprivate var buttonMap = UIButton().then{
+    var buttonMap = UIButton().then{
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.layer.cornerRadius = 20
-        $0.addTarget(self, action: #selector(moveToMap), for: .touchUpInside)
+
         $0.backgroundColor = .clear
     }
     
-    fileprivate var labelName = UILabel().then{
+    var labelName = UILabel().then{
         $0.textColor = .white
         $0.textAlignment = .left
         $0.translatesAutoresizingMaskIntoConstraints = false
@@ -67,7 +57,7 @@ class DetailViewController: UIViewController {
         $0.numberOfLines = 0
     }
     
-    fileprivate var labelLocation = UILabel().then{
+    var labelLocation = UILabel().then{
         $0.text = "Filming Locations"
         $0.textColor = .white
         $0.textAlignment = .left
@@ -79,13 +69,13 @@ class DetailViewController: UIViewController {
         $0.attributedText = attributedString
     }
     
-    fileprivate var labelYear = UILabel().then{
+    var labelYear = UILabel().then{
         $0.textColor = .white
         $0.textAlignment = .left
         $0.translatesAutoresizingMaskIntoConstraints = false
     }
     
-    fileprivate var labelCast = UILabel().then{
+    var labelCast = UILabel().then{
         $0.textColor = .white
         $0.textAlignment = .left
         $0.translatesAutoresizingMaskIntoConstraints = false
@@ -93,28 +83,9 @@ class DetailViewController: UIViewController {
         $0.numberOfLines = 3
         $0.lineBreakMode = .byWordWrapping // 단어 단위로 줄바꿈
     }
-    // MARK: - View Life Cycle
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        initSubView()
-        fetchData()
-    }
-    
-    //: MARK: - View Methodes
-    
-    func fetchData(){
-        guard let safeContents = contentsModelTest else {
-            return
-        }
-        imagePoster.image = safeContents.image
-        labelName.text = safeContents.contentName
-        labelYear.text = safeContents.year
-        labelCast.text = safeContents.cast
-    }
     
     func initSubView(){
-        view.addSubview(scrollView)
+        self.addSubview(scrollView)
         scrollView.addSubview(imagePoster)
         scrollView.addSubview(imageMap)
         scrollView.addSubview(buttonMap)
@@ -124,10 +95,10 @@ class DetailViewController: UIViewController {
         scrollView.addSubview(labelLocation)
         
         NSLayoutConstraint.activate([
-            scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            scrollView.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor),
+            scrollView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            scrollView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
             
             imagePoster.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 23),
             imagePoster.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 21),
@@ -160,12 +131,4 @@ class DetailViewController: UIViewController {
             
         ])
     }
-    
-    @objc func moveToMap(sender: UIButton!) {
-        if let mapVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MapViewController") as? MapViewController {
-            mapVC.contentsModelTest = contentsModelTest
-            navigationController?.pushViewController(mapVC, animated: true)
-        }
-    }
-    
 }

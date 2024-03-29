@@ -23,37 +23,15 @@ class FacilitiesViewController: UIViewController {
     
     var newLocations = [Location]()
     
-    //:MARK: - Component
-    
-    fileprivate let loadingView: LoadingView = {
-        let view = LoadingView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
-    
-    fileprivate var scrollView : UIScrollView = {
-        let scrollView = UIScrollView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height + 200))
-        scrollView.setGradient(color1: .black, color2: UIColor(rgb: 0x295EA6))
-        scrollView.translatesAutoresizingMaskIntoConstraints = false
-        scrollView.showsVerticalScrollIndicator = false
-        scrollView.contentSize = CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height + 110)
-        scrollView.isPagingEnabled = true
-        return scrollView
-    }()
-    
-    fileprivate var mapView = MKMapView().then{
-        $0.mapType = MKMapType.standard
-        $0.isZoomEnabled = true
-        $0.isScrollEnabled = true
-        $0.translatesAutoresizingMaskIntoConstraints = false
-    }
+    let facilitiesView = FacilitiesView()
     
     // MARK: - View Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        mapView.register(CustomAnnotationView.self, forAnnotationViewWithReuseIdentifier: MKMapViewDefaultAnnotationViewReuseIdentifier)
+        facilitiesView.mapView.register(CustomAnnotationView.self, forAnnotationViewWithReuseIdentifier: MKMapViewDefaultAnnotationViewReuseIdentifier)
+        
         fetchDocumentDatasTest()
             .subscribe(
                 onNext: { datas in
@@ -69,35 +47,26 @@ class FacilitiesViewController: UIViewController {
                 },
                 onCompleted:  {
                     self.enterCoordinate()
-                    self.loadingView.isLoading = false
+                    self.facilitiesView.loadingView.isLoading = false
                 }
             )
             .disposed(by: disposeBag)
-        initSubView()
+        facilitiesView.initSubView()
+        setup()
     }
     
     //: MARK: - View Methodes
     
-    func initSubView() {
-        mapView.delegate = self
-        
-        view.addSubview(mapView)
-        view.addSubview(loadingView)
-        
-        NSLayoutConstraint.activate([
-            loadingView.leftAnchor.constraint(equalTo: view.leftAnchor),
-            loadingView.rightAnchor.constraint(equalTo: view.rightAnchor),
-            loadingView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            loadingView.topAnchor.constraint(equalTo: view.topAnchor),
-            mapView.topAnchor.constraint(equalTo: view.topAnchor),
-            mapView.leftAnchor.constraint(equalTo: view.leftAnchor),
-            mapView.rightAnchor.constraint(equalTo: view.rightAnchor),
-            mapView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-        ])
+    override func loadView() {
+        view = facilitiesView
+    }
+    
+    func setup() {
+        self.facilitiesView.mapView.delegate = self
     }
     
     func fetchDocumentDatas(){
-        self.loadingView.isLoading = true
+        self.facilitiesView.loadingView.isLoading = true
         self.db.collection("halalRestuarants").getDocuments { [weak self] snapshot, error in
             guard let self = self else { return }
             if let error = error {
@@ -110,7 +79,7 @@ class FacilitiesViewController: UIViewController {
                         guard let number = document.data()["number"] as? String else {return}
                         guard let type = document.data()["type"] as? String else {return}
                         guard let foodOrPray = document.data()["foodOrPray"] as? String else {return}
-                        var location = Location(
+                        let location = Location(
                             locationName: document.documentID,
                             coordinate: CLLocationCoordinate2D(),
                             address: address,
@@ -150,9 +119,9 @@ class FacilitiesViewController: UIViewController {
     
     private func enterCoordinate(){
         for idx in 0..<newLocations.count {
-            var currentLocation = newLocations[idx]
+            let currentLocation = newLocations[idx]
             
-            var address = currentLocation.address
+            let address = currentLocation.address
             convertAddressToCoordinates(address: address)
                 .observe(on: MainScheduler.instance)
                 .subscribe(onNext: {
@@ -165,12 +134,12 @@ class FacilitiesViewController: UIViewController {
     }
     
     private func makePin(at location : Location) {
-        mapView.addAnnotation(location)
+        self.facilitiesView.mapView.addAnnotation(location)
     }
     
     func fetchDocumentDatasTest() -> Observable<Datas>{
         return Observable.create { observer in
-            self.loadingView.isLoading = true
+            self.facilitiesView.loadingView.isLoading = true
             self.db.collection("halalRestuarants").getDocuments { [weak self] snapshot, error in
                 guard let self = self else { return }
                 if let error = error {
