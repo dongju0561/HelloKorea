@@ -11,23 +11,23 @@ HelloKorea는 K-컨텐츠(드라마, 영화)에 관련된 컨텐츠의 설명을
 - firebase(fireStore, Storage)
 - RxSwift
 - Toast_Swift
-- SafariService
 - MVC
 
 <br>
 
-| 메인 기능
-|----------------------------------------------------------|
-|<img src = "https://github.com/dongju0561/HelloKorea/assets/77201628/d8a87e05-704a-4474-8ba3-56ba9baa3409" width="300" height="500">|
+| Locations 기능 | Facilities 기능
+|----------------------------------------------------------|----------------------------------------------------------|
+| <img src = "![RPReplay_Final1711685909](https://github.com/dongju0561/HelloKorea/assets/77201628/800aad76-c34a-4b49-8299-85bc955433f0)" width="300" height="500"> | <img src = "![RPReplay_Final1711685909](https://github.com/dongju0561/HelloKorea/assets/77201628/800aad76-c34a-4b49-8299-85bc955433f0)" width="300" height="500">
 
 <br>
 
 ## Function
 - 간단한 로그인 기능
-- firebase로부터 촬영장소 관련 리소스(이미지, 텍스트) 패치 후 관련 데이터들 바인딩
+- firebase(fireStore, Storage)로부터 촬영장소 관련 리소스(이미지, 텍스트) 패치 후 관련 데이터들 바인딩
 - 컨텐츠의 촬영장소들을 지도상에서 핀을 통해 위치 정보를 제공
 - 검색이 용이하도록 컨텐츠의 제목 문자열 복사하기 기능을 지원
 - 검색이 용이하도록 해당 앱 상에서 컨텐츠의 제목 문자열을 검색어로 사용하여 safari로 검색
+- 이슬람 교인들을 위한 시설(할랄 인증된 음식점, 기도실)을 핀을 통해 위치 정보 제공
 
 <br>
 
