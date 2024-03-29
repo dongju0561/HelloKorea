@@ -9,12 +9,30 @@ import CoreLocation
 import Then
 
 class ContentListViewController: UIViewController {
+    // MARK: - Property
+    
+    let db = Firestore.firestore()
+    
+    let storage = Storage.storage()
+    
+    let disposeBag = DisposeBag()
+    
+    var imageUrls: [[String]] = Array(repeating: [], count: 4)
+    
+    var fetchDatas: [[ContentsModelTest]] = Array(repeating: [], count: 4)
+    
+    var images = [UIImage]()
+    
+    // MARK: - Component
     
     private let loadingView: LoadingView = {
       let view = LoadingView()
       view.translatesAutoresizingMaskIntoConstraints = false
       return view
     }()
+    
+    //:MARK: - Component
+    
     fileprivate var labelHot = UILabel().then{
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.text = "What's hot"
@@ -26,11 +44,13 @@ class ContentListViewController: UIViewController {
         attributedString.addAttribute(.font, value: boldFont, range: NSRange(location: 0, length: $0.text!.count))
         $0.attributedText = attributedString
     }
+    
     fileprivate var labelfFire = UILabel().then{
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.text = "🔥"
         $0.textAlignment = .left
     }
+    
     fileprivate var collectionViewForTip : UICollectionView = { // collectionView는 layout없이는 초기화할 수 없다.
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal // 스크롤 방향 설정
@@ -43,6 +63,7 @@ class ContentListViewController: UIViewController {
         cv.tag = 0
         return cv
     }()
+    
     fileprivate var labelJFY = UILabel().then {
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.text = "Just for you"
@@ -54,6 +75,7 @@ class ContentListViewController: UIViewController {
         attributedString.addAttribute(.font, value: boldFont, range: NSRange(location: 0, length: $0.text!.count))
         $0.attributedText = attributedString
     }
+    
     fileprivate var collectionViewForYou : UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
@@ -65,6 +87,7 @@ class ContentListViewController: UIViewController {
         cv.tag = 1
         return cv
     }()
+    
     fileprivate var labelRomance = UILabel().then{
         $0.text = "Romance"
         $0.textAlignment = .left
@@ -76,6 +99,7 @@ class ContentListViewController: UIViewController {
         attributedString.addAttribute(.font, value: boldFont, range: NSRange(location: 0, length: $0.text!.count))
         $0.attributedText = attributedString
     }
+    
     fileprivate var collectionViewForRomance : UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
@@ -87,6 +111,7 @@ class ContentListViewController: UIViewController {
         cv.tag = 2
         return cv
     }()
+    
     fileprivate var labelThriller = UILabel().then{
         $0.text = "Thriller"
         $0.textAlignment = .left
@@ -98,6 +123,7 @@ class ContentListViewController: UIViewController {
         attributedString.addAttribute(.font, value: boldFont, range: NSRange(location: 0, length: $0.text!.count))
         $0.attributedText = attributedString
     }
+    
     fileprivate var collectionViewForThriller : UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
@@ -109,6 +135,7 @@ class ContentListViewController: UIViewController {
         cv.tag = 3
         return cv
     }()
+    
     fileprivate var scrollView : UIScrollView = {
         let scrollView = UIScrollView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height + 400))
         let sectionInsets = UIEdgeInsets(top: 0, left: 0, bottom: 50, right: 0)
@@ -121,12 +148,7 @@ class ContentListViewController: UIViewController {
         return scrollView
     }()
     
-    let db = Firestore.firestore()
-    let storage = Storage.storage()
-    let disposeBag = DisposeBag()
-    var imageUrls: [[String]] = Array(repeating: [], count: 4)
-    var fetchDatas: [[ContentsModelTest]] = Array(repeating: [], count: 4)
-    var images = [UIImage]()
+    // MARK: - View Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -139,11 +161,15 @@ class ContentListViewController: UIViewController {
             self.loadingView.isLoading = false
         })
     }
-    func delay(_ delay: Double, closure: @escaping () -> Void) {
+    
+    // MARK: - View Methods
+    
+    private func delay(_ delay: Double, closure: @escaping () -> Void) {
         DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
             closure()
         }
     }
+    
     private func initSubView(){
         let screenWidth = UIScreen.main.bounds.width
         
@@ -225,6 +251,7 @@ class ContentListViewController: UIViewController {
         ])
         scrollView.contentSize = CGSize(width: screenWidth, height: 960)
     }
+    
     //fireStore에서 특정 카테고리에 있는 드라마의 이미지 url을 fetch하는 메소드
     private func fetchDocumentDatas() {
         let collectionViews: [UICollectionView] = [collectionViewForTip,collectionViewForYou,collectionViewForRomance,collectionViewForThriller]
@@ -272,6 +299,7 @@ class ContentListViewController: UIViewController {
             }
         }
     }
+    
     //전달 받은 이미지 url로 요청하여 이미지를 다운로드를 진행, 다운로드한 이미지를 구독자들에게 emit
     private func downLoadImage(imagePath: String) -> Observable<UIImage> {
         //Observable을 생성한 이유: 이미지를 받아오는 시점을 관찰하기 위해서
@@ -305,6 +333,7 @@ class ContentListViewController: UIViewController {
             return Disposables.create()
         }
     }
+    
     private func fetchImageAndBind(to cell: CSCollectionViewCell, IdxAt collectionIdx: Int, at indexPath: IndexPath) {
         let imagePath = imageUrls[collectionIdx][indexPath.item]
 
@@ -318,7 +347,10 @@ class ContentListViewController: UIViewController {
             })
             .disposed(by: disposeBag)
     }
+    
 }
+
+    // MARK: - UICollectionView
 
 extension ContentListViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     // cell의 갯수 결정
@@ -337,6 +369,7 @@ extension ContentListViewController: UICollectionViewDelegate, UICollectionViewD
             return imageUrls[tag].count
         }
     }
+    
     //cell별 특성 정의
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! CSCollectionViewCell
@@ -372,6 +405,7 @@ extension ContentListViewController: UICollectionViewDelegate, UICollectionViewD
         }
         return cell
     }
+    
     //collectionView cell 크기 설정 함수
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize{
         let width = collectionView.bounds.width
@@ -384,6 +418,7 @@ extension ContentListViewController: UICollectionViewDelegate, UICollectionViewD
             return CGSize(width: width/3.5, height: height)
         }
     }
+    
     @objc func hotButtonAction(_ sender: UIButton!){
         let tipCollection = 0
         let DetailVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
@@ -391,6 +426,7 @@ extension ContentListViewController: UICollectionViewDelegate, UICollectionViewD
         DetailVC.contentsModelTest =  fetchDatas[tipCollection][sender.tag]
         navigationController?.pushViewController(DetailVC, animated: true)
     }
+    
     @objc func JFYButtonAction(_ sender: UIButton!){
         let youCollection = 1
         let DetailVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
@@ -398,16 +434,19 @@ extension ContentListViewController: UICollectionViewDelegate, UICollectionViewD
         DetailVC.contentsModelTest =  fetchDatas[youCollection][sender.tag]
         navigationController?.pushViewController(DetailVC, animated: true)
     }
+    
     @objc func RomanceButtonAction(_ sender: UIButton!){
         let RomanceCollection = 2
         let DetailVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
         DetailVC.contentsModelTest =  fetchDatas[RomanceCollection][sender.tag]
         navigationController?.pushViewController(DetailVC, animated: true)
     }
+    
     @objc func trillerButtonAction(_ sender: UIButton!){
         let trillerCollection = 3
         let DetailVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
         DetailVC.contentsModelTest =  fetchDatas[trillerCollection][sender.tag]
         navigationController?.pushViewController(DetailVC, animated: true)
     }
+    
 }

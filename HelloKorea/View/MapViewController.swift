@@ -4,10 +4,15 @@ import CoreLocation
 import Then
 
 class MapViewController: UIViewController {
+    
+    // MARK: - Property
+    
     var contentsModelTest: ContentsModelTest?
+    
     private var artworks = [Artwork]()
     
     private var tagNumOfAnnotation = 0
+    //:MARK: - Component
     
     private var pickerView = UIPickerView().then{
         $0.backgroundColor = .gray
@@ -20,6 +25,8 @@ class MapViewController: UIViewController {
         $0.isScrollEnabled = true
         $0.translatesAutoresizingMaskIntoConstraints = false
     }
+    
+    // MARK: - View Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,6 +47,8 @@ class MapViewController: UIViewController {
         initSubView()
         bindViewModel()
     }
+    
+    //: MARK: - View Methodes
     
     func bindViewModel() {
         guard let locations = contentsModelTest?.locations else{
@@ -91,7 +100,10 @@ class MapViewController: UIViewController {
         let initialLocation = CLLocation(latitude: data[0].coordinate.latitude, longitude: data[0].coordinate.longitude)
         mapView.setLocation(initialLocation)
     }
+    
 }
+
+// MARK: - MapKitViewDelegate
 
 extension MapViewController: MKMapViewDelegate{
     //지도의 표시 영역이 변경되기 직전에 호출
@@ -149,25 +161,30 @@ extension MapViewController: MKMapViewDelegate{
             self.present(modal,animated: true)
         }
     }
+    
 }
 
-// MARK: - UITableViewDataSource 메서드
+// MARK: - UIPickerViewDelegate UITableViewDataSource
+
 extension MapViewController: UIPickerViewDelegate, UIPickerViewDataSource{
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
+    
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         guard let safeContent = contentsModelTest else {
             return 0
         }
         return safeContent.locations.count
     }
+    
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         guard let safeContent = contentsModelTest else {
             return ""
         }
         return safeContent.locations[row].locationName
     }
+    
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         guard let safeContent = contentsModelTest else {
             return
@@ -182,4 +199,5 @@ extension MapViewController: UIPickerViewDelegate, UIPickerViewDataSource{
         // Move the map to the new region, with animation
         mapView.setLocation(newRegion)
     }
+    
 }

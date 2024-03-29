@@ -12,9 +12,40 @@ enum Facilities: String{
     
 }
 class CustomAnnotationView: MKAnnotationView {
+    // MARK: - Component
+    
     var calloutView: UIView?
+    
     var titleLabel = UILabel(frame: CGRect(x: 10, y: 10, width: 250, height: 20))
+    
     var detailLabel = UILabel(frame: CGRect(x: 10, y: 40, width: 250, height: 40))
+    
+    // MARK: - Intialize
+    
+    override init(annotation: MKAnnotation?, reuseIdentifier: String?) {
+        super.init(annotation: annotation, reuseIdentifier: reuseIdentifier)
+        var originalImage = UIImage()
+        if let annotation = annotation as? Location {
+            let facilities = Facilities(rawValue: annotation.foodOrPray!)
+            
+            switch facilities{
+            case .halal:
+                originalImage = #imageLiteral(resourceName: "halal")
+            case .pray:
+                originalImage = #imageLiteral(resourceName: "Image")
+            default:
+                originalImage = UIImage()
+            }
+            let resizedImage = resizeImage(image: originalImage, newWidth: 35)
+            image = resizedImage
+        }
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+// MARK: - View Methodes
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
@@ -50,29 +81,6 @@ class CustomAnnotationView: MKAnnotationView {
         }
     }
     
-    override init(annotation: MKAnnotation?, reuseIdentifier: String?) {
-        super.init(annotation: annotation, reuseIdentifier: reuseIdentifier)
-        var originalImage = UIImage()
-        if let annotation = annotation as? Location {
-            let facilities = Facilities(rawValue: annotation.foodOrPray!)
-            
-            switch facilities{
-            case .halal:
-                originalImage = #imageLiteral(resourceName: "halal")
-            case .pray:
-                originalImage = #imageLiteral(resourceName: "Image")
-            default:
-                originalImage = UIImage()
-            }
-            let resizedImage = resizeImage(image: originalImage, newWidth: 35)
-            image = resizedImage
-        }
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
     private func resizeImage(image: UIImage, newWidth: CGFloat) -> UIImage {
         let scale = newWidth / image.size.width
         let newHeight = image.size.height * scale
@@ -82,6 +90,7 @@ class CustomAnnotationView: MKAnnotationView {
         UIGraphicsEndImageContext()
         return newImage!
     }
+    
     func configure(explanation: String, address: String) {
         self.titleLabel.text = explanation
         self.detailLabel.text = address

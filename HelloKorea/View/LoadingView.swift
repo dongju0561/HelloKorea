@@ -7,6 +7,17 @@
 
 import UIKit
 final class LoadingView: UIView {
+    // MARK: - Property
+    
+    var isLoading = false {
+        didSet {
+            self.isHidden = !self.isLoading
+            self.isLoading ? self.activityIndicatorView.startAnimating() : self.activityIndicatorView.stopAnimating()
+        }
+    }
+    
+    //:MARK: - Component
+    
     private let backgroundView: UIView = {
         let view = UIView()
         view.backgroundColor = .gray
@@ -14,17 +25,14 @@ final class LoadingView: UIView {
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
+    
     private let activityIndicatorView: UIActivityIndicatorView = {
         let view = UIActivityIndicatorView(style: .large)
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-    var isLoading = false {
-        didSet {
-            self.isHidden = !self.isLoading
-            self.isLoading ? self.activityIndicatorView.startAnimating() : self.activityIndicatorView.stopAnimating()
-        }
-    }
+    
+    // MARK: - Initialize
     
     override init(frame: CGRect) {
       super.init(frame: frame)
@@ -47,4 +55,5 @@ final class LoadingView: UIView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
 }

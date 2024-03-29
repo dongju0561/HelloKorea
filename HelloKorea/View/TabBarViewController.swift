@@ -8,6 +8,8 @@ import UIKit
 
 class TabBarViewController: UITabBarController, UITabBarControllerDelegate {
 
+    // MARK: - View Life Cycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -20,10 +22,14 @@ class TabBarViewController: UITabBarController, UITabBarControllerDelegate {
 
         delegate = self
     }
+    
+    //: MARK: - View Methodes
+    
     func configureAppearance() -> UITabBarAppearance {
         let appearance = UITabBarAppearance()
         appearance.configureWithOpaqueBackground()
         appearance.backgroundColor = UIColor(named: Color.TabBarBackgroundColor)!
         return appearance
     }
+    
 }

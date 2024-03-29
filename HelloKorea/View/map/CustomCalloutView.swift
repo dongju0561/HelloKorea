@@ -10,6 +10,8 @@ import MapKit
 import Then
 
 class CustomCalloutView: UIView {
+    // MARK: - Component
+    
     private let background = UIView().then{
         $0.backgroundColor = .gray
     }
@@ -21,6 +23,7 @@ class CustomCalloutView: UIView {
         $0.text = "explanation"
         $0.translatesAutoresizingMaskIntoConstraints = false
     }
+    
     private let explanationLabel = UILabel().then {
         $0.textAlignment = .center
         $0.textColor = .black
@@ -28,6 +31,7 @@ class CustomCalloutView: UIView {
         $0.numberOfLines = 0
         $0.translatesAutoresizingMaskIntoConstraints = false
     }
+    
     private let address = UILabel().then {
         $0.textAlignment = .center
         $0.textColor = .blue
@@ -35,25 +39,33 @@ class CustomCalloutView: UIView {
         $0.text = "addres"
         $0.translatesAutoresizingMaskIntoConstraints = false
     }
+    
     private let addressLabel = UILabel().then {
         $0.textAlignment = .center
         $0.textColor = .black
         $0.font = UIFont.systemFont(ofSize: 12)
         $0.translatesAutoresizingMaskIntoConstraints = false
     }
-    // 초기화 메서드
+    
+    // MARK: - Initialize
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupSubviews()
     }
+    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         setupSubviews()
     }
+    
+    // MARK: - View Methodes
+    
     func configure(explanation: String, address: String) {
         explanationLabel.text = explanation
         addressLabel.text = address
     }
+    
     private func setupSubviews() {
         addSubview(explanation)
         addSubview(explanationLabel)
@@ -79,4 +91,5 @@ class CustomCalloutView: UIView {
             addressLabel.heightAnchor.constraint(equalToConstant: 30)
         ])
     }
+    
 }

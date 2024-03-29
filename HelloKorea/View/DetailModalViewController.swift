@@ -5,9 +5,15 @@ import SafariServices
 import Then
 //modal => 주소 복사, 장소 검색
 class DetailModalViewController: UIViewController{
+    //:MARK: - Component
+    
     var contentName: String?
+    
     var annotation: Artwork?
+    
     let data = ["주소 복사","관련 지역 검색"]
+    
+    //:MARK: - Component
     
     fileprivate var dramaTitle = UILabel().then{
         $0.translatesAutoresizingMaskIntoConstraints = false
@@ -16,11 +22,13 @@ class DetailModalViewController: UIViewController{
         $0.textColor = .white
         $0.backgroundColor = .blue
     }
-    // 테이블 뷰 생성
+    
     let tableView = UITableView().then{
         $0.translatesAutoresizingMaskIntoConstraints = false
     }
-
+    
+    // MARK: - View Life Cycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // 테이블 뷰의 데이터 소스와 델리게이트를 현재 클래스로 설정
@@ -35,12 +43,16 @@ class DetailModalViewController: UIViewController{
             })]
         }
     }
+    
+    //: MARK: - View Methodes
+    
     func setUpTableView(){
         tableView.dataSource = self
         tableView.delegate = self
         // 테이블 뷰에 셀 등록
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
     }
+    
     func initSubview(){
         view.addSubview(dramaTitle)
         // 테이블 뷰를 뷰에 추가
@@ -58,17 +70,21 @@ class DetailModalViewController: UIViewController{
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
         ])
     }
+    
 }
 
+    // MARK: - UITableViewDataSource, UITableViewDelegate
 extension DetailModalViewController: UITableViewDataSource, UITableViewDelegate{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return data.count
     }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
         cell.textLabel?.text = data[indexPath.row]
         return cell
     }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         guard let safeAnnotation = annotation else{
@@ -95,5 +111,6 @@ extension DetailModalViewController: UITableViewDataSource, UITableViewDelegate{
         }
         else{}
     }
+    
 }
 

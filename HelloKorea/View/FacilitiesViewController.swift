@@ -11,17 +11,26 @@ import CoreLocation
 import DrawerView
 import FirebaseFirestore
 import RxSwift
+
 typealias Datas = (ID: String,address: String,number: String,type: String,foodOrPray: String)
 
 class FacilitiesViewController: UIViewController {
+    // MARK: - Property
+    
     let db = Firestore.firestore()
+    
     let disposeBag = DisposeBag()
+    
     var newLocations = [Location]()
+    
+    //:MARK: - Component
+    
     fileprivate let loadingView: LoadingView = {
         let view = LoadingView()
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
+    
     fileprivate var scrollView : UIScrollView = {
         let scrollView = UIScrollView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height + 200))
         scrollView.setGradient(color1: .black, color2: UIColor(rgb: 0x295EA6))
@@ -31,12 +40,15 @@ class FacilitiesViewController: UIViewController {
         scrollView.isPagingEnabled = true
         return scrollView
     }()
+    
     fileprivate var mapView = MKMapView().then{
         $0.mapType = MKMapType.standard
         $0.isZoomEnabled = true
         $0.isScrollEnabled = true
         $0.translatesAutoresizingMaskIntoConstraints = false
     }
+    
+    // MARK: - View Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -63,6 +75,8 @@ class FacilitiesViewController: UIViewController {
             .disposed(by: disposeBag)
         initSubView()
     }
+    
+    //: MARK: - View Methodes
     
     func initSubView() {
         mapView.delegate = self
@@ -185,13 +199,18 @@ class FacilitiesViewController: UIViewController {
             closure()
         }
     }
+    
 }
+
+    // MARK: - MapKit 
+
 extension FacilitiesViewController: MKMapViewDelegate{
     func mapView(_ mapView: MKMapView, regionWillChangeAnimated animated: Bool) {
         if let selectedAnnotations = mapView.selectedAnnotations as? [MKPointAnnotation], let selectedAnnotation = selectedAnnotations.first {
             mapView.deselectAnnotation(selectedAnnotation, animated: true)
         }
     }
+    
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView?{
         guard let annotation = annotation as? Location else {
             return nil
@@ -201,4 +220,5 @@ extension FacilitiesViewController: MKMapViewDelegate{
         annotationView.configure(explanation: annotation.locationName, address: annotation.address)
         return annotationView
     }
+    
 }

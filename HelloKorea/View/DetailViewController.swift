@@ -10,9 +10,14 @@ import Then
 
 class DetailViewController: UIViewController {
     
+    // MARK: - Property
+    
     var contentsModel: ContentsModel?
+    
     var contentsModelTest: ContentsModelTest?
-    //:MARK: - component 설정
+    
+    //:MARK: - Component
+    
     fileprivate var scrollView : UIScrollView = {
         let scrollView = UIScrollView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height + 200))
         scrollView.setGradient(color1: .black, color2: UIColor(rgb: 0x295EA6))
@@ -21,6 +26,7 @@ class DetailViewController: UIViewController {
         scrollView.contentSize = CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height + 110)
         return scrollView
     }()
+    
     fileprivate var lblMap : UILabel = {
         var lbl = UILabel()
         lbl.textColor = .white
@@ -29,12 +35,14 @@ class DetailViewController: UIViewController {
         lbl.text = "Filming Locations"
         return lbl
     }()
+    
     fileprivate var imagePoster = UIImageView().then{
         $0.backgroundColor = .white
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.clipsToBounds = true
         $0.layer.cornerRadius = 20
     }
+    
     fileprivate var imageMap = UIImageView().then{
         $0.backgroundColor = .white
         $0.translatesAutoresizingMaskIntoConstraints = false
@@ -43,12 +51,14 @@ class DetailViewController: UIViewController {
         $0.image = #imageLiteral(resourceName: "map 1")
         $0.contentMode = .scaleAspectFit
     }
+    
     fileprivate var buttonMap = UIButton().then{
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.layer.cornerRadius = 20
         $0.addTarget(self, action: #selector(moveToMap), for: .touchUpInside)
         $0.backgroundColor = .clear
     }
+    
     fileprivate var labelName = UILabel().then{
         $0.textColor = .white
         $0.textAlignment = .left
@@ -56,6 +66,7 @@ class DetailViewController: UIViewController {
         $0.lineBreakMode = .byWordWrapping
         $0.numberOfLines = 0
     }
+    
     fileprivate var labelLocation = UILabel().then{
         $0.text = "Filming Locations"
         $0.textColor = .white
@@ -67,11 +78,13 @@ class DetailViewController: UIViewController {
         attributedString.addAttribute(.font, value: boldFont, range: NSRange(location: 0, length: $0.text!.count))
         $0.attributedText = attributedString
     }
+    
     fileprivate var labelYear = UILabel().then{
         $0.textColor = .white
         $0.textAlignment = .left
         $0.translatesAutoresizingMaskIntoConstraints = false
     }
+    
     fileprivate var labelCast = UILabel().then{
         $0.textColor = .white
         $0.textAlignment = .left
@@ -80,12 +93,15 @@ class DetailViewController: UIViewController {
         $0.numberOfLines = 3
         $0.lineBreakMode = .byWordWrapping // 단어 단위로 줄바꿈
     }
-    //: MARK: - 메소드 정의
+    // MARK: - View Life Cycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         initSubView()
         fetchData()
     }
+    
+    //: MARK: - View Methodes
     
     func fetchData(){
         guard let safeContents = contentsModelTest else {
@@ -151,4 +167,5 @@ class DetailViewController: UIViewController {
             navigationController?.pushViewController(mapVC, animated: true)
         }
     }
+    
 }
