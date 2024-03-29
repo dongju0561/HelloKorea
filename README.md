@@ -17,7 +17,7 @@ HelloKorea는 K-컨텐츠(드라마, 영화)에 관련된 컨텐츠의 설명을
 
 | Locations 기능 | Facilities 기능
 |----------------------------------------------------------|----------------------------------------------------------|
-| <img src = "![RPReplay_Final1711685909](https://github.com/dongju0561/HelloKorea/assets/77201628/800aad76-c34a-4b49-8299-85bc955433f0)" width="300" height="500"> | <img src = "![RPReplay_Final1711685909](https://github.com/dongju0561/HelloKorea/assets/77201628/800aad76-c34a-4b49-8299-85bc955433f0)" width="300" height="500">
+| <img src = "https://github.com/dongju0561/HelloKorea/assets/77201628/816b46ad-f4a9-4c71-9f39-2cd62caeebec" width="300" height="500"> | <img src = "https://github.com/dongju0561/HelloKorea/assets/77201628/8ab2d3b2-f91d-4c70-818b-71482beecd8e" width="300" height="500">
 
 <br>
 
