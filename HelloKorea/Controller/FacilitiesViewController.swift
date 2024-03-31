@@ -170,7 +170,7 @@ class FacilitiesViewController: UIViewController {
     
 }
 
-    // MARK: - MapKit 
+// MARK: - MapKit
 
 extension FacilitiesViewController: MKMapViewDelegate{
     func mapView(_ mapView: MKMapView, regionWillChangeAnimated animated: Bool) {
@@ -183,10 +183,62 @@ extension FacilitiesViewController: MKMapViewDelegate{
         guard let annotation = annotation as? Location else {
             return nil
         }
+        var annotationView: MKMarkerAnnotationView
+        
         let identifier = MKMapViewDefaultAnnotationViewReuseIdentifier
-        let annotationView = CustomAnnotationView(annotation: annotation, reuseIdentifier: identifier)
-        annotationView.configure(explanation: annotation.locationName, address: annotation.address)
+        if let dequeuedView = mapView.dequeueReusableAnnotationView(
+            withIdentifier: identifier) as? MKMarkerAnnotationView {
+            dequeuedView.annotation = annotation
+            annotationView = dequeuedView
+            if annotation.foodOrPray == "halal"{
+                annotationView.markerTintColor = .gray
+                annotationView.glyphTintColor = .green
+                annotationView.glyphImage = #imageLiteral(resourceName: "Logo-halal-icon-PNG")
+            }
+            else if annotation.foodOrPray == "pray"{
+                annotationView.markerTintColor = .gray
+                annotationView.glyphImage = #imageLiteral(resourceName: "transparent-pray-icon-ramadan-icon-prayer-icon-5ff25795928462.4759036716097176536002")
+            }
+            
+        }else{
+            annotationView = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+            annotationView.canShowCallout = true // callout를 보여줌
+            annotationView.calloutOffset = CGPoint(x: 0, y: 0) // callout의 위치
+            if annotation.foodOrPray == "halal"{
+                annotationView.markerTintColor = .gray
+                annotationView.glyphTintColor = .green
+                annotationView.glyphImage = #imageLiteral(resourceName: "Logo-halal-icon-PNG")
+            }
+            else if annotation.foodOrPray == "pray"{
+                annotationView.markerTintColor = .gray
+                annotationView.glyphImage = #imageLiteral(resourceName: "transparent-pray-icon-ramadan-icon-prayer-icon-5ff25795928462.4759036716097176536002")
+            }
+            
+            let detailCustomCalloutView = DetailCustomCalloutView()
+            let views = ["customCalloutView": detailCustomCalloutView]
+            detailCustomCalloutView.addConstraints(NSLayoutConstraint.constraints(
+                withVisualFormat: "H:[customCalloutView(300)]", options: [], metrics: nil, views: views)
+            )
+            detailCustomCalloutView.addConstraints(NSLayoutConstraint.constraints(
+                withVisualFormat: "V:[customCalloutView(200)]", options: [], metrics: nil, views: views)
+            )
+            detailCustomCalloutView.detailButton.addTarget(self, action: #selector(showDetail), for: .touchUpInside)
+            detailCustomCalloutView.configure(explanation: annotation.locationName, address: annotation.address)
+            annotationView.detailCalloutAccessoryView = detailCustomCalloutView
+        }
+        
         return annotationView
     }
-    
+    //추가 기능 제공을 위한 modal present하는 함수
+    @objc func showDetail(_ sender: UIButton){
+        if facilitiesView.mapView.selectedAnnotations.first is Location {
+//            
+//            let modal = DetailModalViewController()
+//            modal.contentName = contentsModelTest?.contentName
+//            modal.annotation = (mapView.mapView.selectedAnnotations.first as! Artwork)
+//            self.present(modal,animated: true)
+        }
+    }
 }
+
+
