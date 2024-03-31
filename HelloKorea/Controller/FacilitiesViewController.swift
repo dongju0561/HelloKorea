@@ -140,8 +140,7 @@ class FacilitiesViewController: UIViewController {
     func fetchDocumentDatasTest() -> Observable<Datas>{
         return Observable.create { observer in
             self.facilitiesView.loadingView.isLoading = true
-            self.db.collection("halalRestuarants").getDocuments { [weak self] snapshot, error in
-                guard let self = self else { return }
+            self.db.collection("halalRestuarants").getDocuments { snapshot, error in
                 if let error = error {
                     print("Error fetching documents: \(error)")
                 } else {
@@ -152,7 +151,7 @@ class FacilitiesViewController: UIViewController {
                             guard let number = document.data()["number"] as? String else {return}
                             guard let type = document.data()["type"] as? String else {return}
                             guard let foodOrPray = document.data()["foodOrPray"] as? String else {return}
-                            var datas = (ID: document.documentID,address: address,number: number,type: type,foodOrPray: foodOrPray)
+                            let datas = (ID: document.documentID,address: address,number: number,type: type,foodOrPray: foodOrPray)
                             observer.onNext(datas)
                         }
                         observer.onCompleted()

@@ -76,7 +76,10 @@ class MapViewController: UIViewController {
     
     //초기 지도 위치 설정 함수
     func initSetLocation(_ data : [Location]) {
-        let initialLocation = CLLocation(latitude: data[0].coordinate.latitude, longitude: data[0].coordinate.longitude)
+        let initialLocation = CLLocation(
+            latitude: data[0].coordinate.latitude,
+            longitude: data[0].coordinate.longitude
+        )
         mapView.mapView.setLocation(initialLocation)
     }
     
@@ -87,7 +90,8 @@ class MapViewController: UIViewController {
 extension MapViewController: MKMapViewDelegate{
     //지도의 표시 영역이 변경되기 직전에 호출
     func mapView(_ mapView: MKMapView, regionWillChangeAnimated animated: Bool) {
-        if let selectedAnnotations = mapView.selectedAnnotations as? [MKPointAnnotation], let selectedAnnotation = selectedAnnotations.first {
+        if let selectedAnnotations = mapView.selectedAnnotations as? [MKPointAnnotation], 
+            let selectedAnnotation = selectedAnnotations.first {
             mapView.deselectAnnotation(selectedAnnotation, animated: true)
         }
     }
