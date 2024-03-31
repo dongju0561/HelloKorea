@@ -107,24 +107,26 @@ extension MapViewController: MKMapViewDelegate{
             } 
         //만약 재사용 가능한 annotation view가 없다면
         else {
-            let  detailButton = UIButton(type: .detailDisclosure)
-            detailButton.addTarget(self, action: #selector(showDetail), for: .touchUpInside)
-            
             view = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: identifier)
             view.tag = tagNumOfAnnotation
             tagNumOfAnnotation += 1
             view.canShowCallout = true // callout를 보여줌
             view.calloutOffset = CGPoint(x: 0, y: 0) // callout의 위치
-            view.leftCalloutAccessoryView = detailButton
             view.markerTintColor = .purple
             
+            
             if let safeLocationName = artworks[view.tag].locationName, let safeAddress = artworks[view.tag].address {
-                let customCalloutView = CustomCalloutView()
-                let views = ["customCalloutView": customCalloutView]
-                customCalloutView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:[customCalloutView(300)]", options: [], metrics: nil, views: views))
-                customCalloutView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:[customCalloutView(200)]", options: [], metrics: nil, views: views))
-                customCalloutView.configure(explanation: safeLocationName, address: safeAddress)
-                view.detailCalloutAccessoryView = customCalloutView
+                let DetailCustomCalloutView = DetailCustomCalloutView()
+                let views = ["customCalloutView": DetailCustomCalloutView]
+                DetailCustomCalloutView.addConstraints(NSLayoutConstraint.constraints(
+                    withVisualFormat: "H:[customCalloutView(300)]", options: [], metrics: nil, views: views)
+                )
+                DetailCustomCalloutView.addConstraints(NSLayoutConstraint.constraints(
+                    withVisualFormat: "V:[customCalloutView(200)]", options: [], metrics: nil, views: views)
+                )
+                DetailCustomCalloutView.configure(explanation: safeLocationName, address: safeAddress)
+                DetailCustomCalloutView.detailButton.addTarget(self, action: #selector(showDetail), for: .touchUpInside)
+                view.detailCalloutAccessoryView = DetailCustomCalloutView
             }
         }
         return view
