@@ -7,6 +7,8 @@ HelloKorea는 K-콘텐츠(드라마, 영화)에 관련된 콘텐츠의 설명을
 ## Tech stack
 - UIKit(codebase)
 - MapKit
+  - 커스텀 callout 생성
+  - PickerView와 연동하여 지도 화면 전환
 - CoreLoacation
   - 주소 데이터를 좌표 데이터로 변환
 
