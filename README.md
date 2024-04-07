@@ -7,6 +7,8 @@ HelloKorea는 K-콘텐츠(드라마, 영화)에 관련된 콘텐츠의 설명을
 ## Tech stack
 - UIKit(codebase)
 - MapKit
+  - 커스텀 callout 생성
+  - PickerView와 연동하여 지도 화면 전환
 - CoreLoacation
   - 주소 데이터를 좌표 데이터로 변환
 
@@ -28,7 +30,7 @@ HelloKorea는 K-콘텐츠(드라마, 영화)에 관련된 콘텐츠의 설명을
 
 | Locations 기능 | Facilities 기능
 |----------------------------------------------------------|----------------------------------------------------------|
-| <img src = "https://github.com/dongju0561/HelloKorea/assets/77201628/816b46ad-f4a9-4c71-9f39-2cd62caeebec" width="300" height="500"> | <img src = "https://github.com/dongju0561/HelloKorea/assets/77201628/8ab2d3b2-f91d-4c70-818b-71482beecd8e" width="300" height="500">
+| <img src = "https://github.com/dongju0561/HelloKorea/assets/77201628/bc8021b6-dcf5-41d0-937b-7355dbd664a3" width="300" height="500"> | <img src = "https://github.com/dongju0561/HelloKorea/assets/77201628/5a656dd7-11db-4d79-b63a-de6dfea3324a" width="300" height="500">
 
 <br>
 
@@ -41,6 +43,12 @@ HelloKorea는 K-콘텐츠(드라마, 영화)에 관련된 콘텐츠의 설명을
 ### Facilities 기능
 - 이슬람 교인들을 위한 시설(할랄 인증된 음식점, 기도실)을 핀을 통해 위치 정보 제공
 - 핀 이미지를 구별하여 음식점과 기도실의 위치 확인 가능
+  
+<br>
+
+| 할랄 인증 음식점 glyph 이미지 | 기도실 glyph 이미지
+|----------------------------------------------------------|----------------------------------------------------------|
+| <img src = "https://github.com/dongju0561/HelloKorea/assets/77201628/77e1b603-a8b1-41a7-94cd-d55ef87b4aa4" width="200" height="200"> | <img src = "https://github.com/dongju0561/HelloKorea/assets/77201628/7d356c18-5176-49c6-85f4-d017e4f9aa2a" width="200" height="200">
 
 <br>
 
